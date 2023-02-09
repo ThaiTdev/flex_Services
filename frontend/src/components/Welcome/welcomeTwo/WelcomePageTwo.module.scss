@@ -1,0 +1,20 @@
+.WelcomeTwo {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary-1);
+
+  .WelcomeTextBox {
+    text-align: center;
+    width: 250px;
+    height: 450px;
+    h1 {
+      font-weight: 500;
+      color: var(--primary-2);
+      font-size: 32px;
+    }
+    p {
+      color: var(--neutral-8);
+      font-size: 15px;
+    }
+  }
+}
