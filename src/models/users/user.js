@@ -1,3 +1,5 @@
+//le model de creation de la table user
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     "User",
@@ -19,6 +21,18 @@ module.exports = (sequelize, DataTypes) => {
       categorie: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      token: {
+        type: DataTypes.STRING,
+        default: false,
+      },
+      activationCode: {
+        type: DataTypes.STRING,
+        default: false,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        default: false,
       },
     },
     {

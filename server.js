@@ -40,6 +40,7 @@ require("./src/routes/userRoutes/createUser")(app);
 require("./src/routes/userRoutes/deleteUser")(app);
 require("./src/routes/userRoutes/updateUser")(app);
 require("./src/routes/userRoutes/login")(app);
+// require("./src/routes/userRoutes/userVerif")(app);
 
 app.listen(PORT, () => {
   console.log(`le server est ${PORT}`);

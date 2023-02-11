@@ -1,4 +1,6 @@
+//j'import mon parametrage Axios
 import Axios from "../api/axios";
+
 //gestion de ma connexion à la bdd
 let login = (data) => {
   return Axios.post("/login", data);
@@ -6,6 +8,10 @@ let login = (data) => {
 
 let register = (data) => {
   return Axios.post("/userCreate", data);
+};
+
+let emailConfirm = (activateCode) => {
+  return Axios.post(`/emailConfirm/:${activateCode}`);
 };
 
 //gestion des tokens
@@ -29,4 +35,5 @@ export const accountService = {
   saveToken,
   logout,
   isLogged,
+  emailConfirm,
 };

@@ -4,6 +4,7 @@ import WelcomePage from "../components/Welcome/Welcome/WelcomePage";
 import ForgotPassword from "../components/Auth/forgotPassword/ForgotPassword";
 import UpdatePassword from "../components/Auth/updatePassword/UpdatePassword";
 import RegisterForm from "../components/Auth/register/RegisterForm";
+import ActivationAccount from "../components/Auth/activationAccount/ActivationAccount";
 import WelcomeSlider from "../components/Auth/slide/Slide";
 
 const WelcomeRoutes = () => {
@@ -15,6 +16,10 @@ const WelcomeRoutes = () => {
       <Route path="/AuthForm" element={<AuthForm />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/UpdatePassword" element={<UpdatePassword />} />
+      <Route
+        path="api/emailConfirm/:activationCode"
+        element={<ActivationAccount />}
+      />
     </Routes>
   );
 };

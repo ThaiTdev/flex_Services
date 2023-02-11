@@ -1,19 +1,24 @@
 import { useState } from "react";
+//j'import mon hook 'useInputControlAuthForm' que j'ai créé ou j'implémente mon 'useForm'
 import { useInputControlAuthForm } from "../../Hooks/useInputControlAuthForm";
+//j'import la méthode 'Link' pour mes liens
 import { Link } from "react-router-dom";
 import styles from "./AuthForm.module.scss";
+//j'importe le useNavigate pour mes route vers d'autre pages
 import { useNavigate } from "react-router-dom";
 import { accountService } from "../../../_services/accountService";
 
 function AuthForm() {
   const [checkpassWord, setCheckPassWord] = useState(true);
+  //je recupère mes valeurs retourné par le fichier useInputControlAuthForm
   const [register, handleSubmit, errors] = useInputControlAuthForm();
-  const [error, setError] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassWord, setErrorPassWord] = useState("");
+  //je créer une instance de useNavigate
   let navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // console.log(data.email);
-    // console.log(data.password);
+    // console.log(data);
     try {
       accountService
         .login(data, {
@@ -24,7 +29,8 @@ function AuthForm() {
         })
         .then((res) => {
           accountService.saveToken(res.data.token);
-          setError(res.data.message);
+          setErrorEmail(res.data.messageEmail);
+          setErrorPassWord(res.data.messagePassWord);
           if (res.data.data.categorie === "pro") {
             navigate("/ProHome");
           } else {
@@ -71,7 +77,7 @@ function AuthForm() {
             name="email"
             {...register("email")}
           />
-          {error && <p className="errorsYup">{error}</p>}
+          {errorEmail && <p className="errorsYup">{errorEmail}</p>}
           {errors.email && <p className="errorsYup">{errors.email.message}</p>}
           <label htmlFor="password" className="fz-12  mb-10">
             Mot de passe
@@ -84,6 +90,7 @@ function AuthForm() {
               name="password"
               {...register("password")}
             />
+            {errorPassWord && <p className="errorsYup">{errorPassWord}</p>}
             {errors.password && (
               <p className="errorsYup">{errors.password.message}</p>
             )}

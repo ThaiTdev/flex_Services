@@ -1,4 +1,4 @@
-//j'import sequelize
+//j'import sequelize et Datatype de sequelize
 const { Sequelize, DataTypes } = require("sequelize");
 //j'import le model User
 const UserModel = require("../models/users/user");
@@ -15,7 +15,7 @@ const sequelize = new Sequelize("dbflex", "root", "", {
   logging: false,
 });
 
-//j'instancie le model User
+//j'instancie le model User et lui passe les methode sequelise et Datatype
 const User = UserModel(sequelize, DataTypes);
 
 //generation de users au chargement
