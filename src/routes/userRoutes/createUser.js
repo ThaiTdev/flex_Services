@@ -5,7 +5,7 @@ module.exports = (app) => {
   app.post("/api/userCreate", (req, res) => {
     //creation du code d'activation
     const characters =
-      "0123456789abcdefijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      "0123456789abcdefijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ£$|";
     let activationCode = "";
     for (let i = 0; i < 28; i++) {
       activationCode +=

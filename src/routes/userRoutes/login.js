@@ -25,15 +25,20 @@ module.exports = (app) => {
               const messagePassWord = `le mot de passe est invalide`;
               return res.json({ messagePassWord });
             }
-            //appel de ma fonction sendConfirmationEmail en lui passent les valeurs de la bdd
-            // sendConfirmationEmail(user.email, user.activationCode);
-            sendConfirmationEmail(user.email, user.activationCode);
             //jwt: creation de mon token en passent trois paramètres
             const token = jwt.sign({ userId: user.user_id }, privateKey, {
               expiresIn: "24h",
             });
-            const message = `L'utilisateur a été connecté avec succès`;
-            return res.json({ message, data: user, token });
+            //appel de ma fonction sendConfirmationEmail si l'utilisateur n'est pas actif en lui passent les valeurs de la bdd
+            if (!user.isActive) {
+              sendConfirmationEmail(user.email, user.activationCode);
+              user.token = token;
+              user.save();
+              const message = `Félicitation! Veuillez verifier votre boite mail`;
+              return res.json({ message, data: user, token });
+            }
+            const message = `Bonjour`;
+            return res.json({ data: user, token });
           });
       })
 

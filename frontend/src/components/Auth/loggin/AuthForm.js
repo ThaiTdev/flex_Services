@@ -14,11 +14,13 @@ function AuthForm() {
   const [register, handleSubmit, errors] = useInputControlAuthForm();
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassWord, setErrorPassWord] = useState("");
+  const [message, setMessage] = useState("");
+
   //je créer une instance de useNavigate
   let navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // console.log(data);
+    console.log(data);
     try {
       accountService
         .login(data, {
@@ -28,13 +30,21 @@ function AuthForm() {
           },
         })
         .then((res) => {
-          accountService.saveToken(res.data.token);
+          // accountService.saveToken(res.data.token);
           setErrorEmail(res.data.messageEmail);
           setErrorPassWord(res.data.messagePassWord);
-          if (res.data.data.categorie === "pro") {
+          console.log(res.data.data.isActive);
+          console.log(res.data.data.categorie);
+          console.log(res.data.token);
+          if (res.data.data.isActive && res.data.data.categorie === "pro") {
             navigate("/ProHome");
-          } else {
+          } else if (
+            res.data.data.isActive &&
+            res.data.data.categorie === "customer"
+          ) {
             navigate("/CustomerHome");
+          } else {
+            setMessage(res.data.message);
           }
         });
     } catch (error) {
@@ -67,6 +77,11 @@ function AuthForm() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className={` d-flex flex-column ${styles.box_input} `}>
+          {message && (
+            <p className="valideYup">
+              {message} <i className="fa-solid fa-face-smile smilleIcone"></i>
+            </p>
+          )}
           <label htmlFor="email" className="fz-12 mb-10">
             Email
           </label>
@@ -108,7 +123,6 @@ function AuthForm() {
               )}
             </div>
           </div>
-
           <Link
             to="/ForgotPassword"
             style={{ textDecoration: "none" }}

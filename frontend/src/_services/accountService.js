@@ -11,7 +11,7 @@ let register = (data) => {
 };
 
 let emailConfirm = (activateCode) => {
-  return Axios.post(`/emailConfirm/:${activateCode}`);
+  return Axios.post(`/emailConfirm/${activateCode}`);
 };
 
 //gestion des tokens

@@ -24,15 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       token: {
         type: DataTypes.STRING,
-        default: false,
+        defaultValue: false,
       },
       activationCode: {
         type: DataTypes.STRING,
-        default: false,
+        allowNull: true,
       },
+
       isActive: {
         type: DataTypes.BOOLEAN,
-        default: false,
+        defaultValue: false,
       },
     },
     {
