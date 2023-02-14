@@ -34,13 +34,18 @@ app
   .use(bodyParser.json())
   .use(cors());
 
-require("./src/routes/userRoutes/findAllUsers")(app);
-require("./src/routes/userRoutes/findUserByPk")(app);
+//authentification routes//
 require("./src/routes/userRoutes/createUser")(app);
-require("./src/routes/userRoutes/deleteUser")(app);
-require("./src/routes/userRoutes/updateUser")(app);
 require("./src/routes/userRoutes/login")(app);
 require("./src/routes/userRoutes/userVerif")(app);
+require("./src/routes/userRoutes/forgotPassword")(app);
+require("./src/routes/userRoutes/resetPassword")(app);
+
+//api crud//
+require("./src/routes/routesCrud/findAllUsers")(app);
+require("./src/routes/routesCrud/findUserByPk")(app);
+require("./src/routes/routesCrud/deleteUser")(app);
+require("./src/routes/routesCrud/updateUser")(app);
 
 app.listen(PORT, () => {
   console.log(`le server est ${PORT}`);

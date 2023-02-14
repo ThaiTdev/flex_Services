@@ -1,7 +1,8 @@
-import styles from "./UpdatePassword.module.scss";
+import styles from "./ResetPassword.module.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function UpdatePassword() {
+function ResetPassword() {
   const [checkpassWord, setCheckPassWord] = useState(true);
   const [checkpassWordConfirm, setCheckPassWordConfirm] = useState(true);
 
@@ -10,31 +11,23 @@ function UpdatePassword() {
     const value = document.getElementById("passwordUpdate");
     if (value.type === "password") {
       value.type = "text";
-    }
-  }
-
-  function handlehidePassWord() {
-    const value = document.getElementById("passwordUpdate");
-    setCheckPassWord(true);
-    if (value.type === "text") {
+    } else if (value.type === "text") {
+      setCheckPassWord(true);
       value.type = "password";
     }
   }
+
   function handleShowPassWordConfirm() {
     setCheckPassWordConfirm(false);
     const value = document.getElementById("passwordConfirm");
     if (value.type === "password") {
       value.type = "text";
-    }
-  }
-
-  function handlehidePassWordConfirm() {
-    const value = document.getElementById("passwordConfirm");
-    setCheckPassWordConfirm(true);
-    if (value.type === "text") {
+    } else if (value.type === "text") {
+      setCheckPassWordConfirm(true);
       value.type = "password";
     }
   }
+
   return (
     <div
       className={`d-flex flex-column justify-content-between p-20 ${styles.UpdatePage}`}
@@ -45,7 +38,12 @@ function UpdatePassword() {
         <div
           className={`d-flex flex-column justify-content-center ${styles.title}`}
         >
-          <i onClick={() => {}} className="fa-solid fa-arrow-left fz-20 "></i>
+          <Link
+            to="/AuthForm"
+            style={{ textDecoration: "none", zIndex: "1000" }}
+          >
+            <i className="fa-solid fa-arrow-left fz-20 "></i>
+          </Link>
           <h4 className={styles.title}>Mot de passe oublié</h4>
         </div>
       </div>
@@ -77,7 +75,7 @@ function UpdatePassword() {
                   ></i>
                 ) : (
                   <i
-                    onClick={handlehidePassWord}
+                    onClick={handleShowPassWord}
                     className="fa-regular fa-eye"
                   ></i>
                 )}
@@ -104,7 +102,7 @@ function UpdatePassword() {
                   ></i>
                 ) : (
                   <i
-                    onClick={handlehidePassWordConfirm}
+                    onClick={handleShowPassWordConfirm}
                     className="fa-regular fa-eye"
                   ></i>
                 )}
@@ -125,4 +123,4 @@ function UpdatePassword() {
   );
 }
 
-export default UpdatePassword;
+export default ResetPassword;

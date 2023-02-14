@@ -1,12 +1,29 @@
 import styles from "./ForgotPassword.module.scss";
 import { Link } from "react-router-dom";
 import { useInputControlforgot } from "../../Hooks/useInputControlforgot";
+import { accountService } from "../../../_services/accountService";
+import { useState } from "react";
 
 function ForgotPassword() {
   const [register, handleSubmit, errors] = useInputControlforgot();
+  const [messageValide, setMessageValide] = useState("");
+  const [messageErreur, setMessageErreur] = useState("");
 
   const onSubmit = (data) => {
     console.log(data);
+    try {
+      accountService
+        .forgotPassword(data, {
+          header: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setMessageValide(res.data.messageValide);
+          setMessageErreur(res.data.messageErreur);
+          console.log(res);
+        });
+    } catch (error) {}
   };
 
   return (
@@ -35,6 +52,7 @@ function ForgotPassword() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className={`d-flex flex-column ${styles.box_input} `}>
+          {messageValide && <p className="valideYup">{messageValide}</p>}
           <label htmlFor="emailForgot" className="fz-12 mb-10">
             Email
           </label>
@@ -45,9 +63,7 @@ function ForgotPassword() {
             className="fz-12 mb-10 "
             {...register("emailForgot")}
           />
-          {errors.emailForgot && (
-            <p className="errorsYup">{errors.emailForgot.message}</p>
-          )}
+          {messageErreur && <p className="errorsYup">{messageErreur}</p>}
         </div>
 
         <button className="btn-next btn-primary fz-12 mb-20 " type="submit">

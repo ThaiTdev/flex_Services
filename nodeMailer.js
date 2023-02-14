@@ -26,6 +26,20 @@ module.exports.sendConfirmationEmail = (email, activationCode) => {
     .catch((err) => console.log(err));
 };
 
+module.exports.sendModifPassword = (email, token) => {
+  transport
+    .sendMail({
+      from: "t.thai@outlook.fr",
+      to: email,
+      subject: "Modifier votre Mot de passe 'Flex'",
+      html: `<div>
+    <h1>Email pour la modification du mot de pass</h1>
+    <h2>Bonjour ${email},</h2>
+    <p>Pour modifier votre mot de passe, cliquer sur ce lien</p>
+    <a href=http://localhost:3000/resetPassWord/${token}>Cliquez ici!</a></div>`,
+    })
+    .catch((err) => console.log(err));
+};
 // transport.sendMail(
 //   {
 //     from: "t.thai@outlook.fr",

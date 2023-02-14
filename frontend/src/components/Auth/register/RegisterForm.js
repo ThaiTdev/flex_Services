@@ -33,6 +33,7 @@ function RegisterForm() {
       console.error(error);
     }
   };
+
   function handleShowPassWord() {
     setCheckPassWord(false);
     const value = document.getElementById("passwordRegister");
