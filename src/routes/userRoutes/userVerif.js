@@ -1,19 +1,29 @@
 const { User } = require("../../db/sequelize");
 
 module.exports = (app) => {
-  app.post("/api/emailConfirm/:activationCode", (req, res) => {
-    User.findOne({ activationCode: req.params.activationCode }).then((user) => {
+  app.post("/api/emailConfirm/:activationCode", async (req, res) => {
+    try {
+      const user = await User.findOne({
+        where: {
+          activationCode: req.params.activationCode,
+        },
+      });
       if (!user) {
-        const message = "ce code d'activation est faux";
-        res.json({ message, data: user });
-        console.log(req.params.activationCode);
+        return res
+          .status(400)
+          .json({ message: "Ce code d'activation est faux" });
       }
-      console.log(req.params.activationCode);
-      console.log(req.body.token);
       user.isActive = true;
-      user.save();
-      const message = "Votre compte est activer avec succes !";
-      res.json({ message, data: user });
-    });
+      await user.save();
+      res.json({
+        message: "Votre compte a été activé avec succès !",
+        data: user,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message:
+          "Une erreur est survenue lors de l'activation de votre compte.",
+      });
+    }
   });
 };

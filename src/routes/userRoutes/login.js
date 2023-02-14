@@ -5,12 +5,11 @@ const jwt = require("jsonwebtoken");
 //j'import ma "privateKey pour le deuxième paramètre JWT"
 const privateKey = require("../../auth/privateKey");
 //j'import ma méthode "sendConfirmationEmail" qui envoi un mail pour la confirmation
-const { sendConfirmationEmail } = require("../../../nodeMailer.js");
 
 module.exports = (app) => {
-  app.post("/api/login", (req, res) => {
+  app.post("/api/login", async (req, res) => {
     //je cherche dans la bdd  l'utlisateur dont le mail correspond à celui passé en requête
-    User.findOne({ where: { email: req.body.email } })
+    await User.findOne({ where: { email: req.body.email } })
       .then((user) => {
         //si il n'existe pas je retourne ce message d'erreur
         if (!user) {
@@ -25,17 +24,14 @@ module.exports = (app) => {
               const messagePassWord = `le mot de passe est invalide`;
               return res.json({ messagePassWord });
             }
+
             //jwt: creation de mon token en passent trois paramètres
             const token = jwt.sign({ userId: user.user_id }, privateKey, {
               expiresIn: "24h",
             });
-            //appel de ma fonction sendConfirmationEmail si l'utilisateur n'est pas actif en lui passent les valeurs de la bdd
-            if (!user.isActive) {
-              sendConfirmationEmail(user.email, user.activationCode);
+            if (user.isActive) {
               user.token = token;
               user.save();
-              const message = `Félicitation! Veuillez verifier votre boite mail`;
-              return res.json({ message, data: user, token });
             }
             const message = `Bonjour`;
             return res.json({ data: user, token });

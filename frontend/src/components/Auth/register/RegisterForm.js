@@ -1,17 +1,14 @@
 import { useState } from "react";
 import styles from "./Register.module.scss";
 import { useInputControlRegister } from "../../Hooks/useInputControlRegister";
-import { useNavigate } from "react-router-dom";
 import { accountService } from "../../../_services/accountService";
 
 function RegisterForm() {
   const [checkpassWord, setCheckPassWord] = useState(true);
   const [checkpassWordConfirm, setCheckPassWordConfirm] = useState(true);
   const [register, handleSubmit, setValue, errors] = useInputControlRegister();
-  const [selectedOption, setSelectedOption] = useState(null);
   const [mailVerif, setMailVerif] = useState("");
-
-  let navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
   const showData = async (data) => {
     let value = {
@@ -29,12 +26,8 @@ function RegisterForm() {
           },
         })
         .then((res) => {
-          console.log(res.data.message1);
           setMailVerif(res.data.message1);
-
-          if (!res.data.message1) {
-            navigate("/AuthForm");
-          }
+          setMessage(res.data.message);
         });
     } catch (error) {
       console.error(error);
@@ -69,9 +62,7 @@ function RegisterForm() {
   ];
 
   const handleChange = (e) => {
-    setSelectedOption(e.target.value);
     setValue("selectedOption", e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -90,6 +81,11 @@ function RegisterForm() {
         <div
           className={`d-flex flex-column justify-content-start ${styles.box_input}`}
         >
+          {message && (
+            <p className="valideYup">
+              {message} <i className="fa-solid fa-face-smile smilleIcone"></i>
+            </p>
+          )}
           <label htmlFor="emailRegister" className="fz-12 mb-10">
             Email
           </label>

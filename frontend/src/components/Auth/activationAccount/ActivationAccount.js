@@ -1,6 +1,7 @@
 import { accountService } from "../../../_services/accountService";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import styles from "./ActivationAccount.module.scss";
 
 function ActivationAccount() {
@@ -10,16 +11,17 @@ function ActivationAccount() {
   function handleClick() {
     console.log(activationCode);
     try {
-      accountService
-        .emailConfirm(activationCode, {
+      axios
+        .post(`http://localhost:5000/api/emailConfirm/${activationCode}`, {
           headers: {
             "Content-Type": "application/json",
-            // "Access-Control-Allow-Origin": "http://localhost:3000",
           },
         })
         .then((res) => {
           console.log(res.data.message);
-          if (res) {
+          console.log(res.data.data.isActive);
+          console.log(res);
+          if (res.data.data.isActive) {
             navigate("/AuthForm");
           }
         });
@@ -44,5 +46,6 @@ function ActivationAccount() {
     </div>
   );
 }
+
 export default ActivationAccount;
 // J7HxDJnWjcjTJ£QNOpElncd$OCjd

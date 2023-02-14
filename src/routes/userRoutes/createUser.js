@@ -1,5 +1,7 @@
 const { User } = require("../../db/sequelize");
 const bcrypt = require("bcrypt");
+//j'import ma méthode "sendConfirmationEmail" qui envoi un mail pour la confirmation
+const { sendConfirmationEmail } = require("../../../nodeMailer.js");
 
 module.exports = (app) => {
   app.post("/api/userCreate", (req, res) => {
@@ -35,9 +37,13 @@ module.exports = (app) => {
         } else {
           //autrement je creer mon utilisateur dans la bdd en lui passent les données en paramètre du créate
           User.create(userData)
-            //je retourn la reponse
+            //je retourne la reponse
             .then((user) => {
-              const message = `L'utilisateur ${req.body.email} a bien été ajouté.`;
+              //appel de ma fonction sendConfirmationEmail si l'utilisateur n'est pas actif en lui passent les valeurs de la bdd
+              sendConfirmationEmail(user.email, user.activationCode);
+
+              const message = `Félicitation! Veuillez verifier votre boite mail`;
+              // const message = `L'utilisateur ${req.body.email} a bien été ajouté.`;
               res.json({ message, data: user });
             })
             .catch((error) => {

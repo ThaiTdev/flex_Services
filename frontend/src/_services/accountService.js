@@ -10,7 +10,7 @@ let register = (data) => {
   return Axios.post("/userCreate", data);
 };
 
-let emailConfirm = (activateCode) => {
+let emailConfirm = (data, activateCode) => {
   return Axios.post(`/emailConfirm/${activateCode}`);
 };
 

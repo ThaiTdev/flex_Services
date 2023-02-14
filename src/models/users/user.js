@@ -28,9 +28,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       activationCode: {
         type: DataTypes.STRING,
-        allowNull: true,
+        defaultValue: false,
       },
-
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
