@@ -40,7 +40,7 @@ module.exports = (app) => {
     } catch (error) {
       console.log(error);
       res.status(500).json({
-        message:
+        messageErreur:
           "Une erreur est survenue lors de la modification du mot de passe.",
       });
     }
