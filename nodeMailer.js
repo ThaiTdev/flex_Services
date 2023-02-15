@@ -33,10 +33,10 @@ module.exports.sendModifPassword = (email, token) => {
       to: email,
       subject: "Modifier votre Mot de passe 'Flex'",
       html: `<div>
-    <h1>Email pour la modification du mot de pass</h1>
+    <h1>Email pour la modification du mot de passe</h1>
     <h2>Bonjour ${email},</h2>
     <p>Pour modifier votre mot de passe, cliquer sur ce lien</p>
-    <a href=http://localhost:3000/resetPassWord/${token}>Cliquez ici!</a></div>`,
+    <a href=http://localhost:3000/resetPassword/${token}>Cliquez ici!</a></div>`,
     })
     .catch((err) => console.log(err));
 };

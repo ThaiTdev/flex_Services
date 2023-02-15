@@ -18,6 +18,9 @@ let emailConfirm = (activateCode) => {
 let forgotPassword = (data) => {
   return Axios.post("/forgotPassword", data);
 };
+let resetPassword = (data, token) => {
+  return Axios.post(`/resetPassword/${token}`, data);
+};
 
 ///////////////////////////////////////////////////
 //gestion des tokens///////////////////////////////
@@ -44,4 +47,5 @@ export const accountService = {
   isLogged,
   emailConfirm,
   forgotPassword,
+  resetPassword,
 };

@@ -1,26 +1,48 @@
 const { User } = require("../../db/sequelize");
+const bcrypt = require("bcrypt");
 
 module.exports = (app) => {
-  app.post("/api/resetPassword", async (req, res) => {
-    const email = req.body;
+  app.post("/api/resetPassword/:token", async (req, res) => {
+    //recupération des données passés dans la requête
+    const userData = req.body;
     try {
-      if (!email) {
-        return res.status(401).json({ message: "entrer votre mail" });
+      if (!userData) {
+        return res.status(401).json({ message: "Entrez votre mot de passe" });
       }
-      await User.findOne({ where: { email: req.body.emailForgot } }).then(
-        (user) => {
-          console.log(user);
-          if (!user) {
-            const messageErreur = `Veuiller entrer un mail valide`;
-            return res.json({ messageErreur });
-          }
-          sendModifPassword(user.email, user.token);
-          const messageValide = `Félicitation! veuillez vérifier votre boite mail`;
-          return res.json({ messageValide });
+      const user = await User.findOne({
+        where: {
+          token: req.params.token,
+        },
+      });
+      if (!user) {
+        return res
+          .status(404)
+          .json({ messageErreur: "Utilisateur non trouvé" });
+      }
+
+      // methode pour hacher le mots de passe
+      bcrypt.hash(userData.passwordReset, 10, async (err, hash) => {
+        if (err) {
+          res.status(500).json({
+            message: "Erreur lors du hashage du mot de passe",
+            data: err,
+          });
+          return res.json();
         }
-      );
+        //modifie les valuers de 'password' pour l'enregistré en bdd
+        userData.passwordReset = hash;
+        password = userData.passwordReset;
+        //ici comme le champs de ma table porte le même nom que ma variable 'password' je peux faire directement comme ci dessous et nom  user.update({ password: password });
+        user.update({ password });
+        // const message = `Votre mot de passe a bien été modifié.`;
+        res.json({ messageValide: "Votre mot de passe a bien été modifié." });
+      });
     } catch (error) {
       console.log(error);
+      res.status(500).json({
+        message:
+          "Une erreur est survenue lors de la modification du mot de passe.",
+      });
     }
   });
 };

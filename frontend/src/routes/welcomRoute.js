@@ -15,7 +15,7 @@ const WelcomeRoutes = () => {
       <Route path="/RegisterForm" element={<RegisterForm />} />
       <Route path="/AuthForm" element={<AuthForm />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
-      <Route path="/ResetPassword/:token" element={<ResetPassword />} />
+      <Route path="/resetPassword/:token" element={<ResetPassword />} />
       <Route
         path="api/emailConfirm/:activationCode"
         element={<ActivationAccount />}
