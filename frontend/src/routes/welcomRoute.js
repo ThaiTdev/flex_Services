@@ -13,13 +13,13 @@ const WelcomeRoutes = () => {
       <Route path="/" element={<WelcomePage />} />
       <Route path="/WelcomeSlider" element={<WelcomeSlider />} />
       <Route path="/RegisterForm" element={<RegisterForm />} />
+      <Route
+        path="/emailConfirm/:activationCode"
+        element={<ActivationAccount />}
+      />
       <Route path="/AuthForm" element={<AuthForm />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/resetPassword/:token" element={<ResetPassword />} />
-      <Route
-        path="api/emailConfirm/:activationCode"
-        element={<ActivationAccount />}
-      />
     </Routes>
   );
 };

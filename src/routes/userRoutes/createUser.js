@@ -28,13 +28,8 @@ module.exports = (app) => {
       userData.password = hash;
       userData.activationCode = activationCode;
 
-      //je vérifie  si l'email passer en requête existe  dans la bdd
       User.findOne({ where: { email: req.body.email } }).then((user) => {
-        if (user) {
-          //si il existe je retourn ce message d'erreur
-          const message1 = `Cette adresse mail est déja utilisée`;
-          return res.json({ message1 });
-        } else {
+        if (!user) {
           //autrement je creer mon utilisateur dans la bdd en lui passent les données en paramètre du créate
           User.create(userData)
             //je retourne la reponse
@@ -51,6 +46,15 @@ module.exports = (app) => {
                 "l'utilisateur n'a pas pu être ajouté. Réessayer dans quelques instants";
               res.status(500).json({ message, data: error });
             });
+        } else if (!user.isActive) {
+          //si il existe mais qu'il n'est pas je retourne ce message d'erreur
+          sendConfirmationEmail(user.email, user.activationCode);
+          const message1 = `Cette adresse mail est déjà utilisée veuillez vérifier vos mails pour activer votre compte`;
+          return res.json({ message1 });
+        } else if (user) {
+          //si il existe je retourn ce message d'erreur
+          const message1 = `Cette adresse mail est déja utilisée`;
+          return res.json({ message1 });
         }
       });
     });

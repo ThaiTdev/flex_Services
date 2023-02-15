@@ -33,11 +33,6 @@ function AuthForm() {
           // accountService.saveToken(res.data.token);
           setErrorEmail(res.data.messageEmail);
           setErrorPassWord(res.data.messagePassWord);
-          console.log(res);
-          console.log(res.data.isActive);
-          console.log(res.data.data.isActive);
-          console.log(res.data.data.categorie);
-          console.log(res.data.token);
           if (res.data.data.isActive && res.data.data.categorie === "pro") {
             navigate("/ProHome");
           } else if (
