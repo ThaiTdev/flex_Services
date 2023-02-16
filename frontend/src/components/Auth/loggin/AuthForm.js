@@ -15,6 +15,7 @@ function AuthForm() {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassWord, setErrorPassWord] = useState("");
   const [message, setMessage] = useState("");
+  const [messageMini, setMessageMini] = useState("");
 
   //je créer une instance de useNavigate
   let navigate = useNavigate();
@@ -33,6 +34,7 @@ function AuthForm() {
           // accountService.saveToken(res.data.token);
           setErrorEmail(res.data.messageEmail);
           setErrorPassWord(res.data.messagePassWord);
+          console.log(res.data.data.isActive);
           if (res.data.data.isActive && res.data.data.categorie === "pro") {
             navigate("/ProHome");
           } else if (
@@ -42,6 +44,7 @@ function AuthForm() {
             navigate("/CustomerHome");
           } else {
             setMessage(res.data.message);
+            setMessageMini(res.data.messageMini);
           }
         });
     } catch (error) {
@@ -75,9 +78,14 @@ function AuthForm() {
       >
         <div className={` d-flex flex-column ${styles.box_input} `}>
           {message && (
-            <p className="valideYup">
-              {message} <i className="fa-solid fa-face-smile smilleIcone"></i>
-            </p>
+            <>
+              <p className="noValideYup">
+                {message}
+                {/* <i className="fa-solid fa-face-smile smilleIcone"></i> */}
+                <i className="fa-sharp fa-solid fa-face-grin-beam-sweat smilleIcone"></i>
+              </p>
+              <p className="errorsYup">{messageMini}</p>
+            </>
           )}
           <label htmlFor="email" className="fz-12 mb-10">
             Email

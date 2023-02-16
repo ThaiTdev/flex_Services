@@ -73,11 +73,24 @@
   font-size: 10px;
   margin: 3px;
 }
+
 .valideYup {
   color: rgb(0, 255, 0);
   font-size: 20px;
-  margin: 0 0 20px 0;
+  margin: 0px 0 20px 0;
+  font-weight: 700;
+  .smilleIcone {
+    margin-left: 5px;
+    color: #ffd700;
+  }
+}
+.noValideYup {
+  color: tomato;
+  font-size: 20px;
+  margin: 0 0 2px 0;
+  font-weight: 700;
   .smilleIcone {
     color: #ffd700;
+    margin-left: 5px;
   }
 }
