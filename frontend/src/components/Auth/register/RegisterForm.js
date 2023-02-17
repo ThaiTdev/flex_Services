@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Register.module.scss";
-import { useInputControlRegister } from "../../Hooks/useInputControlRegister";
+import { useInputControlRegister } from "../../Hooks/HookAuth/useInputControlRegister";
 import { accountService } from "../../../_services/accountService";
 
 function RegisterForm() {

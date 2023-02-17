@@ -1,6 +1,6 @@
 import styles from "./ForgotPassword.module.scss";
 import { Link } from "react-router-dom";
-import { useInputControlforgot } from "../../Hooks/useInputControlforgot";
+import { useInputControlforgot } from "../../Hooks/HookAuth/useInputControlforgot";
 import { accountService } from "../../../_services/accountService";
 import { useState } from "react";
 

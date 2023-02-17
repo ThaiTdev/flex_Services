@@ -1,6 +1,6 @@
 import { useState } from "react";
 //j'import mon hook 'useInputControlAuthForm' que j'ai créé ou j'implémente mon 'useForm'
-import { useInputControlAuthForm } from "../../Hooks/useInputControlAuthForm";
+import { useInputControlAuthForm } from "../../Hooks/HookAuth/useInputControlAuthForm";
 //j'import la méthode 'Link' pour mes liens
 import { Link } from "react-router-dom";
 import styles from "./AuthForm.module.scss";

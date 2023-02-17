@@ -10,7 +10,6 @@ module.exports = (app) => {
       }
       await User.findOne({ where: { email: req.body.emailForgot } }).then(
         (user) => {
-          console.log(user);
           if (!user) {
             const messageErreur = `Veuiller entrer un mail valide`;
             return res.json({ messageErreur });

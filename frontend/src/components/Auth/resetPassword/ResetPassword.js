@@ -1,7 +1,7 @@
 import styles from "./ResetPassword.module.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useInputControlReset } from "../../Hooks/useInputControlReset";
+import { useInputControlReset } from "../../Hooks/HookAuth/useInputControlReset";
 import { accountService } from "../../../_services/accountService";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

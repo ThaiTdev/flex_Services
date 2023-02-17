@@ -40,22 +40,3 @@ module.exports.sendModifPassword = (email, token) => {
     })
     .catch((err) => console.log(err));
 };
-// transport.sendMail(
-//   {
-//     from: "t.thai@outlook.fr",
-//     to: "thaithierry3@gmail.com",
-//     subject: "Confirmer votre compte",
-//     html: `<div>
-//     <h1>Email de confirmation</h1>
-//     <h2>Bonjour,</h2>
-//     <p>Pour validez votre compte, veuillez cliquer sur ce lien</p>
-//     <a href=http://localhost:5000/api//Cliquez ici!</a></div>`,
-//   },
-//   (err, info) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log(info.response);
-//     }
-//   }
-// );
