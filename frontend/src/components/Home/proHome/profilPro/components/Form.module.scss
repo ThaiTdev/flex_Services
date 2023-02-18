@@ -1,0 +1,27 @@
+.ProForm {
+  box-shadow: 0px 10px 9px -9px rgba(0, 0, 0, 0.67);
+  width: 90%;
+  border-radius: 5px;
+  padding: 10px;
+  .ProAvatarBox {
+    position: relative;
+    .ProAvatar {
+      width: 150px;
+    }
+    .ProPhoto {
+      position: absolute;
+      right: 4px;
+      top: 100px;
+    }
+  }
+  .ProInput {
+    width: 100%;
+    padding: 0 5px;
+    p {
+      color: var(--semantic-10);
+    }
+    span {
+      color: var(--primary-2);
+    }
+  }
+}

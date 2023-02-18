@@ -36,12 +36,14 @@ function AuthForm() {
           setErrorPassWord(res.data.messagePassWord);
           console.log(res.data.data.isActive);
           if (res.data.data.isActive && res.data.data.categorie === "pro") {
-            navigate("/ProHome");
+            // navigate("/ProfilPro");
+            navigate("/FormProfilPro");
           } else if (
             res.data.data.isActive &&
             res.data.data.categorie === "customer"
           ) {
-            navigate("/CustomerHome");
+            // navigate("/ProfilCustomer");
+            navigate("/AccueilPro");
           } else {
             setMessage(res.data.message);
             setMessageMini(res.data.messageMini);

@@ -3,6 +3,8 @@ import Axios from "../api/axios";
 //////////////////////////////////////////////
 //gestion de ma connexion à l'API/////////////
 //////////////////////////////////////////////
+
+//Authentification//
 let login = (data) => {
   return Axios.post("/login", data);
 };
@@ -18,8 +20,14 @@ let emailConfirm = (activateCode) => {
 let forgotPassword = (data) => {
   return Axios.post("/forgotPassword", data);
 };
+
 let resetPassword = (data, token) => {
   return Axios.post(`/resetPassword/${token}`, data);
+};
+
+//Professionnels//
+let createProfilPro = (data) => {
+  return Axios.post("/createProfilPro", data);
 };
 
 ///////////////////////////////////////////////////
@@ -40,12 +48,17 @@ let isLogged = () => {
 };
 
 export const accountService = {
+  //tokens//
+  logout,
+  saveToken,
+  isLogged,
+  //Authentification//
   login,
   register,
-  saveToken,
-  logout,
-  isLogged,
   emailConfirm,
   forgotPassword,
   resetPassword,
+  //Professionnels//
+  createProfilPro,
+  //Customer//
 };

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./CustomerHome.module.scss";
+import styles from "./ProfilCustomer.module.scss";
 
 const CustomerHome = () => {
   return (

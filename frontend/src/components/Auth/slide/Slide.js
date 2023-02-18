@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.scss";
 import WelcomePageTwo from "../../Welcome/welcomeTwo/WelcomePageTwo";
 import WelcomePageThree from "../../Welcome/welcomeThree/WelcomePageThree";
 import WelcomePageFour from "../../Welcome/WelcomeFour/WelcomePageFour";
-import styles from "./Slide.module.scss";
 
 function WelcomeSlider() {
   const settings = {
@@ -18,8 +17,8 @@ function WelcomeSlider() {
   };
 
   return (
-    <Slider className={styles.container} {...settings}>
-      <div className={styles.each_slide}>
+    <Slider {...settings}>
+      <div>
         <WelcomePageTwo />
       </div>
       <div>

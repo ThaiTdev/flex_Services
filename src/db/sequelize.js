@@ -2,8 +2,12 @@
 const { Sequelize, DataTypes } = require("sequelize");
 //j'import le model User
 const UserModel = require("../models/users/user");
+//j'import le modelProfessionnel
+const ProModel = require("../models/professionnels/professionnel");
+
 //j'import les données en dure
 // const users = require("./mock-user");
+// const pros = require("./mock-pro");
 
 //je crée une instance de sequelise pour me connecter à ma base de données
 const sequelize = new Sequelize("dbflex", "root", "", {
@@ -17,9 +21,26 @@ const sequelize = new Sequelize("dbflex", "root", "", {
 
 //j'instancie le model User et lui passe les methode sequelise et Datatype
 const User = UserModel(sequelize, DataTypes);
+const Pro = ProModel(sequelize, DataTypes);
 
 //generation de users au chargement
-//je synchronise toutes mes tables et les créer dans la base de données
+// je synchronise toutes mes tables et les créer dans la base de données
+// const initDb = () => {
+//   return sequelize.sync({ force: true }).then((_) => {
+//     pros.map((pro) => {
+//       User.create({
+//         nom_entreprise: pro.nom_entreprise,
+//         adresse: pro.adresse,
+//         siret: pro.siret,
+//         taille: pro.taille,
+//         nom_user: pro.userName,
+//         activite: pro.selectActivite,
+//         fonction: pro.selectFunction,
+//       }).then((pro) => console.log(pro.toJSON()));
+//     });
+//     console.log("La base de donnée a bien été initialisée !");
+//   });
+// };
 // const initDb = () => {
 //   return sequelize.sync({ force: true }).then((_) => {
 //     users.map((user) => {
@@ -48,4 +69,5 @@ sequelize
 module.exports = {
   // initDb,
   User,
+  Pro,
 };

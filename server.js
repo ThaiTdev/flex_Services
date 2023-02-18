@@ -40,11 +40,13 @@ require("./src/routes/userRoutes/login")(app);
 require("./src/routes/userRoutes/userVerif")(app);
 require("./src/routes/userRoutes/forgotPassword")(app);
 require("./src/routes/userRoutes/resetPassword")(app);
+
 //les lignes de code ci-dessus reviennent à écrire cela:
 // const createUserRoutes = require("./src/routes/userRoutes/createUserRoutes");
 // const app = express();
 // // Inject the userRoutes module into the app
 // createUserRoutes(app);
+require("./src/routes/proRoutes/createPro")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);
