@@ -46,6 +46,19 @@
   color: white;
   border: 1px solid var(--green);
 }
+.btn-gog {
+  border: 2px solid var(--semantic-2);
+  background-color: white;
+  color: var(--semantic-2);
+  font-size: 12px;
+  margin-right: 40px;
+}
+.btn-fb {
+  border: 2px solid var(--semantic-9);
+  background-color: white;
+  color: var(--semantic-9);
+  font-size: 12px;
+}
 
 .card {
   border-radius: 20px;

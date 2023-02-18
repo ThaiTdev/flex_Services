@@ -58,78 +58,6 @@ function FormProfilPro() {
         onSubmit={handleSubmit(showData)}
       >
         <div className={`d-flex flex-column justify-content-start `}>
-          <label htmlFor="companyName" className="fz-12 mb-10">
-            Nom de l'entreprise
-          </label>
-          <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            className="fz-12 mb-10 "
-            {...register("nom_entreprise")}
-            required
-          />
-
-          <div>
-            <label htmlFor="CompanyAdress" className="fz-12  mb-10">
-              Adresse de l'entreprise
-            </label>
-            <div className="">
-              <input
-                type="text"
-                id="CompanyAdress"
-                name="CompanyAdress"
-                className="fz-12 mb-10"
-                {...register("adresse")}
-                required
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="siretNumber" className="fz-12  mb-10">
-              Numero de Siret de l'entreprise
-            </label>
-            <div>
-              <input
-                type="number"
-                id="siretNumber"
-                className="fz-12 mb-10"
-                name="siretNumber"
-                {...register("siret")}
-                required
-              />
-            </div>
-          </div>
-          <label htmlFor="comagnySize" className="fz-12  mb-10">
-            Taille de l'entreprise
-          </label>
-          <div>
-            <input
-              type="number"
-              id="comagnySize"
-              className="fz-12 mb-10"
-              name="comagnySize"
-              {...register("taille")}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="comagnyActivity" className="fz-12  mb-10">
-              Activité de l'entreprise
-            </label>
-            <select
-              name="comagnyActivity"
-              id="comagnyActivity"
-              onChange={handleChangeActivite}
-              {...register("selectActivite")}
-            >
-              {sortActivite.map(({ label, value }) => (
-                <option key={value} value={value} required>
-                  {label}
-                </option>
-              ))}
-            </select>
-          </div>
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur
           </label>
@@ -146,18 +74,95 @@ function FormProfilPro() {
               <label htmlFor="userFuction" className="fz-12  mb-10">
                 fonction de l'utilsateur
               </label>
-              <select
-                name="userFuction"
-                id="userFuction"
-                onChange={handleChangeFunction}
-                {...register("selectFunction")}
-              >
-                {sortPoste.map(({ label, value }) => (
-                  <option key={value} value={value} required>
-                    {label}
-                  </option>
-                ))}
-              </select>
+              <div>
+                <select
+                  name="userFuction"
+                  id="userFuction"
+                  onChange={handleChangeFunction}
+                  {...register("selectFunction")}
+                >
+                  {sortPoste.map(({ label, value }) => (
+                    <option key={value} value={value} required>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <label htmlFor="companyName" className="fz-12 mb-10">
+                Nom de l'entreprise
+              </label>
+              <div>
+                <input
+                  type="text"
+                  id="companyName"
+                  name="companyName"
+                  className="fz-12 mb-10 "
+                  {...register("nom_entreprise")}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="CompanyAdress" className="fz-12  mb-10">
+                  Adresse de l'entreprise
+                </label>
+                <div className="">
+                  <input
+                    type="text"
+                    id="CompanyAdress"
+                    name="CompanyAdress"
+                    className="fz-12 mb-10"
+                    {...register("adresse")}
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="siretNumber" className="fz-12  mb-10">
+                  Numero de Siret de l'entreprise
+                </label>
+                <div>
+                  <input
+                    type="number"
+                    id="siretNumber"
+                    className="fz-12 mb-10"
+                    name="siretNumber"
+                    {...register("siret")}
+                    required
+                  />
+                </div>
+              </div>
+              <label htmlFor="comagnySize" className="fz-12  mb-10">
+                Taille de l'entreprise
+              </label>
+              <div>
+                <input
+                  type="number"
+                  id="comagnySize"
+                  className="fz-12 mb-10"
+                  name="comagnySize"
+                  {...register("taille")}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="comagnyActivity" className="fz-12  mb-10">
+                  Activité de l'entreprise
+                </label>
+                <div>
+                  <select
+                    name="comagnyActivity"
+                    id="comagnyActivity"
+                    onChange={handleChangeActivite}
+                    {...register("selectActivite")}
+                  >
+                    {sortActivite.map(({ label, value }) => (
+                      <option key={value} value={value} required>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -175,10 +180,10 @@ function FormProfilPro() {
       <div
         className={`d-flex flex-row justify-content-around  align-items-center`}
       >
-        <button className={`btn  `} onClick={() => {}}>
+        <button className={`btn btn-gog `} onClick={() => {}}>
           Google
         </button>
-        <button className={`btn   `} onClick={() => {}}>
+        <button className={`btn  btn-fb `} onClick={() => {}}>
           Facebook
         </button>
       </div>

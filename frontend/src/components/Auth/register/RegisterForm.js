@@ -213,10 +213,10 @@ function RegisterForm() {
       <div
         className={`d-flex flex-row justify-content-around  align-items-center ${styles.social}`}
       >
-        <button className={`btn  ${styles.gog} `} onClick={() => {}}>
+        <button className={`btn btn-gog`} onClick={() => {}}>
           Google
         </button>
-        <button className={`btn  ${styles.fb} `} onClick={() => {}}>
+        <button className={`btn btn-fb`} onClick={() => {}}>
           Facebook
         </button>
       </div>
