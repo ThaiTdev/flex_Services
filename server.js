@@ -47,6 +47,7 @@ require("./src/routes/userRoutes/resetPassword")(app);
 // // Inject the userRoutes module into the app
 // createUserRoutes(app);
 require("./src/routes/proRoutes/createPro")(app);
+require("./src/routes/proRoutes/checkProfilValide")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);

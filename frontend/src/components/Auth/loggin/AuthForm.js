@@ -37,7 +37,7 @@ function AuthForm() {
           console.log(res.data.data.isActive);
           if (res.data.data.isActive && res.data.data.categorie === "pro") {
             // navigate("/ProfilPro");
-            navigate("/AccueilPro");
+            navigate(`/AccueilPro/${res.data.data.user_id}`);
           } else if (
             res.data.data.isActive &&
             res.data.data.categorie === "customer"

@@ -1,11 +1,13 @@
 import { useInputControlerFormProfilPro } from "../../../Hooks/HookPro/useInputControlerFormProfilPro";
 import { accountService } from "../../../../_services/accountService";
 import { sortPoste, sortActivite } from "./selectOptions";
+import { useParams } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 function FormProfilPro() {
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormProfilPro();
+  const { id } = useParams();
   // let navigate = useNavigate();
 
   const showData = (data) => {
@@ -20,9 +22,10 @@ function FormProfilPro() {
     };
 
     console.log(value);
+    console.log(id);
     try {
       accountService
-        .createProfilPro(value, {
+        .createProfilPro(value, id, {
           headers: {
             "Content-Type": "application/json",
             // "Access-Control-Allow-Origin": "http://localhost:3000",

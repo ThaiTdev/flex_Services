@@ -26,8 +26,12 @@ let resetPassword = (data, token) => {
 };
 
 //Professionnels//
-let createProfilPro = (data) => {
-  return Axios.post("/createProfilPro", data);
+let createProfilPro = (data, id) => {
+  return Axios.post(`/createProfilPro/${id}`, data);
+};
+
+let checkProfilValide = (id) => {
+  return Axios.post(`/checkProfilValide/${id}`);
 };
 
 ///////////////////////////////////////////////////
@@ -60,5 +64,6 @@ export const accountService = {
   resetPassword,
   //Professionnels//
   createProfilPro,
+  checkProfilValide,
   //Customer//
 };

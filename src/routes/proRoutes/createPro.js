@@ -1,20 +1,21 @@
 const { Pro } = require("../../db/sequelize");
 
 module.exports = (app) => {
-  app.post("/api/createProfilPro", async (req, res) => {
+  app.post("/api/createProfilPro/:id", async (req, res) => {
     //creation du code d'activation
 
     //recupération des données passés dans la requête
     const userData = req.body;
+    const paramId = req.params.id;
 
     try {
-      await Pro.findOne({ where: { siret: req.body.siret } }).then((user) => {
+      await Pro.findOne({ where: { user_id: paramId } }).then((user) => {
         if (user) {
           //si il existe déja je retourn ce message d'erreur
           const message1 = `Cette utilisateur à déja un profil`;
           return res.json({ message1 });
         }
-
+        userData.user_id = paramId;
         //si l'utilisateur n'existe pas, je le créer.
         Pro.create(userData)
           //je retourne la reponse

@@ -8,8 +8,9 @@ const ProRoutes = () => {
   return (
     <Routes>
       <Route>
-        <Route path="/AccueilPro" element={<AccueilPro />} />
-        <Route path="/FormProfilPro" element={<FormProfilPro />} />
+        <Route path="/AccueilPro/:id" element={<AccueilPro />} />
+        <Route path="/checkProfilValide/:id" element={<checkProfilValide />} />
+        <Route path="/FormProfilPro/:id" element={<FormProfilPro />} />
         <Route path="/ProfilPro" element={<ProfilPro />} />
       </Route>
     </Routes>
