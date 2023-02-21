@@ -20,7 +20,7 @@ function AccueilPro() {
           console.log(res);
           console.log(res.data.message);
           if (res.data.message) {
-            navigate("/ProfilPro");
+            navigate(`/ProfilPro/${id}`);
           } else {
             navigate(`/FormProfilPro/${id}`);
           }

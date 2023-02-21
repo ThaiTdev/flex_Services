@@ -2,13 +2,17 @@ import { useInputControlerFormProfilPro } from "../../../Hooks/HookPro/useInputC
 import { accountService } from "../../../../_services/accountService";
 import { sortPoste, sortActivite } from "./selectOptions";
 import { useParams } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import AvartProfil from "./AvatarProfil";
+import styles from "./FormProfilPro.module.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FormProfilPro() {
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormProfilPro();
+  const [element, setElement] = useState("");
   const { id } = useParams();
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const showData = (data) => {
     let value = {
@@ -19,8 +23,9 @@ function FormProfilPro() {
       nom_user: data.userName,
       activite: data.selectActivite,
       fonction: data.selectFunction,
+      avatar: element,
     };
-
+    console.log(element);
     console.log(value);
     console.log(id);
     try {
@@ -34,7 +39,7 @@ function FormProfilPro() {
         .then((res) => {
           console.log(res);
           console.log(res.message);
-          // navigate("/profilPro");
+          navigate(`/ProfilPro/${id}`);
         });
     } catch (error) {
       console.error(error);
@@ -50,131 +55,122 @@ function FormProfilPro() {
 
   return (
     <div
-      className={`d-flex flex-column justify-content-around align-items-center`}
+      className={`d-flex flex-column justify-content-around align-items-center  ${styles.formContainer} `}
     >
       <div>
         <h1>Créer votre profil</h1>
       </div>
-
       <form
-        className={` d-flex flex-column justify-content-between  `}
+        className={` d-flex flex-column justify-content-between ${styles.form}`}
         onSubmit={handleSubmit(showData)}
       >
-        <div className={`d-flex flex-column justify-content-start `}>
+        <AvartProfil element={setElement} />
+        <div className="d-flex flex-column justify-content-around align-items-center  ">
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur
           </label>
-          <div>
-            <input
-              type="text"
-              id="userName"
-              className="fz-12 mb-10"
-              name="userName"
-              {...register("userName")}
-              required
-            />
-            <div>
-              <label htmlFor="userFuction" className="fz-12  mb-10">
-                fonction de l'utilsateur
-              </label>
-              <div>
-                <select
-                  name="userFuction"
-                  id="userFuction"
-                  onChange={handleChangeFunction}
-                  {...register("selectFunction")}
-                >
-                  {sortPoste.map(({ label, value }) => (
-                    <option key={value} value={value} required>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <label htmlFor="companyName" className="fz-12 mb-10">
-                Nom de l'entreprise
-              </label>
-              <div>
-                <input
-                  type="text"
-                  id="companyName"
-                  name="companyName"
-                  className="fz-12 mb-10 "
-                  {...register("nom_entreprise")}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="CompanyAdress" className="fz-12  mb-10">
-                  Adresse de l'entreprise
-                </label>
-                <div className="">
-                  <input
-                    type="text"
-                    id="CompanyAdress"
-                    name="CompanyAdress"
-                    className="fz-12 mb-10"
-                    {...register("adresse")}
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="siretNumber" className="fz-12  mb-10">
-                  Numero de Siret de l'entreprise
-                </label>
-                <div>
-                  <input
-                    type="number"
-                    id="siretNumber"
-                    className="fz-12 mb-10"
-                    name="siretNumber"
-                    {...register("siret")}
-                    required
-                  />
-                </div>
-              </div>
-              <label htmlFor="comagnySize" className="fz-12  mb-10">
-                Taille de l'entreprise
-              </label>
-              <div>
-                <input
-                  type="number"
-                  id="comagnySize"
-                  className="fz-12 mb-10"
-                  name="comagnySize"
-                  {...register("taille")}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="comagnyActivity" className="fz-12  mb-10">
-                  Activité de l'entreprise
-                </label>
-                <div>
-                  <select
-                    name="comagnyActivity"
-                    id="comagnyActivity"
-                    onChange={handleChangeActivite}
-                    {...register("selectActivite")}
-                  >
-                    {sortActivite.map(({ label, value }) => (
-                      <option key={value} value={value} required>
-                        {label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <input
+            type="text"
+            id="userName"
+            className="fz-12 mb-10"
+            name="userName"
+            {...register("userName")}
+            required
+          />
+
+          <label htmlFor="userFuction" className="fz-12  mb-10">
+            fonction de l'utilsateur
+          </label>
+
+          <select
+            name="userFuction"
+            id="userFuction"
+            onChange={handleChangeFunction}
+            {...register("selectFunction")}
+          >
+            {sortPoste.map(({ label, value }) => (
+              <option key={value} value={value} required>
+                {label}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="companyName" className="fz-12 mb-10">
+            Nom de l'entreprise
+          </label>
+
+          <input
+            type="text"
+            id="companyName"
+            name="companyName"
+            className="fz-12 mb-10 "
+            {...register("nom_entreprise")}
+            required
+          />
+
+          <label htmlFor="CompanyAdress" className="fz-12  mb-10">
+            Adresse de l'entreprise
+          </label>
+
+          <input
+            type="text"
+            id="CompanyAdress"
+            name="CompanyAdress"
+            className="fz-12 mb-10"
+            {...register("adresse")}
+            required
+          />
+
+          <label htmlFor="siretNumber" className="fz-12  mb-10">
+            Numero de Siret de l'entreprise
+          </label>
+
+          <input
+            type="number"
+            id="siretNumber"
+            className="fz-12 mb-10"
+            name="siretNumber"
+            {...register("siret")}
+            required
+          />
+
+          <label htmlFor="comagnySize" className="fz-12  mb-10">
+            Taille de l'entreprise
+          </label>
+
+          <input
+            type="number"
+            id="comagnySize"
+            className="fz-12 mb-10"
+            name="comagnySize"
+            {...register("taille")}
+            required
+          />
+
+          <label htmlFor="comagnyActivity" className="fz-12  mb-10">
+            Activité de l'entreprise
+          </label>
+
+          <select
+            name="comagnyActivity"
+            id="comagnyActivity"
+            onChange={handleChangeActivite}
+            {...register("selectActivite")}
+          >
+            {sortActivite.map(({ label, value }) => (
+              <option key={value} value={value} required>
+                {label}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="d-flex flex-column justify-content-center align-items-end  mt-20  ">
           <button
             className="d-flex flex-row justify-content-between align-items-center btn-co btn-primary fz-12"
             type="submit"
           >
-            <span>Créer mon profil</span>
+            <span className="mr-5">Créer mon profil</span>
             <i className=" fa-solid fa-arrow-right-long fz-20 "></i>
           </button>
         </div>

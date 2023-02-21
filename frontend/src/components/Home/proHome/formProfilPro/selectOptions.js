@@ -15,7 +15,7 @@ const optionPoste = [
   { label: "Sommelier/Sommelière", value: "Sommelier" },
 ];
 const optionActivite = [
-  { label: "--choisir ma fonction--", value: "" },
+  { label: "--choisir mon activité--", value: "" },
   { label: "La restauration traditionnelle", value: "tradi" },
   { label: "La restauration rapide", value: "fast" },
   { label: "La restauration à thème", value: "thème" },

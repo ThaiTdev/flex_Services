@@ -36,7 +36,7 @@ export default function LinkPro() {
           className={`d-flex flex-column  justify-content-between  align-items-center fz-12 ${styles.Accueil} `}
           href="/"
         >
-          <img src="./images/Menu/shop.png" alt="Maison" />
+          <img src="../images/Menu/shop.png" alt="Maison" />
           <p className="m-0 mt-5">Accueil</p>
         </Link>
 
@@ -46,7 +46,7 @@ export default function LinkPro() {
           className={`d-flex flex-column  justify-content-between  align-items-center  fz-12 ${styles.Gestion} `}
           href="/"
         >
-          <img src="./images/Menu/gestion.png" alt="liste" />
+          <img src="../images/Menu/gestion.png" alt="liste" />
           <p className="m-0 mt-5">Gestion</p>
         </Link>
 
@@ -56,7 +56,7 @@ export default function LinkPro() {
           className={`d-flex flex-column  justify-content-between  align-items-center  fz-12 ${styles.Profil} `}
           href="/"
         >
-          <img src="./images/Menu/profil.png" alt="avatar" />
+          <img src="../images/Menu/profil.png" alt="avatar" />
           <p className="m-0 mt-5">Profil</p>
         </Link>
 
@@ -66,7 +66,7 @@ export default function LinkPro() {
           className={`d-flex flex-column  justify-content-between  align-items-center fz-12 ${styles.Param} `}
           href="/"
         >
-          <img src="./images/Menu/path.png" alt="coeur" />
+          <img src="../images/Menu/path.png" alt="coeur" />
           <p className="m-0 mt-5">Paramètre</p>
         </Link>
       </div>

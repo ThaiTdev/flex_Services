@@ -33,6 +33,9 @@ let createProfilPro = (data, id) => {
 let checkProfilValide = (id) => {
   return Axios.post(`/checkProfilValide/${id}`);
 };
+let showProfilePro = (id) => {
+  return Axios.get(`/showProfilPro/${id}`);
+};
 
 ///////////////////////////////////////////////////
 //gestion des tokens///////////////////////////////
@@ -65,5 +68,6 @@ export const accountService = {
   //Professionnels//
   createProfilPro,
   checkProfilValide,
+  showProfilePro,
   //Customer//
 };

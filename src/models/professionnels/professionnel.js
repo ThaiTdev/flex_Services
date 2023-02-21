@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: false,
       },
+      avatar: {
+        type: DataTypes.STRING,
+        defaultValue: false,
+      },
       logo: {
         type: DataTypes.STRING,
         defaultValue: false,

@@ -11,7 +11,7 @@ const ProRoutes = () => {
         <Route path="/AccueilPro/:id" element={<AccueilPro />} />
         <Route path="/checkProfilValide/:id" element={<checkProfilValide />} />
         <Route path="/FormProfilPro/:id" element={<FormProfilPro />} />
-        <Route path="/ProfilPro" element={<ProfilPro />} />
+        <Route path="/ProfilPro/:id" element={<ProfilPro />} />
       </Route>
     </Routes>
   );

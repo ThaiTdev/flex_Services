@@ -46,8 +46,13 @@ require("./src/routes/userRoutes/resetPassword")(app);
 // const app = express();
 // // Inject the userRoutes module into the app
 // createUserRoutes(app);
+
+//professionnels routes//
 require("./src/routes/proRoutes/createPro")(app);
 require("./src/routes/proRoutes/checkProfilValide")(app);
+require("./src/routes/proRoutes/showProfilPro")(app);
+
+//customer routes//
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);
