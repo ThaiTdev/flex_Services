@@ -1,3 +1,4 @@
+
 # Flex Restauration
 
 flex-Restauration est une web app qui va permettre à des professionnels de la restauration de mettre en place des créneaux horaire selon leurs besoins en personnels.<br> 
@@ -20,6 +21,24 @@ Pour le backend j'ai utilisé:
 
 La base de données sera sous PhpMyAdmin.
 
+
+## Gestion des données
+
+
+Pour sécuriser l'accès à la base de données j'utilise une API rest.<br>
+
+Axios est un package de node qui va me permettre de gérer mes APIs
+
+
+## Usage/Examples
+
+```javascript
+import axios from "axios";
+//Je paramètre ma base url avec axios
+const Axios = axios.create({ baseURL: "http://localhost:5000/api" });
+
+export default Axios;
+```
 
 
 
