@@ -4,7 +4,7 @@ flex-Restauration est une web app qui va permettre à des professionnels de la r
 Ainsi un potentiel postulant pourra choisir les heures de travails selon son emploi du temps qu'il soit demandeur d'emploi ou étudiant.<br>Cela permet une plus grande flexibilité.
 
 
-##Techno utilisés
+## Techno utilisés
 
 Pour la réalisation de ce projet j'ai utlisé en partie frontend:
 
