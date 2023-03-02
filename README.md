@@ -90,7 +90,7 @@ let login = (data) => {
     }
   };
   ```
-j'envoie ma requête avec mes données récupérer dans mon formulaire à la d'un écouteur d'événement sur la balise form.
+j'envoie ma requête avec mes données récupérer dans mon formulaire à l'aide d'un écouteur d'événement sur la balise form.
 ## API Reference
 
 #### Authentification
