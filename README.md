@@ -29,7 +29,7 @@ Pour sécuriser l'accès à la base de données j'utilise une API rest.<br>
 
 Axios est un package de node qui va me permettre de gérer mes APIs
 
-
+Ensuit je configure Axios pour les routes vers mes APIs
 ## Usage/Examples
 
 ```javascript
@@ -39,6 +39,57 @@ const Axios = axios.create({ baseURL: "http://localhost:5000/api" });
 
 export default Axios;
 ```
+
+
+
+## Création des requêtes avec les méthodes
+
+```javascript
+//j'import mon parametrage Axios
+import Axios from "../api/axios";
+
+//Authentification//
+let login = (data) => {
+  return Axios.post("/login", data);
+};
+```
+## j'envoie ma requête avec mes données récupérer dans mon formulaire 
+```javascript
+  const onSubmit = (data) => {
+    console.log(data);
+    try {
+      accountService
+        .login(data, {
+          headers: {
+            "Content-Type": "application/json",
+            // "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+        })
+        .then((res) => {
+          // accountService.saveToken(res.data.token);
+          setErrorEmail(res.data.messageEmail);
+          setErrorPassWord(res.data.messagePassWord);
+          console.log(res.data.data.isActive);
+          if (res.data.data.isActive && res.data.data.categorie === "pro") {
+            // navigate("/ProfilPro");
+            navigate(`/AccueilPro/${res.data.data.user_id}`);
+          } else if (
+            res.data.data.isActive &&
+            res.data.data.categorie === "customer"
+          ) {
+            // navigate("/ProfilCustomer");
+            navigate("/AccueilPro");
+          } else {
+            setMessage(res.data.message);
+            setMessageMini(res.data.messageMini);
+          }
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  ```
+j'envoie ma requête avec mes données récupérées dans mon formulaire à la d'un écouteur d'événement sur la balise form.
 
 
 
