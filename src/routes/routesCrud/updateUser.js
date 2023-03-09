@@ -2,7 +2,7 @@ const { User } = require("../../db/sequelize");
 const auth = require("../../auth/auth");
 
 module.exports = (app) => {
-  app.put("/api/userUpdate/:id", auth, (req, res) => {
+  app.put("/api/userUpdate/:id", (req, res) => {
     const id = req.params.id;
     User.update(req.body, {
       where: { user_id: id },

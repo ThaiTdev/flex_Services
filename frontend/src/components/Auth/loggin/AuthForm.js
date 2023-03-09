@@ -43,7 +43,7 @@ function AuthForm() {
             res.data.data.categorie === "customer"
           ) {
             // navigate("/ProfilCustomer");
-            navigate("/AccueilPro");
+            navigate(`/AccueilCustomer/${res.data.data.user_id}`);
           } else {
             setMessage(res.data.message);
             setMessageMini(res.data.messageMini);

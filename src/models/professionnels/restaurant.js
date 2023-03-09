@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    "restaurateurs",
+    "restaurant",
     {
       pro_id: {
         type: DataTypes.INTEGER,
@@ -11,33 +11,34 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: false,
       },
-      avatar: {
+      restaurant_id: {
+        type: DataTypes.INTEGER,
+        defaultValue: false,
+      },
+      nom_entreprise: {
+        type: DataTypes.STRING,
+        defaultValue: false,
+        // unique: true,
+      },
+      adresse: {
         type: DataTypes.STRING,
         defaultValue: false,
       },
-      nom_user: {
+      siret: {
+        type: DataTypes.INTEGER,
+        defaultValue: false,
+      },
+      taille: {
+        type: DataTypes.INTEGER,
+        defaultValue: false,
+      },
+      activite: {
         type: DataTypes.STRING,
         defaultValue: false,
       },
-      phone: {
+      logo: {
         type: DataTypes.STRING,
         defaultValue: false,
-      },
-      birthDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      fonction: {
-        type: DataTypes.STRING,
-        defaultValue: false,
-      },
-      valide: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
-      etat: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
       },
     },
     {

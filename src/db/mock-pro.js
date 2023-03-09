@@ -1,11 +1,9 @@
 const pros = [
   {
-    id: 1,
-    nom_entreprise: "nom_entreprise",
-    adresse: "pro.adresse",
-    siret: "11111111111111",
-    taille: "2",
+    pro_id: 1,
     nom_user: "pro.userName",
+    birth_date: "pro.birth_date",
+    phone: "pro.phone",
     activite: "pro.selectActivite",
     fonction: "pro.selectFunction",
     created: new Date(),

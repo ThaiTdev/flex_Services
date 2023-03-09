@@ -1,10 +1,10 @@
-import styles from "./AccueilPro.module.scss";
+import styles from "./AccueilCustomer.module.scss";
 
 import { accountService } from "../../../../_services/accountService";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function AccueilPro() {
+function AccueilCustomer() {
   const { id } = useParams();
   let navigate = useNavigate();
   function handleClick() {
@@ -66,12 +66,6 @@ function AccueilPro() {
             <div
               className={`d-flex flex-column justify-content-between align-items-center  ${styles.Link} `}
             >
-              <img src="../images/Menu/restaurant.png" alt="avatar" />
-              <p className="m-0 mt-5">Mes restaurant</p>
-            </div>
-            <div
-              className={`d-flex flex-column justify-content-between align-items-center  ${styles.Link} `}
-            >
               <img src="../images/Menu/gestionnaire.png" alt="coeur" />
               <p className="m-0 mt-5">Gestion</p>
             </div>
@@ -85,4 +79,4 @@ function AccueilPro() {
   );
 }
 
-export default AccueilPro;
+export default AccueilCustomer;

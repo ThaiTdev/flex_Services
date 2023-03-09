@@ -51,6 +51,7 @@ require("./src/routes/userRoutes/resetPassword")(app);
 require("./src/routes/proRoutes/createPro")(app);
 require("./src/routes/proRoutes/checkProfilValide")(app);
 require("./src/routes/proRoutes/showProfilPro")(app);
+require("./src/routes/proRoutes/uploadAvatar")(app);
 
 //customer routes//
 

@@ -2,7 +2,7 @@ const { User } = require("../../db/sequelize");
 const auth = require("../../auth/auth");
 
 module.exports = (app) => {
-  app.get("/api/users", auth, (req, res) => {
+  app.get("/api/users", (req, res) => {
     User.findAll()
       .then((users) => {
         const message = "La liste des utilisateurs a bien été récupérée.";

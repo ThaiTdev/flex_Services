@@ -1,29 +1,19 @@
 import { useInputControlerFormProfilPro } from "../../../Hooks/HookPro/useInputControlerFormProfilPro";
 import { accountService } from "../../../../_services/accountService";
-import { sortPoste } from "./selectOptions";
+import { sortPoste, sortActivite } from "./selectOptions";
 import { useParams } from "react-router-dom";
 import AvartProfil from "./AvatarProfil";
 import styles from "./FormProfilPro.module.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
-import DatePicker from "react-date-picker";
 
-function FormProfilPro() {
+function FormRestaurant() {
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormProfilPro();
   const [element, setElement] = useState("");
-  const [number, setNumber] = useState("");
   const { id } = useParams();
   let navigate = useNavigate();
   let imageUrl = "";
-
-  function handleChange(num) {
-    setNumber(num);
-    console.log(num);
-  }
 
   if (element.length) {
     // Extraire la chaîne de caractères encodée en base64 du tableau
@@ -44,9 +34,12 @@ function FormProfilPro() {
 
   const showData = (data) => {
     let value = {
+      nom_entreprise: data.nom_entreprise,
+      adresse: data.adresse,
+      siret: data.siret,
+      taille: data.taille,
       nom_user: data.userName,
-      phone: number,
-      birthDate: data.birthDate,
+      activite: data.selectActivite,
       fonction: data.selectFunction,
       avatar: imageUrl,
     };
@@ -73,7 +66,10 @@ function FormProfilPro() {
       console.error(error);
     }
   };
-
+  const handleChangeActivite = (e) => {
+    setValue("selectActivite", e.target.value);
+    console.log(e.target.value);
+  };
   const handleChangeFunction = (e) => {
     setValue("selectFunction", e.target.value);
   };
@@ -83,7 +79,7 @@ function FormProfilPro() {
       className={`d-flex flex-column justify-content-around align-items-center  ${styles.formContainer} `}
     >
       <div>
-        <h1>Je créer mon profil</h1>
+        <h1>Créer votre profil</h1>
       </div>
       <form
         className={` d-flex flex-column justify-content-between ${styles.form}`}
@@ -94,48 +90,96 @@ function FormProfilPro() {
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur
           </label>
+
           <input
             type="text"
             id="userName"
-            className={`fz-12 mb-10 p-5 ${styles.inputName}`}
+            className="fz-12 mb-10"
             name="userName"
             {...register("userName")}
             required
           />
-          <label htmlFor="userName" className="fz-12  mb-10">
-            Numéro de téléphone
-          </label>
-          <div className={styles.phoneBox}>
-            <PhoneInput
-              className={styles.phone}
-              country={"fr"}
-              value={number}
-              onChange={handleChange}
-            />
-          </div>
 
-          <label htmlFor="userName" className="fz-12  mb-10">
-            Date de naissance
-          </label>
-          <input
-            type="date"
-            id="birthDate"
-            className={`fz-12 mb-10 p-5 ${styles.birthDate}`}
-            name="birthDate"
-            {...register("birthDate")}
-            required
-          />
           <label htmlFor="userFuction" className="fz-12  mb-10">
-            Fonction de l'utilsateur
+            fonction de l'utilsateur
           </label>
+
           <select
             name="userFuction"
             id="userFuction"
             onChange={handleChangeFunction}
             {...register("selectFunction")}
-            className={`p-5 ${styles.inputFunction} `}
           >
             {sortPoste.map(({ label, value }) => (
+              <option key={value} value={value} required>
+                {label}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="companyName" className="fz-12 mb-10">
+            Nom de l'entreprise
+          </label>
+
+          <input
+            type="text"
+            id="companyName"
+            name="companyName"
+            className="fz-12 mb-10 "
+            {...register("nom_entreprise")}
+            required
+          />
+
+          <label htmlFor="CompanyAdress" className="fz-12  mb-10">
+            Adresse de l'entreprise
+          </label>
+
+          <input
+            type="text"
+            id="CompanyAdress"
+            name="CompanyAdress"
+            className="fz-12 mb-10"
+            {...register("adresse")}
+            required
+          />
+
+          <label htmlFor="siretNumber" className="fz-12  mb-10">
+            Numero de Siret de l'entreprise
+          </label>
+
+          <input
+            type="number"
+            id="siretNumber"
+            className="fz-12 mb-10"
+            name="siretNumber"
+            {...register("siret")}
+            required
+          />
+
+          <label htmlFor="comagnySize" className="fz-12  mb-10">
+            Taille de l'entreprise
+          </label>
+
+          <input
+            type="number"
+            id="comagnySize"
+            className="fz-12 mb-10"
+            name="comagnySize"
+            {...register("taille")}
+            required
+          />
+
+          <label htmlFor="comagnyActivity" className="fz-12  mb-10">
+            Activité de l'entreprise
+          </label>
+
+          <select
+            name="comagnyActivity"
+            id="comagnyActivity"
+            onChange={handleChangeActivite}
+            {...register("selectActivite")}
+          >
+            {sortActivite.map(({ label, value }) => (
               <option key={value} value={value} required>
                 {label}
               </option>
@@ -147,7 +191,7 @@ function FormProfilPro() {
             className="d-flex flex-row justify-content-between align-items-center btn-co btn-primary fz-12"
             type="submit"
           >
-            <span>Valider</span>
+            <span className="mr-5">Créer mon profil</span>
             <i className=" fa-solid fa-arrow-right-long fz-20 "></i>
           </button>
         </div>
@@ -167,4 +211,4 @@ function FormProfilPro() {
   );
 }
 
-export default FormProfilPro;
+export default FormRestaurant;
