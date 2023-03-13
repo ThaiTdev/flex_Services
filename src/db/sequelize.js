@@ -5,11 +5,14 @@ const UserModel = require("../models/users/user");
 //j'import le modelProfessionnel
 const ProModel = require("../models/professionnels/professionnel");
 const RestaurantModel = require("../models/professionnels/restaurant");
+//j'import le ùodelCustomer
+const CustomerModel = require("../models/customers/customers");
 
 //j'import les données en dure
 // const users = require("./mock-user");
 // const pros = require("./mock-pro");
 // const restau = require("./mock-restau");
+// const customer = require("./mock-customer");
 
 //je crée une instance de sequelise pour me connecter à ma base de données
 const sequelize = new Sequelize("dbflex", "root", "", {
@@ -25,6 +28,7 @@ const sequelize = new Sequelize("dbflex", "root", "", {
 const User = UserModel(sequelize, DataTypes);
 const Pro = ProModel(sequelize, DataTypes);
 const Restau = RestaurantModel(sequelize, DataTypes);
+const Customer = CustomerModel(sequelize, DataTypes);
 
 //generation de users au chargement
 // je synchronise toutes mes tables et les créer dans la base de données
@@ -37,6 +41,20 @@ const Restau = RestaurantModel(sequelize, DataTypes);
 //         siret: restau.siret,
 //         taille: restau.taille,
 //       }).then((restau) => console.log(restau.toJSON()));
+//     });
+//     console.log("La base de donnée a bien été initialisée !");
+//   });
+// };
+// const initDb = () => {
+//   return sequelize.sync({ force: true }).then((_) => {
+//     customer.map((customer) => {
+//       User.create({
+//         nom_entreprise: customer.nom_entreprise,
+//         adresse: customer.adresse,
+//         phone: customer.phone,
+//         taille: customer.taille,
+//         adresse: customer.adresse,
+//       }).then((customer) => console.log(customer.toJSON()));
 //     });
 //     console.log("La base de donnée a bien été initialisée !");
 //   });
@@ -87,4 +105,5 @@ module.exports = {
   User,
   Pro,
   Restau,
+  Customer,
 };

@@ -7,7 +7,7 @@ export const useInputControlCustomerHome = () => {
     .object({
       adresse: yup
         .string()
-        .email("Merci de rentrer une adreese mail valide")
+        .email("Merci de rentrer votre adresse ")
         .max(255)
         .required("Merci de rentrer une adresse mail valide"),
       avatar: yup.string().max(255).required("Merci d'enregistrer votre photo"),
@@ -17,10 +17,6 @@ export const useInputControlCustomerHome = () => {
         .require("Merci d'enregistrer votre date ce naissance"),
       cv: yup.string().require("Merci de choisir votre CV"),
       nom_user: yup.string().max(255).require("Merci d'entrer votre nom"),
-      phone: yup
-        .string()
-        .max(255)
-        .require("Merci d'entrer votre numéro de téléphone"),
       permis: yup
         .boolean()
         .max(1)

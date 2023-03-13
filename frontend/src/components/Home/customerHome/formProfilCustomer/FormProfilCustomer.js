@@ -1,9 +1,8 @@
 import { useInputControlerFormProfilPro } from "../../../Hooks/HookPro/useInputControlerFormProfilPro";
 import { accountService } from "../../../../_services/accountService";
-import { sortPoste } from "./selectOptions";
 import { useParams } from "react-router-dom";
-import AvartProfil from "./AvatarProfil";
-import styles from "./FormProfilPro.module.scss";
+import AvartarProfilCustomer from "./AvatarProfilCustomer";
+import styles from "./FormProfilCustomer.module.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-phone-number-input/style.css";
@@ -11,11 +10,12 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 // import DatePicker from "react-date-picker";
 
-function FormProfilPro() {
-  const [register, handleSubmit, setValue, errors] =
-    useInputControlerFormProfilPro();
+function FormProfilCustomer() {
+  const [register, handleSubmit, errors] = useInputControlerFormProfilPro();
   const [element, setElement] = useState("");
   const [number, setNumber] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+
   const { id } = useParams();
   let navigate = useNavigate();
   let imageUrl = "";
@@ -24,6 +24,9 @@ function FormProfilPro() {
     setNumber(num);
     console.log(num);
   }
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
   if (element.length) {
     // Extraire la chaîne de caractères encodée en base64 du tableau
@@ -47,8 +50,9 @@ function FormProfilPro() {
       nom_user: data.userName,
       phone: number,
       birthDate: data.birthDate,
-      fonction: data.selectFunction,
       avatar: imageUrl,
+      adresse: data.adresse,
+      permis: isChecked,
     };
     console.log(element);
     console.log(value);
@@ -59,7 +63,7 @@ function FormProfilPro() {
         console.log(res);
       });
       accountService
-        .createProfilPro(value, id, {
+        .createProfilCustomer(value, id, element, {
           headers: {
             "Content-Type": "application/json",
             // "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -67,15 +71,11 @@ function FormProfilPro() {
         })
         .then((res) => {
           console.log(res);
-          navigate(`/ProfilPro/${id}`);
+          navigate(`/ProfilCustomer/${id}`);
         });
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleChangeFunction = (e) => {
-    setValue("selectFunction", e.target.value);
   };
 
   return (
@@ -89,7 +89,7 @@ function FormProfilPro() {
         className={` d-flex flex-column justify-content-between ${styles.form}`}
         onSubmit={handleSubmit(showData)}
       >
-        <AvartProfil element={setElement} />
+        <AvartarProfilCustomer element={setElement} />
         <div className="d-flex flex-column justify-content-around align-items-center  ">
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur
@@ -100,6 +100,17 @@ function FormProfilPro() {
             className={`fz-12 mb-10 p-5 ${styles.inputName}`}
             name="userName"
             {...register("userName")}
+            required
+          />
+          <label htmlFor="userName" className="fz-12  mb-10">
+            Adresse
+          </label>
+          <input
+            type="text"
+            id="adresse"
+            className={`fz-12 mb-10 p-5 ${styles.adresse}`}
+            name="adresse"
+            {...register("adresse")}
             required
           />
           <label htmlFor="userName" className="fz-12  mb-10">
@@ -125,22 +136,18 @@ function FormProfilPro() {
             {...register("birthDate")}
             required
           />
-          <label htmlFor="userFuction" className="fz-12  mb-10">
-            Fonction de l'utilsateur
+        </div>
+        <div>
+          <label htmlFor="permis" className="fz-12  mb-10">
+            Permis
           </label>
-          <select
-            name="userFuction"
-            id="userFuction"
-            onChange={handleChangeFunction}
-            {...register("selectFunction")}
-            className={`p-5 ${styles.inputFunction} `}
-          >
-            {sortPoste.map(({ label, value }) => (
-              <option key={value} value={value} required>
-                {label}
-              </option>
-            ))}
-          </select>
+          <input
+            type="checkbox"
+            id="permis"
+            className={`fz-12 mb-10 p-5 ${styles.permis}`}
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
         </div>
         <div className="d-flex flex-column justify-content-center align-items-end  mt-20  ">
           <button
@@ -167,4 +174,4 @@ function FormProfilPro() {
   );
 }
 
-export default FormProfilPro;
+export default FormProfilCustomer;

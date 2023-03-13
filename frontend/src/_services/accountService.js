@@ -40,6 +40,17 @@ let upload = (data) => {
   return Axios.post(`/upload`, data);
 };
 
+//Customer//
+let createProfilCustomer = (data, id) => {
+  return Axios.post(`/createProfilCustomer/${id}`, data);
+};
+let checkProfilCustomerValide = (id) => {
+  return Axios.post(`/checkProfilCustomerValide/${id}`);
+};
+let showProfileCustomer = (id) => {
+  return Axios.get(`/showProfileCustomer/${id}`);
+};
+
 ///////////////////////////////////////////////////
 //gestion des tokens///////////////////////////////
 //////////////////////////////////////////////////
@@ -74,4 +85,7 @@ export const accountService = {
   showProfilePro,
   upload,
   //Customer//
+  createProfilCustomer,
+  checkProfilCustomerValide,
+  showProfileCustomer,
 };

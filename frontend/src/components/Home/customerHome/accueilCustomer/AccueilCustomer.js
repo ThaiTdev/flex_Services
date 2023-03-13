@@ -11,7 +11,7 @@ function AccueilCustomer() {
     console.log(id);
     try {
       accountService
-        .checkProfilValide(id, {
+        .checkProfilCustomerValide(id, {
           Headers: {
             "Content-Type": "application/json",
           },
@@ -20,9 +20,9 @@ function AccueilCustomer() {
           console.log(res);
           console.log(res.data.message);
           if (res.data.message) {
-            navigate(`/ProfilPro/${id}`);
+            navigate(`/ProfilCustomer/${id}`);
           } else {
-            navigate(`/FormProfilPro/${id}`);
+            navigate(`/FormProfilCustomer/${id}`);
           }
         });
     } catch (error) {}

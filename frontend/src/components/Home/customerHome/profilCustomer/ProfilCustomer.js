@@ -1,75 +1,50 @@
-import { Link } from "react-router-dom";
 import styles from "./ProfilCustomer.module.scss";
+import FormCustomer from "./components/FormCustomer";
+import LinkCustomer from "./components/LinkCustomer";
+import { accountService } from "../../../../_services/accountService";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const CustomerHome = () => {
+const ProfilCustomer = () => {
+  const { id } = useParams();
+  const [data, setData] = useState("");
+  const [value, setValue] = useState("");
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    accountService
+      .showProfileCustomer(id, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setData(res.data.data);
+        setValue(res.data.value);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
+
   return (
     <div
-      className={`d-flex flex-column justify-content-between  align-items-center b2  ${styles.CustomerHomePage}`}
+      className={`d-flex flex-column justify-content-between  align-items-center  ${styles.CustomerHomePage}`}
     >
       <div
-        className={`d-flex flex-column justify-content-around align-items-center b4 ${styles.CustomerHomeContainer}`}
+        className={`d-flex flex-column justify-content-around align-items-center  ${styles.CustomerHomeContainer}`}
       >
-        <p>Mon profil</p>
+        <p className="fz-20"> Mon profil </p>
+        <FormCustomer data={data} value={value} image={image} />
+        <LinkCustomer />
         <div
-          className={`d-flex flex-column justify-content-center align-items-center b1 ${styles.CustomerForm}`}
+          className={`d-flex flex-row  justify-content-center  align-items-center   ${styles.CustomerDeco}`}
         >
-          <div className={`${styles.CustomerAvatar}`}>
-            <img src="/images/professionnel/homme.png" alt="photo_de_profil" />
-          </div>
-          <div
-            className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.CustomerInput}`}
-          >
-            <p>Nom</p>
-            <span>Thai Thierry</span>
-          </div>
-          <div
-            className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.CustomerInput}`}
-          >
-            <p> Email</p>
-            <span>t.thai@outlook.fr</span>
-          </div>
-          <div
-            className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.CustomerInput}`}
-          >
-            <p>Téléphone</p>
-            <span>+33 6 63 00 67 27</span>
-          </div>
-          <div
-            className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.CustomerInput}`}
-          >
-            <p>Date de naissance</p>
-            <span>22/08/1981</span>
-          </div>
-        </div>
-
-        <div
-          className={`d-flex flex-column justify-content-center align-items-center b3 ${styles.CustomerLink}`}
-        >
-          <Link>
-            <div
-              className={`d-flex flex-row  justify-content-between  align-items-center b1 ${styles.CustomerInfo}`}
-            >
-              <p>Mes restaurant</p>
-              <span>Editer</span>
-            </div>
-          </Link>
-          <Link>
-            <div
-              className={`d-flex flex-row  justify-content-between  align-items-center b1  ${styles.CustomerInfo2}`}
-            >
-              <p>Mes poste</p>
-              <span>Editer</span>
-            </div>
-          </Link>
-        </div>
-
-        <div
-          className={`d-flex flex-row  justify-content-center  align-items-center b4  ${styles.CustomerDeco}`}
-        >
-          <p>Déconnexion</p>
+          <p className="fz-18">Me déconnecter</p>
         </div>
       </div>
     </div>
   );
 };
-export default CustomerHome;
+
+export default ProfilCustomer;

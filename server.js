@@ -54,6 +54,9 @@ require("./src/routes/proRoutes/showProfilPro")(app);
 require("./src/routes/proRoutes/uploadAvatar")(app);
 
 //customer routes//
+require("./src/routes/customerRoutes/createCustomer")(app);
+require("./src/routes/customerRoutes/checkProfilCustomerValide")(app);
+require("./src/routes/customerRoutes/showProfilCustomer")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);

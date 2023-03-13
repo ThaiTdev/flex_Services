@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Register.module.scss";
 import { useInputControlRegister } from "../../Hooks/HookAuth/useInputControlRegister";
 import { accountService } from "../../../_services/accountService";
+import { Link } from "react-router-dom";
 
 function RegisterForm() {
   const [checkpassWord, setCheckPassWord] = useState(true);
@@ -71,6 +72,13 @@ function RegisterForm() {
       className={`d-flex flex-column justify-content-around align-items-center ${styles.AuthPage}`}
     >
       <div className={`${styles.box_title}`}>
+        <Link
+          to="/AuthForm"
+          style={{ textDecoration: "none" }}
+          className={`${styles.Arrow}  d-flex  .justify-content-start align-items-center mb-10 `}
+        >
+          <i className="fa-solid fa-arrow-left fz-20 "></i>
+        </Link>
         <h1 className={styles.title}> S'inscrire</h1>
         <img src="./images/tâche.png" alt="tâche jaune" />
       </div>

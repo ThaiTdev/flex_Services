@@ -1,7 +1,8 @@
-import styles from "./Form.module.scss";
+import styles from "./FormCustomer.module.scss";
 
-export default function Form({ data, value, image }) {
+export default function FormCustomer({ data, value, image }) {
   const newBirth = data.birthDate;
+
   // modification de birthDate pour l'affichage
   let newDate = "";
   async function birthDate() {
@@ -25,45 +26,44 @@ export default function Form({ data, value, image }) {
       resp = newArr.join(" ").replace(/,/g, "");
     }
   }
-
   Phone(2);
 
   return (
     <div
-      className={`d-flex flex-column justify-content-center align-items-center  ${styles.ProForm}`}
+      className={`d-flex flex-column justify-content-center align-items-center  ${styles.CustomerForm}`}
     >
-      <div className={`${styles.ProAvatarBox}`}>
-        <div className={`${styles.ProAvatar}`}>
+      <div className={`${styles.CustomerAvatarBox}`}>
+        <div className={`${styles.CustomerAvatar}`}>
           <img
             src={image ? image : "/images/professionnel/homme.png"}
             alt="photo_de_profil"
           />
         </div>
-        <div className={`${styles.ProPhoto}`}>
+        <div className={`${styles.CustomerPhoto}`}>
           <img src="/images/professionnel/photo.png" alt="photo_de_profil" />
         </div>
       </div>
 
       <div
-        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p>Nom</p>
         <span>{data.nom_user}</span>
       </div>
       <div
-        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p> Email</p>
         <span>{value.email}</span>
       </div>
       <div
-        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p>Téléphone</p>
         <span>+{resp}</span>
       </div>
       <div
-        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p>Date de naissance</p>
         <span>{newDate}</span>

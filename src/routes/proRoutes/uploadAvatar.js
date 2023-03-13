@@ -14,6 +14,9 @@ const upload = multer({ dest: "Uploads/" });
 
 module.exports = (app) => {
   app.post("/api/upload", upload.single("image"), async (req, res) => {
+    const userData = req.params.element;
+    console.log(userData);
+
     if (!res) {
       // Gérer les erreurs de téléchargement
       return res.status(500).send(err);
