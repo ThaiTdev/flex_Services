@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
+      curriculum_vitae: {
+        type: DataTypes.STRING,
+        defaultValue: false,
+      },
       permis: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,

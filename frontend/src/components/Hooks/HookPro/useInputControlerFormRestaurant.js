@@ -7,8 +7,6 @@ export const useInputControlerFormProfilPro = () => {
     .object()
     .shape({
       selectActivite: yup.string().min(1, "veuillez choisir une catégorie"),
-      selectFunction: yup.string().min(1, "veuillez choisir une fonction"),
-      userName: yup.string().max(255).required("Merci d'entere votre nom"),
       nom_entreprise: yup
         .string()
         .max(255)

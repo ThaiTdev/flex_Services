@@ -1,4 +1,4 @@
-import { useInputControlerFormProfilPro } from "../../../Hooks/HookPro/useInputControlerFormProfilPro";
+import { useInputControlerFormProfilCustomer } from "../../../Hooks/HookCustomer/useInputControlerFormProfilCustomer";
 import { accountService } from "../../../../_services/accountService";
 import { useParams } from "react-router-dom";
 import AvartarProfilCustomer from "./AvatarProfilCustomer";
@@ -8,62 +8,68 @@ import { useNavigate } from "react-router-dom";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+// import axios from "axios";
+import FormData from "form-data";
+
 // import DatePicker from "react-date-picker";
 
 function FormProfilCustomer() {
-  const [register, handleSubmit, errors] = useInputControlerFormProfilPro();
+  const [register, handleSubmit, errors] =
+    useInputControlerFormProfilCustomer();
   const [element, setElement] = useState("");
   const [number, setNumber] = useState("");
+  const [cvCheck, setCvCheck] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [routeImage, setRouteImage] = useState(null);
 
   const { id } = useParams();
   let navigate = useNavigate();
-  let imageUrl = "";
 
   function handleChange(num) {
     setNumber(num);
     console.log(num);
   }
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
   };
 
-  if (element.length) {
-    // Extraire la chaîne de caractères encodée en base64 du tableau
-    const imageData = element;
-    // // Créer un objet Blob contenant les données de l'image
-    const binaryData = imageData.split(",")[1];
-    const mimeString = imageData.split(",")[0].split(":")[1].split(";")[0];
-    const arrayBuffer = new ArrayBuffer(binaryData.length);
-    const uintArray = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < binaryData.length; i++) {
-      uintArray[i] = binaryData.charCodeAt(i);
+  //cette fonction enregistre le cv dans le dossier uploads
+  const handleChangeCv = (e) => {
+    setCvCheck(e.target.value);
+    let formData = new FormData();
+    formData.append("curriculum", e.target.files[0]);
+    if (formData.get("curriculum")) {
+      console.log("La valeur de 'curriculum' est:", formData.get("curriculum"));
+    } else {
+      console.log("Il n'y a pas de valeur pour 'curriculum'");
     }
-    const blob = new Blob([arrayBuffer], { type: mimeString });
 
-    // // Créer une URL d'image à partir du Blob
-    imageUrl = URL.createObjectURL(blob);
-  }
-
-  const showData = (data) => {
+    accountService
+      .uploadCV(formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log("Success ", res.data.message);
+        setRouteImage(res.data.data);
+      });
+  };
+  // cette function enregistre le profil dans la bdd
+  const showData = async (data) => {
     let value = {
       nom_user: data.userName,
       phone: number,
       birthDate: data.birthDate,
-      avatar: imageUrl,
+      avatar: "",
       adresse: data.adresse,
       permis: isChecked,
+      curriculum_vitae: routeImage,
     };
-    console.log(element);
-    console.log(value);
-    console.log(id);
+
     try {
-      accountService.upload(element).then((res) => {
-        console.log(element);
-        console.log(res);
-      });
-      accountService
-        .createProfilCustomer(value, id, element, {
+      await accountService
+        .createProfilCustomer(value, id, {
           headers: {
             "Content-Type": "application/json",
             // "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -122,6 +128,7 @@ function FormProfilCustomer() {
               country={"fr"}
               value={number}
               onChange={handleChange}
+              max-length="6"
             />
           </div>
 
@@ -137,7 +144,38 @@ function FormProfilCustomer() {
             required
           />
         </div>
-        <div>
+        <div className="d-flex justify-content-center align-items-center">
+          {cvCheck ? (
+            <label
+              htmlFor="curriculum"
+              className={`fz-12  mb-10  ${styles.label_cvActive} d-flex justify-content-center align-items-center `}
+            >
+              CV validé
+              <img
+                className={`ml-10 ${styles.label_cvActiveValide}`}
+                src="/images/professionnel/validation.png"
+                alt=""
+              />
+            </label>
+          ) : (
+            <label
+              htmlFor="curriculum"
+              className={`fz-12  mb-10 ${styles.label_cv}   `}
+            >
+              Importer votre CV
+            </label>
+          )}
+          <input
+            type="file"
+            name="curriculum"
+            // accept=".pdf"
+            id="curriculum"
+            className={`fz-12 mb-10 p-5 ${styles.cv}`}
+            onChange={handleChangeCv}
+            required
+          />
+        </div>
+        <div className="d-flex justify-content-center align-items-center">
           <label htmlFor="permis" className="fz-12  mb-10">
             Permis
           </label>

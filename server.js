@@ -4,6 +4,8 @@ const express = require("express");
 //creer mon fichier .env pour les variables d'environnement
 require("dotenv").config();
 
+const fileUpload = require("express-fileupload");
+
 //les Middlewares
 //pour afficher le retour de la requête dans le terminal
 const morgan = require("morgan");
@@ -29,10 +31,12 @@ const PORT = process.env.PORT || 6000;
 
 //utilisation des middleWares prédéfinis dans "express" en chaînage
 app
+  .use(express.json())
   .use(favicon(__dirname + "/favicon.ico"))
   .use(morgan("dev"))
   .use(bodyParser.json())
-  .use(cors());
+  .use(cors())
+  .use(fileUpload());
 
 //authentification routes//
 require("./src/routes/userRoutes/createUser")(app);
@@ -57,6 +61,7 @@ require("./src/routes/proRoutes/uploadAvatar")(app);
 require("./src/routes/customerRoutes/createCustomer")(app);
 require("./src/routes/customerRoutes/checkProfilCustomerValide")(app);
 require("./src/routes/customerRoutes/showProfilCustomer")(app);
+require("./src/routes/customerRoutes/uploadCV")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);

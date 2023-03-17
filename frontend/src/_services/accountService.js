@@ -50,6 +50,12 @@ let checkProfilCustomerValide = (id) => {
 let showProfileCustomer = (id) => {
   return Axios.get(`/showProfileCustomer/${id}`);
 };
+let updateCustomerProfil = (id) => {
+  return Axios.put(`/UpdateCustomerProfil/${id}`);
+};
+let uploadCV = (data) => {
+  return Axios.post(`/uploadCV`, data);
+};
 
 ///////////////////////////////////////////////////
 //gestion des tokens///////////////////////////////
@@ -88,4 +94,6 @@ export const accountService = {
   createProfilCustomer,
   checkProfilCustomerValide,
   showProfileCustomer,
+  updateCustomerProfil,
+  uploadCV,
 };

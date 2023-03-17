@@ -50,9 +50,7 @@ function FormProfilPro() {
       fonction: data.selectFunction,
       avatar: imageUrl,
     };
-    console.log(element);
-    console.log(value);
-    console.log(id);
+
     try {
       accountService.upload(element).then((res) => {
         console.log(element);

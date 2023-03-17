@@ -34,7 +34,9 @@ const ProfilPro = () => {
       <div
         className={`d-flex flex-column justify-content-around align-items-center  ${styles.ProHomeContainer}`}
       >
-        <p className="fz-20"> Mon profil </p>
+        <div>
+          <p className="fz-20"> Mon profil </p>
+        </div>
         <Form data={data} value={value} image={image} />
         <LinkPro />
         <div

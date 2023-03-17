@@ -2,6 +2,8 @@ import styles from "./FormCustomer.module.scss";
 
 export default function FormCustomer({ data, value, image }) {
   const newBirth = data.birthDate;
+  const curriculum = data.curriculum_vitae;
+  console.log(curriculum);
 
   // modification de birthDate pour l'affichage
   let newDate = "";
@@ -36,12 +38,13 @@ export default function FormCustomer({ data, value, image }) {
         <div className={`${styles.CustomerAvatar}`}>
           <img
             src={image ? image : "/images/professionnel/homme.png"}
+            // src={image ? image : curriculum}}
             alt="photo_de_profil"
           />
         </div>
-        <div className={`${styles.CustomerPhoto}`}>
+        {/* <div className={`${styles.CustomerPhoto}`}>
           <img src="/images/professionnel/photo.png" alt="photo_de_profil" />
-        </div>
+        </div> */}
       </div>
 
       <div

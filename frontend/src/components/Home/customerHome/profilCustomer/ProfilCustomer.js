@@ -2,7 +2,7 @@ import styles from "./ProfilCustomer.module.scss";
 import FormCustomer from "./components/FormCustomer";
 import LinkCustomer from "./components/LinkCustomer";
 import { accountService } from "../../../../_services/accountService";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ProfilCustomer = () => {
@@ -34,7 +34,26 @@ const ProfilCustomer = () => {
       <div
         className={`d-flex flex-column justify-content-around align-items-center  ${styles.CustomerHomeContainer}`}
       >
-        <p className="fz-20"> Mon profil </p>
+        <div
+          className={`d-flex justify-content-between align-items-center ml-10 `}
+        >
+          <div className={` mr-10 `}>
+            <p className="fz-20 ml-10"> Mon profil </p>
+          </div>
+          <Link
+            to="/UpdateCustomerProfil"
+            style={{ textDecoration: "none" }}
+            href="/"
+          >
+            <div className={`${styles.CustomerHomePencilBox} `}>
+              <img
+                className={`mr-15 ${styles.CustomerHomePencilImage}`}
+                src="/images/professionnel/crayon.png"
+                alt="photo_de_profil"
+              />
+            </div>
+          </Link>
+        </div>
         <FormCustomer data={data} value={value} image={image} />
         <LinkCustomer />
         <div
