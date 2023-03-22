@@ -1,9 +1,20 @@
 import styles from "./FormCustomer.module.scss";
 
-export default function FormCustomer({ data, value, image }) {
+export default function FormCustomer({ data, value }) {
   const newBirth = data.birthDate;
   const curriculum = data.curriculum_vitae;
-  console.log(curriculum);
+  const avatar = data.avatar;
+  console.log(avatar);
+
+  // Récupérer les données binaires de l'image à partir de la base de données
+  // Créer un objet Blob à partir des données binaires
+  // const file = new File([avatar], "image", { type: "blob.type" });
+  const file = new File([avatar], "image", { type: "image/png" });
+  console.log(file);
+  const imageBlob = new Blob([avatar], { type: "blob.type" });
+  // Créer une URL d'image à partir de l'objet Blob
+  const imageUrl = URL.createObjectURL(imageBlob);
+  console.log(imageUrl);
 
   // modification de birthDate pour l'affichage
   let newDate = "";
@@ -37,14 +48,14 @@ export default function FormCustomer({ data, value, image }) {
       <div className={`${styles.CustomerAvatarBox}`}>
         <div className={`${styles.CustomerAvatar}`}>
           <img
-            src={image ? image : "/images/professionnel/homme.png"}
-            // src={image ? image : curriculum}}
+            src={imageUrl ? imageUrl : "/images/professionnel/homme.png"}
+            alt="photo_de_profil"
+          />
+          <img
+            src={curriculum ? curriculum : "/images/professionnel/homme.png"}
             alt="photo_de_profil"
           />
         </div>
-        {/* <div className={`${styles.CustomerPhoto}`}>
-          <img src="/images/professionnel/photo.png" alt="photo_de_profil" />
-        </div> */}
       </div>
 
       <div

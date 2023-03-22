@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function AccueilCustomer() {
   const { id } = useParams();
   let navigate = useNavigate();
+
   function handleClick() {
     console.log(id);
     try {
@@ -27,6 +28,27 @@ function AccueilCustomer() {
         });
     } catch (error) {}
   }
+  let data = {
+    token: null,
+  };
+  function handleClickLogout() {
+    try {
+      accountService
+        .logout(id, data, {
+          Headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          console.log(res.data.message);
+          if (res.data.message) {
+            navigate(`/AuthForm`);
+          }
+        });
+    } catch (error) {}
+  }
+
   return (
     <div
       className={`d-flex flex-direction-row justify-content-center align-items-center  ${styles.AccueillPage} `}
@@ -72,7 +94,12 @@ function AccueilCustomer() {
           </div>
         </div>
         <div className=" ">
-          <button className="  btn btn-reverse-primary ">dèconnexion</button>
+          <button
+            className="  btn btn-reverse-primary "
+            onClick={handleClickLogout}
+          >
+            dèconnexion
+          </button>
         </div>
       </div>
     </div>

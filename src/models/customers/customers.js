@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
       avatar: {
-        type: DataTypes.STRING,
-        defaultValue: false,
+        type: DataTypes.BLOB,
+        allowNull: false,
       },
       nom_user: {
         type: DataTypes.STRING,

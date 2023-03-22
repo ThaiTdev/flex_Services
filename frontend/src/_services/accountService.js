@@ -9,6 +9,10 @@ let login = (data) => {
   return Axios.post("/login", data);
 };
 
+let logout = (id, data) => {
+  return Axios.put(`/logoutUser/${id}`, data);
+};
+
 let register = (data) => {
   return Axios.post("/userCreate", data);
 };
@@ -53,6 +57,7 @@ let showProfileCustomer = (id) => {
 let updateCustomerProfil = (id) => {
   return Axios.put(`/UpdateCustomerProfil/${id}`);
 };
+
 let uploadCV = (data) => {
   return Axios.post(`/uploadCV`, data);
 };
@@ -64,9 +69,9 @@ let saveToken = (token) => {
   localStorage.setItem("token", token);
 };
 
-let logout = () => {
-  localStorage.removeItem("token");
-};
+// let logout = () => {
+//   localStorage.removeItem("token");
+// };
 
 let isLogged = () => {
   let token = localStorage.getItem("token");

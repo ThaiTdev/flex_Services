@@ -91,21 +91,21 @@ function AvartarProfilCustomer({ element }) {
             />
           </div>
         </div>
+        <InputText
+          type="file"
+          style={{ display: "none" }}
+          accept="image/*"
+          onChange={(e) => {
+            console.log(e);
+            const file = e.target.files[0];
+            if (file && file.type.substring(0, 5) === "image") {
+              setImage(file);
+            } else {
+              setImage(null);
+            }
+          }}
+        />
       </Dialog>
-      <InputText
-        type="file"
-        style={{ display: "none" }}
-        accept="image/*"
-        onChange={(e) => {
-          console.log(e);
-          const file = e.target.files[0];
-          if (file && file.type.substring(0, 5) === "image") {
-            setImage(file);
-          } else {
-            setImage(null);
-          }
-        }}
-      />
     </div>
   );
 }

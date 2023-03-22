@@ -41,6 +41,7 @@ app
 //authentification routes//
 require("./src/routes/userRoutes/createUser")(app);
 require("./src/routes/userRoutes/login")(app);
+require("./src/routes/userRoutes/logout")(app);
 require("./src/routes/userRoutes/userVerif")(app);
 require("./src/routes/userRoutes/forgotPassword")(app);
 require("./src/routes/userRoutes/resetPassword")(app);
@@ -55,7 +56,7 @@ require("./src/routes/userRoutes/resetPassword")(app);
 require("./src/routes/proRoutes/createPro")(app);
 require("./src/routes/proRoutes/checkProfilValide")(app);
 require("./src/routes/proRoutes/showProfilPro")(app);
-require("./src/routes/proRoutes/uploadAvatar")(app);
+require("./src/routes/proRoutes/uploadAvatarPro")(app);
 
 //customer routes//
 require("./src/routes/customerRoutes/createCustomer")(app);
@@ -68,6 +69,9 @@ require("./src/routes/routesCrud/findAllUsers")(app);
 require("./src/routes/routesCrud/findUserByPk")(app);
 require("./src/routes/routesCrud/deleteUser")(app);
 require("./src/routes/routesCrud/updateUser")(app);
+
+app.use("/uploads", express.static("uploads"));
+app.use("/uploads/uploadCvCustomer", express.static("uploads"));
 
 app.listen(PORT, () => {
   console.log(`le server est ${PORT}`);

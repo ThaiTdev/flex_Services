@@ -47,4 +47,3 @@ function ActivationAccount() {
 }
 
 export default ActivationAccount;
-// J7HxDJnWjcjTJ£QNOpElncd$OCjd

@@ -16,7 +16,7 @@ import FormData from "form-data";
 function FormProfilCustomer() {
   const [register, handleSubmit, errors] =
     useInputControlerFormProfilCustomer();
-  const [element, setElement] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [number, setNumber] = useState("");
   const [cvCheck, setCvCheck] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -27,8 +27,8 @@ function FormProfilCustomer() {
 
   function handleChange(num) {
     setNumber(num);
-    console.log(num);
   }
+
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
@@ -55,13 +55,14 @@ function FormProfilCustomer() {
         setRouteImage(res.data.data);
       });
   };
+
   // cette function enregistre le profil dans la bdd
   const showData = async (data) => {
     let value = {
       nom_user: data.userName,
       phone: number,
       birthDate: data.birthDate,
-      avatar: "",
+      avatar: avatar,
       adresse: data.adresse,
       permis: isChecked,
       curriculum_vitae: routeImage,
@@ -95,7 +96,7 @@ function FormProfilCustomer() {
         className={` d-flex flex-column justify-content-between ${styles.form}`}
         onSubmit={handleSubmit(showData)}
       >
-        <AvartarProfilCustomer element={setElement} />
+        <AvartarProfilCustomer element={setAvatar} />
         <div className="d-flex flex-column justify-content-around align-items-center  ">
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur
@@ -168,7 +169,7 @@ function FormProfilCustomer() {
           <input
             type="file"
             name="curriculum"
-            // accept=".pdf"
+            accept=".pdf,.doc,.docx,.odt,.png,.jpeg,.jpg"
             id="curriculum"
             className={`fz-12 mb-10 p-5 ${styles.cv}`}
             onChange={handleChangeCv}
