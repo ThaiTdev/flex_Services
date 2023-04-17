@@ -14,7 +14,7 @@ module.exports = (app) => {
               "l'utilisateur n'existe pas. Réessayer dans quelques instants";
             res.status(404).json({ message });
           }
-          const message = `L'utlisateuravec l'identifiant n° ${user.user_id} a bien été modifié.`;
+          const message = `L'utlisateur avec l'identifiant n° ${user.user_id} a bien été modifié.`;
           res.json({ message, data: user });
         });
       })

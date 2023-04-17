@@ -2,19 +2,7 @@ import styles from "./FormCustomer.module.scss";
 
 export default function FormCustomer({ data, value }) {
   const newBirth = data.birthDate;
-  const curriculum = data.curriculum_vitae;
   const avatar = data.avatar;
-  console.log(avatar);
-
-  // Récupérer les données binaires de l'image à partir de la base de données
-  // Créer un objet Blob à partir des données binaires
-  // const file = new File([avatar], "image", { type: "blob.type" });
-  const file = new File([avatar], "image", { type: "image/png" });
-  console.log(file);
-  const imageBlob = new Blob([avatar], { type: "blob.type" });
-  // Créer une URL d'image à partir de l'objet Blob
-  const imageUrl = URL.createObjectURL(imageBlob);
-  console.log(imageUrl);
 
   // modification de birthDate pour l'affichage
   let newDate = "";
@@ -48,11 +36,8 @@ export default function FormCustomer({ data, value }) {
       <div className={`${styles.CustomerAvatarBox}`}>
         <div className={`${styles.CustomerAvatar}`}>
           <img
-            src={imageUrl ? imageUrl : "/images/professionnel/homme.png"}
-            alt="photo_de_profil"
-          />
-          <img
-            src={curriculum ? curriculum : "/images/professionnel/homme.png"}
+            className={`${styles.CustomerImage}`}
+            src={avatar ? avatar : "/images/professionnel/homme.png"}
             alt="photo_de_profil"
           />
         </div>

@@ -35,11 +35,17 @@ function AuthForm() {
           setErrorEmail(res.data.messageEmail);
           setErrorPassWord(res.data.messagePassWord);
           console.log(res.data.data.isActive);
-          if (res.data.data.isActive && res.data.data.categorie === "pro") {
+          console.log(res.data.data.logger);
+          if (
+            res.data.data.isActive &&
+            res.data.data.logger &&
+            res.data.data.categorie === "pro"
+          ) {
             // navigate("/ProfilPro");
             navigate(`/AccueilPro/${res.data.data.user_id}`);
           } else if (
             res.data.data.isActive &&
+            res.data.data.logger &&
             res.data.data.categorie === "customer"
           ) {
             // navigate("/ProfilCustomer");

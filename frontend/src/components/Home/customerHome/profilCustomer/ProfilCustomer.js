@@ -41,7 +41,7 @@ const ProfilCustomer = () => {
             <p className="fz-20 ml-10"> Mon profil </p>
           </div>
           <Link
-            to="/UpdateCustomerProfil"
+            to={`/UpdateCustomerProfil/${id}`}
             style={{ textDecoration: "none" }}
             href="/"
           >

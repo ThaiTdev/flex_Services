@@ -7,6 +7,15 @@
     position: relative;
     .ProAvatar {
       width: 150px;
+      height: 150px;
+      border-radius: 80px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--box-shadow);
+      .proImage {
+        object-fit: cover;
+        position: absolute;
+      }
     }
     .ProPhoto {
       position: absolute;

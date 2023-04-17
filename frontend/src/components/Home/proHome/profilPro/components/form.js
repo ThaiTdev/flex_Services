@@ -1,7 +1,8 @@
 import styles from "./Form.module.scss";
 
-export default function Form({ data, value, image }) {
+export default function Form({ data, value }) {
   const newBirth = data.birthDate;
+  const avatar = data.avatar;
   // modification de birthDate pour l'affichage
   let newDate = "";
   async function birthDate() {
@@ -35,12 +36,10 @@ export default function Form({ data, value, image }) {
       <div className={`${styles.ProAvatarBox}`}>
         <div className={`${styles.ProAvatar}`}>
           <img
-            src={image ? image : "/images/professionnel/homme.png"}
+            className={`${styles.ProImage}`}
+            src={avatar ? avatar : "/images/professionnel/homme.png"}
             alt="photo_de_profil"
           />
-        </div>
-        <div className={`${styles.ProPhoto}`}>
-          <img src="/images/professionnel/photo.png" alt="photo_de_profil" />
         </div>
       </div>
 

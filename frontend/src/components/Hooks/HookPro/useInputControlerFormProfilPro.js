@@ -7,7 +7,7 @@ export const useInputControlerFormProfilPro = () => {
     .object()
     .shape({
       selectFunction: yup.string().min(1, "veuillez choisir une fonction"),
-      userName: yup.string().max(255).required("Merci d'entere votre nom"),
+      userName: yup.string().max(255).required("Merci d'entrer votre nom"),
       birthDate: yup
         .date()
         .required("Merci d'entrer votre date de naissance")

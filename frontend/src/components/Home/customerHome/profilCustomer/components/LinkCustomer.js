@@ -1,7 +1,9 @@
 import styles from "./LinkCustomer.module.scss";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function LinkCustomer() {
+  const { id } = useParams();
   return (
     <div
       className={`d-flex flex-column justify-content-between align-items-center  ${styles.CustomerLink}`}
@@ -10,12 +12,12 @@ export default function LinkCustomer() {
         className={`d-flex flex-row  justify-content-between  align-items-end ${styles.CustomerInfo}`}
       >
         <Link
-          to="/ForgotPassword"
+          to={`/showCustomerCv/${id}`}
           style={{ textDecoration: "none" }}
           className={` fz-12 mb-10  `}
           href="/"
         >
-          <p>Mes restaurants</p>
+          <p>Voir mon CV</p>
         </Link>
         <Link
           to="/ForgotPassword"

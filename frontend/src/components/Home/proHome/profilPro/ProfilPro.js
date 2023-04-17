@@ -9,7 +9,6 @@ const ProfilPro = () => {
   const { id } = useParams();
   const [data, setData] = useState("");
   const [value, setValue] = useState("");
-  const [image, setImage] = useState("");
 
   useEffect(() => {
     accountService
@@ -37,7 +36,7 @@ const ProfilPro = () => {
         <div>
           <p className="fz-20"> Mon profil </p>
         </div>
-        <Form data={data} value={value} image={image} />
+        <Form data={data} value={value} />
         <LinkPro />
         <div
           className={`d-flex flex-row  justify-content-center  align-items-center   ${styles.ProDeco}`}

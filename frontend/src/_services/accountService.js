@@ -40,8 +40,8 @@ let checkProfilValide = (id) => {
 let showProfilePro = (id) => {
   return Axios.get(`/showProfilPro/${id}`);
 };
-let upload = (data) => {
-  return Axios.post(`/upload`, data);
+let uploadPro = (data) => {
+  return Axios.post(`/uploadAvatarPro`, data);
 };
 
 //Customer//
@@ -54,8 +54,14 @@ let checkProfilCustomerValide = (id) => {
 let showProfileCustomer = (id) => {
   return Axios.get(`/showProfileCustomer/${id}`);
 };
-let updateCustomerProfil = (id) => {
-  return Axios.put(`/UpdateCustomerProfil/${id}`);
+let showCustomerCv = (id) => {
+  return Axios.get(`/showCustomerCv/${id}`);
+};
+let UpdateProfilCustomer = (data, id) => {
+  return Axios.put(`/UpdateCustomerProfil/${id}`, data);
+};
+let uploadAvatar = (data) => {
+  return Axios.post(`/uploadAvatar`, data);
 };
 
 let uploadCV = (data) => {
@@ -94,11 +100,13 @@ export const accountService = {
   createProfilPro,
   checkProfilValide,
   showProfilePro,
-  upload,
+  uploadPro,
   //Customer//
   createProfilCustomer,
   checkProfilCustomerValide,
   showProfileCustomer,
-  updateCustomerProfil,
+  UpdateProfilCustomer,
+  uploadAvatar,
   uploadCV,
+  showCustomerCv,
 };

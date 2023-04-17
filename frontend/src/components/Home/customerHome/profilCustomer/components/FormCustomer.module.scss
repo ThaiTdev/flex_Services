@@ -7,6 +7,15 @@
     position: relative;
     .CustomerAvatar {
       width: 150px;
+      height: 150px;
+      border-radius: 80px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--box-shadow);
+      .CustomerImage {
+        object-fit: cover;
+        position: absolute;
+      }
     }
     .CustomerPhoto {
       position: absolute;

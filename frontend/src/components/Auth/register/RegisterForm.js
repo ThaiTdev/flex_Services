@@ -16,6 +16,7 @@ function RegisterForm() {
       email: data.emailRegister,
       password: data.passwordRegister,
       categorie: data.selectedOption,
+      // logger: false,
     };
 
     try {

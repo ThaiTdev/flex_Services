@@ -10,6 +10,30 @@
   transform: translate(-50%, -50%);
   box-shadow: var(--box-shadow-nav);
   padding-bottom: 10px;
+  .avatarContainer {
+    position: relative;
+    .avatarBoxImage {
+      max-height: 150px;
+      width: 150px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 80px;
+      img {
+        object-fit: cover;
+      }
+    }
+    .label_avatar {
+      position: absolute;
+      bottom: 2px;
+      right: -2px;
+    }
+    .avatarImage {
+      object-fit: cover;
+    }
+  }
+  .avatar {
+    display: none;
+  }
   .form {
     width: 100%;
     .inputName {

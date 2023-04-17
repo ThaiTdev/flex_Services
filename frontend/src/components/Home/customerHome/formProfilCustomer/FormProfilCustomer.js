@@ -1,36 +1,55 @@
 import { useInputControlerFormProfilCustomer } from "../../../Hooks/HookCustomer/useInputControlerFormProfilCustomer";
 import { accountService } from "../../../../_services/accountService";
 import { useParams } from "react-router-dom";
-import AvartarProfilCustomer from "./AvatarProfilCustomer";
 import styles from "./FormProfilCustomer.module.scss";
+import img from "../../../../assets/images/professionnel/homme.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-// import axios from "axios";
 import FormData from "form-data";
-
-// import DatePicker from "react-date-picker";
 
 function FormProfilCustomer() {
   const [register, handleSubmit, errors] =
     useInputControlerFormProfilCustomer();
-  const [avatar, setAvatar] = useState("");
   const [number, setNumber] = useState("");
   const [cvCheck, setCvCheck] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [routeImage, setRouteImage] = useState(null);
+  const [routeCv, setRouteCv] = useState(null);
+  const [routeAvatar, setRouteAvatar] = useState(null);
 
   const { id } = useParams();
   let navigate = useNavigate();
 
   function handleChange(num) {
+    console.log(num);
     setNumber(num);
   }
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
+  };
+
+  const handleChangeAvatar = (e) => {
+    let formData = new FormData();
+    formData.append("avatar", e.target.files[0]);
+    if (formData.get("avatar")) {
+      console.log("La valeur de 'avatar' est:", formData.get("avatar"));
+    } else {
+      console.log("Il n'y a pas de valeur pour 'avatar'");
+    }
+
+    accountService
+      .uploadAvatar(formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log("Success ", res.data.message);
+        setRouteAvatar(res.data.data);
+      });
   };
 
   //cette fonction enregistre le cv dans le dossier uploads
@@ -52,7 +71,7 @@ function FormProfilCustomer() {
       })
       .then((res) => {
         console.log("Success ", res.data.message);
-        setRouteImage(res.data.data);
+        setRouteCv(res.data.data);
       });
   };
 
@@ -62,10 +81,10 @@ function FormProfilCustomer() {
       nom_user: data.userName,
       phone: number,
       birthDate: data.birthDate,
-      avatar: avatar,
+      avatar: routeAvatar,
       adresse: data.adresse,
       permis: isChecked,
-      curriculum_vitae: routeImage,
+      curriculum_vitae: routeCv,
     };
 
     try {
@@ -89,6 +108,37 @@ function FormProfilCustomer() {
     <div
       className={`d-flex flex-column justify-content-around align-items-center  ${styles.formContainer} `}
     >
+      <div
+        className={`d-flex flex-row justify-content-center align-items-center`}
+      >
+        <div
+          className={`d-flex flex-column justify-content-center align-items-center mb-10 ${styles.avatarContainer}`}
+        >
+          <div className={styles.avatarBoxImage}>
+            <img
+              className={styles.avatarImage}
+              src={routeAvatar ? routeAvatar : img}
+              alt="photo_de_profil"
+            />
+          </div>
+
+          <label
+            htmlFor="avatar"
+            className={`fz-12  mb-10  ${styles.label_avatar} d-flex justify-content-center align-items-center `}
+          >
+            <img src="/images/professionnel/photo.png" alt="photo_de_photo" />
+          </label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatar"
+            className={`${styles.avatar}`}
+            accept=".png,.jpeg,.jpg"
+            onChange={handleChangeAvatar}
+            required
+          />
+        </div>
+      </div>
       <div>
         <h1>Je créer mon profil</h1>
       </div>
@@ -96,7 +146,6 @@ function FormProfilCustomer() {
         className={` d-flex flex-column justify-content-between ${styles.form}`}
         onSubmit={handleSubmit(showData)}
       >
-        <AvartarProfilCustomer element={setAvatar} />
         <div className="d-flex flex-column justify-content-around align-items-center  ">
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur
@@ -127,9 +176,7 @@ function FormProfilCustomer() {
             <PhoneInput
               className={styles.phone}
               country={"fr"}
-              value={number}
               onChange={handleChange}
-              max-length="6"
             />
           </div>
 

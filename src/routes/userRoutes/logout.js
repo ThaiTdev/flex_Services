@@ -3,9 +3,8 @@ const { User } = require("../../db/sequelize");
 module.exports = (app) => {
   app.put("/api/logoutUser/:id", async (req, res) => {
     const id = req.params.id;
-    console.log(id);
     User.update(
-      { token: req.body.token },
+      { token: req.body.token, logger: false },
       {
         where: { user_id: id },
       }

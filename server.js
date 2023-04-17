@@ -1,4 +1,4 @@
-// je fais appel a mes packages
+// je fais appel à mes packages
 const express = require("express");
 
 //creer mon fichier .env pour les variables d'environnement
@@ -15,7 +15,7 @@ const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 
 //j'import sequelize
-const sequelize = require("./src/db/sequelize");
+// const sequelize = require("./src/db/sequelize");
 
 //permet la connexion a la bdd
 const cors = require("cors");
@@ -62,7 +62,10 @@ require("./src/routes/proRoutes/uploadAvatarPro")(app);
 require("./src/routes/customerRoutes/createCustomer")(app);
 require("./src/routes/customerRoutes/checkProfilCustomerValide")(app);
 require("./src/routes/customerRoutes/showProfilCustomer")(app);
+require("./src/routes/customerRoutes/uploadAvatar")(app);
 require("./src/routes/customerRoutes/uploadCV")(app);
+require("./src/routes/customerRoutes/showCustomerCv")(app);
+require("./src/routes/customerRoutes/updateProfilCustomer")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);
@@ -71,7 +74,6 @@ require("./src/routes/routesCrud/deleteUser")(app);
 require("./src/routes/routesCrud/updateUser")(app);
 
 app.use("/uploads", express.static("uploads"));
-app.use("/uploads/uploadCvCustomer", express.static("uploads"));
 
 app.listen(PORT, () => {
   console.log(`le server est ${PORT}`);

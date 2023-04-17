@@ -15,7 +15,7 @@ module.exports = (app) => {
         return res.json({ message: message1, data: user });
       } else {
         // si l'utilisateur n'existe pas, je retourne un message de succès
-        const message2 = `Profil valide`;
+        const message2 = `votre Profil est valide`;
         return res.json({ message2: message2 });
       }
     } catch (error) {

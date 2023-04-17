@@ -2,45 +2,47 @@ import { useInputControlerFormProfilPro } from "../../../Hooks/HookPro/useInputC
 import { accountService } from "../../../../_services/accountService";
 import { sortPoste } from "./selectOptions";
 import { useParams } from "react-router-dom";
-import AvartProfil from "./AvatarProfil";
 import styles from "./FormProfilPro.module.scss";
+import img from "../../../../assets/images/professionnel/homme.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-// import DatePicker from "react-date-picker";
+import FormData from "form-data";
 
 function FormProfilPro() {
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormProfilPro();
-  const [element, setElement] = useState("");
   const [number, setNumber] = useState("");
+  const [routeAvatar, setRouteAvatar] = useState(null);
   const { id } = useParams();
   let navigate = useNavigate();
-  let imageUrl = "";
 
   function handleChange(num) {
     setNumber(num);
     console.log(num);
   }
-
-  if (element.length) {
-    // Extraire la chaîne de caractères encodée en base64 du tableau
-    const imageData = element;
-    // // Créer un objet Blob contenant les données de l'image
-    const binaryData = imageData.split(",")[1];
-    const mimeString = imageData.split(",")[0].split(":")[1].split(";")[0];
-    const arrayBuffer = new ArrayBuffer(binaryData.length);
-    const uintArray = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < binaryData.length; i++) {
-      uintArray[i] = binaryData.charCodeAt(i);
+  const handleChangeAvatar = (e) => {
+    let formData = new FormData();
+    formData.append("avatar", e.target.files[0]);
+    if (formData.get("avatar")) {
+      console.log("La valeur de 'avatar' est:", formData.get("avatar"));
+    } else {
+      console.log("Il n'y a pas de valeur pour 'avatar'");
     }
-    const blob = new Blob([arrayBuffer], { type: mimeString });
 
-    // // Créer une URL d'image à partir du Blob
-    imageUrl = URL.createObjectURL(blob);
-  }
+    accountService
+      .uploadPro(formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log("Success ", res.data.message);
+        setRouteAvatar(res.data.data);
+      });
+  };
 
   const showData = (data) => {
     let value = {
@@ -48,14 +50,10 @@ function FormProfilPro() {
       phone: number,
       birthDate: data.birthDate,
       fonction: data.selectFunction,
-      avatar: imageUrl,
+      avatar: routeAvatar,
     };
 
     try {
-      accountService.upload(element).then((res) => {
-        console.log(element);
-        console.log(res);
-      });
       accountService
         .createProfilPro(value, id, {
           headers: {
@@ -80,6 +78,37 @@ function FormProfilPro() {
     <div
       className={`d-flex flex-column justify-content-around align-items-center  ${styles.formContainer} `}
     >
+      <div
+        className={`d-flex flex-row justify-content-center align-items-center`}
+      >
+        <div
+          className={`d-flex flex-column justify-content-center align-items-center mb-10 ${styles.avatarContainer}`}
+        >
+          <div className={styles.avatarBoxImage}>
+            <img
+              className={styles.avatarImage}
+              src={routeAvatar ? routeAvatar : img}
+              alt="photo_de_profil"
+            />
+          </div>
+
+          <label
+            htmlFor="avatar"
+            className={`fz-12  mb-10  ${styles.label_avatar} d-flex justify-content-center align-items-center `}
+          >
+            <img src="/images/professionnel/photo.png" alt="photo_de_photo" />
+          </label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatar"
+            className={`${styles.avatar}`}
+            accept=".png,.jpeg,.jpg"
+            onChange={handleChangeAvatar}
+            required
+          />
+        </div>
+      </div>
       <div>
         <h1>Je créer mon profil</h1>
       </div>
@@ -87,7 +116,6 @@ function FormProfilPro() {
         className={` d-flex flex-column justify-content-between ${styles.form}`}
         onSubmit={handleSubmit(showData)}
       >
-        <AvartProfil element={setElement} />
         <div className="d-flex flex-column justify-content-around align-items-center  ">
           <label htmlFor="userName" className="fz-12  mb-10">
             Nom de l'utilisateur

@@ -26,6 +26,7 @@ module.exports = (app) => {
       //modifie les valuers de 'password' et 'activationCode' pour les enregistrés en bdd
       userData.password = hash;
       userData.activationCode = activationCode;
+      userData.logger = false;
       try {
         await User.findOne({ where: { email: req.body.email } }).then(
           (user) => {

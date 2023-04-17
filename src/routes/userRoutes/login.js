@@ -32,6 +32,7 @@ module.exports = (app) => {
             });
             if (user.isActive) {
               user.token = token;
+              user.logger = true;
               user.save();
               return res.json({ data: user, token });
             } else if (!user.isActive) {

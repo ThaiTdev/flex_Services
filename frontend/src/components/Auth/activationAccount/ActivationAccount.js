@@ -8,7 +8,6 @@ function ActivationAccount() {
   const navigate = useNavigate();
 
   function handleClick() {
-    console.log(activationCode);
     try {
       axios
         .post(`http://localhost:5000/api/emailConfirm/${activationCode}`, {
