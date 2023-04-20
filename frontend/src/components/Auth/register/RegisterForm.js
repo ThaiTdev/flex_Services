@@ -81,7 +81,7 @@ function RegisterForm() {
           <i className="fa-solid fa-arrow-left fz-20 "></i>
         </Link>
         <h1 className={styles.title}> S'inscrire</h1>
-        <img src="./images/tâche.png" alt="tâche jaune" />
+        <img src="./images/tache2.png" alt="tâche Violet" />
       </div>
 
       <form

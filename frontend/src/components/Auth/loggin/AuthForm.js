@@ -34,21 +34,17 @@ function AuthForm() {
           // accountService.saveToken(res.data.token);
           setErrorEmail(res.data.messageEmail);
           setErrorPassWord(res.data.messagePassWord);
-          console.log(res.data.data.isActive);
-          console.log(res.data.data.logger);
           if (
             res.data.data.isActive &&
             res.data.data.logger &&
             res.data.data.categorie === "pro"
           ) {
-            // navigate("/ProfilPro");
             navigate(`/AccueilPro/${res.data.data.user_id}`);
           } else if (
             res.data.data.isActive &&
             res.data.data.logger &&
             res.data.data.categorie === "customer"
           ) {
-            // navigate("/ProfilCustomer");
             navigate(`/AccueilCustomer/${res.data.data.user_id}`);
           } else {
             setMessage(res.data.message);
@@ -77,7 +73,7 @@ function AuthForm() {
     >
       <div className={`${styles.box_title}`}>
         <h1 className={styles.title}> Se connecter</h1>
-        <img src="./images/tâche.png" alt="tâche jaune" />
+        <img src="./images/tache2.png" alt="tâche Violet" />
       </div>
 
       <form

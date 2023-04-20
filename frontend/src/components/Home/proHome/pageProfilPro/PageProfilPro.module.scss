@@ -1,0 +1,54 @@
+.mainPage {
+  height: 100vh;
+}
+.mainContainer {
+  width: 100%;
+  .profilContainer {
+    width: 70%;
+    margin: auto;
+    height: 80%;
+    padding: 0 100px;
+    .title {
+      width: 100%;
+    }
+    .menu {
+      width: 100%;
+      .menuOption {
+        width: auto;
+        .menuChangePage {
+          width: 100%;
+          margin-bottom: 10px;
+          .ChangePage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--neutral-8);
+            width: 280px;
+            height: 70px;
+            border: 1px solid var(--primary-3);
+            border-radius: 10px;
+            box-shadow: var(--box-shadow-nav);
+            p {
+              font-weight: 700;
+              font-size: 0.9rem;
+              margin-left: 10px;
+            }
+            &:hover {
+              cursor: pointer;
+              color: var(--primary-3);
+              transition: all 0.4s;
+            }
+          }
+        }
+      }
+      .menuText {
+        width: 250px;
+        height: 100%;
+        margin-left: 20px;
+        p {
+          text-align: justify;
+        }
+      }
+    }
+  }
+}

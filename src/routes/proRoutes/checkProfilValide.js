@@ -2,11 +2,8 @@ const { Pro } = require("../../db/sequelize");
 
 module.exports = (app) => {
   app.post("/api/checkProfilValide/:id", async (req, res) => {
-    // création du code d'activation
-
     // récupération des données passées dans la requête
     const userData = req.params.id;
-
     try {
       const user = await Pro.findOne({ where: { user_id: userData } });
       if (user) {

@@ -4,7 +4,9 @@ import Axios from "../api/axios";
 //gestion de ma connexion à l'API/////////////
 //////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 //Authentification//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 let login = (data) => {
   return Axios.post("/login", data);
 };
@@ -29,7 +31,9 @@ let resetPassword = (data, token) => {
   return Axios.post(`/resetPassword/${token}`, data);
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 //Professionnels//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 let createProfilPro = (data, id) => {
   return Axios.post(`/createProfilPro/${id}`, data);
 };
@@ -40,11 +44,20 @@ let checkProfilValide = (id) => {
 let showProfilePro = (id) => {
   return Axios.get(`/showProfilPro/${id}`);
 };
+let UpdateProfilPro = (data, id) => {
+  return Axios.put(`/UpdateProProfil/${id}`, data);
+};
+let deleteProfilPro = (id) => {
+  return Axios.delete(`/deleteProProfil/${id}`);
+};
+
 let uploadPro = (data) => {
   return Axios.post(`/uploadAvatarPro`, data);
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 //Customer//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 let createProfilCustomer = (data, id) => {
   return Axios.post(`/createProfilCustomer/${id}`, data);
 };
@@ -60,6 +73,7 @@ let showCustomerCv = (id) => {
 let UpdateProfilCustomer = (data, id) => {
   return Axios.put(`/UpdateCustomerProfil/${id}`, data);
 };
+
 let uploadAvatar = (data) => {
   return Axios.post(`/uploadAvatar`, data);
 };
@@ -101,6 +115,8 @@ export const accountService = {
   checkProfilValide,
   showProfilePro,
   uploadPro,
+  UpdateProfilPro,
+  deleteProfilPro,
   //Customer//
   createProfilCustomer,
   checkProfilCustomerValide,

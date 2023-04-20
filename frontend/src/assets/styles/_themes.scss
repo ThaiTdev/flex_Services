@@ -31,12 +31,12 @@
 }
 
 .btn-primary {
-  background-color: var(--primary-1);
+  background-color: var(--primary-3);
   color: var(--primary-2);
-  border: 1px solid var(--primary-1);
+  border: 1px solid var(--primary-3);
 }
 .btn-reverse-primary {
-  border: 2px solid var(--primary-1);
+  border: 2px solid var(--primary-3);
   color: var(--primary-2);
   background-color: white;
 }
@@ -106,4 +106,8 @@
     color: #ffd700;
     margin-left: 5px;
   }
+}
+
+.link {
+  text-decoration: none;
 }

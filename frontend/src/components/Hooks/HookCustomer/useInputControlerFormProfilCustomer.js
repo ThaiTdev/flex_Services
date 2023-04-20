@@ -15,7 +15,7 @@ export const useInputControlerFormProfilCustomer = () => {
         .date()
         .required("Merci d'entrer votre date de naissance")
         .test("is-adult", "Vous devez avoir au moins 18 ans", function (value) {
-          const minAge = 18;
+          const minAge = 16;
           const birthDate = new Date(value);
           const now = new Date();
           let age = now.getFullYear() - birthDate.getFullYear();

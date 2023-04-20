@@ -16,6 +16,7 @@ function FormProfilPro() {
     useInputControlerFormProfilPro();
   const [number, setNumber] = useState("");
   const [routeAvatar, setRouteAvatar] = useState(null);
+  const [proId, setProId] = useState(0);
   const { id } = useParams();
   let navigate = useNavigate();
 
@@ -41,6 +42,7 @@ function FormProfilPro() {
       .then((res) => {
         console.log("Success ", res.data.message);
         setRouteAvatar(res.data.data);
+        setProId(res.data.data.pro_id);
       });
   };
 

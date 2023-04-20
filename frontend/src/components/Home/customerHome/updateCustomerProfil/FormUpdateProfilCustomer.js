@@ -23,6 +23,7 @@ function FormUpdateProfilCustomer() {
   const [avatar, setAvatar] = useState("");
   const [permis, setPermis] = useState(false);
   const [customerId, setCustomerId] = useState(0);
+  const [phone, setPhone] = useState("");
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -30,6 +31,9 @@ function FormUpdateProfilCustomer() {
   function handleChange(num) {
     setNumber(num);
   }
+  const handleChangeName = (e) => {
+    console.log(e.target.value);
+  };
 
   const handleCheckboxChange = (e) => {
     setPermis(e.target.checked);
@@ -50,6 +54,7 @@ function FormUpdateProfilCustomer() {
         setUserAdress(res.data.data.adresse);
         setAvatar(res.data.data.avatar);
         setPermis(res.data.data.permis);
+        setPhone(res.data.data.phone);
         setCustomerId(res.data.data.customer_id);
       })
       .catch((error) => {
@@ -180,7 +185,8 @@ function FormUpdateProfilCustomer() {
             id="userName"
             className={`fz-12 mb-10 p-5 ${styles.inputName}`}
             name="userName"
-            placeholder={userName}
+            placeholder={userName.toUpperCase()}
+            // onChange={handleChangeName}
             {...register("userName")}
             required
           />

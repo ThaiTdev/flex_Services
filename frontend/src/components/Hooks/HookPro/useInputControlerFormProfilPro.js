@@ -35,6 +35,7 @@ export const useInputControlerFormProfilPro = () => {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 

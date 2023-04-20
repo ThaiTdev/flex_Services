@@ -57,6 +57,8 @@ require("./src/routes/proRoutes/createPro")(app);
 require("./src/routes/proRoutes/checkProfilValide")(app);
 require("./src/routes/proRoutes/showProfilPro")(app);
 require("./src/routes/proRoutes/uploadAvatarPro")(app);
+require("./src/routes/proRoutes/updateProfilPro")(app);
+require("./src/routes/proRoutes/deleteProfilPro")(app);
 
 //customer routes//
 require("./src/routes/customerRoutes/createCustomer")(app);
