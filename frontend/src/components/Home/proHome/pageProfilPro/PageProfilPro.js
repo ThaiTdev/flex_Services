@@ -1,8 +1,17 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "./PageProfilPro.module.scss";
+import { Link, useParams } from "react-router-dom";
+//images//
+import card from "../../../../assets/images/monProfil/credit-card.png";
+import facture from "../../../../assets/images/monProfil/facture.png";
+import identifications from "../../../../assets/images/monProfil/identification.png";
+import preference from "../../../../assets/images/monProfil/preference.png";
+import profil from "../../../../assets/images/monProfil/profil.png";
+import notif from "../../../../assets/images/monProfil/notifications.png";
 
 const PageProfilPro = () => {
+  const { id } = useParams();
   return (
     <div className={`d-flex flex-column   ${styles.mainPage}`}>
       <Header />
@@ -22,33 +31,36 @@ const PageProfilPro = () => {
               <div
                 className={`d-flex flex-row justify-content-center align-items-center ${styles.menuChangePage}`}
               >
-                <div className={`${styles.ChangePage} mr-10`}>
-                  <img src="./images/monProfil/profil.png" alt="profil" />
-                  <p>Modifier mon profil</p>
-                </div>
-                <div className={`${styles.ChangePage}`}>
-                  <img
-                    src="./images/monProfil/identification.png"
-                    alt="carte-identité"
-                  />
-                  <p>Informations Personnelles</p>
-                </div>
+                <Link
+                  to={`/UpdateProProfil/${id}`}
+                  style={{ textDecoration: "none" }}
+                  href="/"
+                >
+                  <div className={`${styles.ChangePage} mr-10`}>
+                    <img src={profil} alt="profil" />
+                    <p>Modifier mon profil</p>
+                  </div>
+                </Link>
+                <Link
+                  to={`/ProfilPro/${id}`}
+                  style={{ textDecoration: "none" }}
+                  href="/"
+                >
+                  <div className={`${styles.ChangePage}`}>
+                    <img src={identifications} alt="identifications" />
+                    <p>Informations Personnelles</p>
+                  </div>
+                </Link>
               </div>
               <div
                 className={`d-flex flex-row justify-content-center align-items-center    ${styles.menuChangePage}`}
               >
                 <div className={`${styles.ChangePage} mr-10`}>
-                  <img
-                    src="./images/monProfil/facture.png"
-                    alt="carte-identité"
-                  />
+                  <img src={facture} alt="facture" />
                   <p>Factures et reçus</p>
                 </div>
                 <div className={`${styles.ChangePage}`}>
-                  <img
-                    src="./images/monProfil/credit-card.png"
-                    alt="carte-de-credit"
-                  />
+                  <img src={card} alt="carte-de-credit" />
                   <p>Moyens de paiement</p>
                 </div>
               </div>
@@ -56,17 +68,11 @@ const PageProfilPro = () => {
                 className={`d-flex flex-row justify-content-center align-items-center ${styles.menuChangePage}`}
               >
                 <div className={`${styles.ChangePage} mr-10`}>
-                  <img
-                    src="./images/monProfil/notifications.png"
-                    alt="carte-de-credit"
-                  />
+                  <img src={notif} alt="notifications" />
                   <p>Réglages des notifications</p>
                 </div>
                 <div className={`${styles.ChangePage}`}>
-                  <img
-                    src="./images/monProfil/preference.png"
-                    alt="carte-de-credit"
-                  />
+                  <img src={preference} alt="preference" />
                   <p>préférences</p>
                 </div>
               </div>

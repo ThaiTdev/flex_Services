@@ -86,7 +86,7 @@ function FormUpdateProfilPro() {
         })
         .then((res) => {
           console.log(res);
-          navigate(`/ProfilPro/${id}`);
+          navigate(`/PageProfilPro/${id}`);
         });
     } catch (error) {
       console.error(error);

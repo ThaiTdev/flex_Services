@@ -65,7 +65,8 @@ function FormProfilPro() {
         })
         .then((res) => {
           console.log(res);
-          navigate(`/ProfilPro/${id}`);
+          // navigate(`/ProfilPro/${id}`);
+          navigate(`/PageProfilPro/${id}`);
         });
     } catch (error) {
       console.error(error);

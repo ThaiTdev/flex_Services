@@ -1,4 +1,6 @@
 import styles from "./Header.module.scss";
+import flex from "../../../../assets/images/logoFlex/Flex.png";
+import picto from "../../../../assets/images/logoFlex/Picto.png";
 
 const Header = () => {
   return (
@@ -7,10 +9,10 @@ const Header = () => {
     >
       <div className="d-flex flex-row justify-content-center align-items-center ">
         <div>
-          <img src="./images/logo/Picto.png" alt="" srcset="" />
+          <img src={picto} alt="picto" />
         </div>
         <div>
-          <img src="./images/logo/Flex.png" alt="" srcset="" />
+          <img src={flex} alt="logo-flex" />
         </div>
       </div>
       <nav className="d-flex flex-row justify-content-center align-items-center ">
