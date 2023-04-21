@@ -1,8 +1,10 @@
 import styles from "./Header.module.scss";
 import flex from "../../../../assets/images/logoFlex/Flex.png";
 import picto from "../../../../assets/images/logoFlex/Picto.png";
+import { Link, useParams } from "react-router-dom";
 
 const Header = () => {
+  const { id } = useParams();
   return (
     <header
       className={`d-flex flex-row justify-content-between align-items-center  ${styles.headerContainer}`}
@@ -16,11 +18,17 @@ const Header = () => {
         </div>
       </div>
       <nav className="d-flex flex-row justify-content-center align-items-center ">
-        <div className={` ${styles.boxLink}  `}>
-          <a className={`link  ${styles.Accueil}  ${styles.link}`} href="/">
-            Accueil
-          </a>
-        </div>
+        <Link
+          to={`/AccueilPro/${id}`}
+          style={{ textDecoration: "none" }}
+          href="/"
+        >
+          <div className={` ${styles.boxLink}  `}>
+            <a className={`link  ${styles.Accueil}  ${styles.link}`} href="/">
+              Accueil
+            </a>
+          </div>
+        </Link>
         <div className={` ${styles.boxLink}  `}>
           <a className={`link  ${styles.Gestion} ${styles.link}`} href="/">
             Gestion
