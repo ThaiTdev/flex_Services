@@ -51,9 +51,12 @@ let deleteProfilPro = (id) => {
   return Axios.delete(`/deleteProProfil/${id}`);
 };
 
-let uploadPro = (data) => {
-  return Axios.post(`/uploadAvatarPro`, data);
+let uploadAvatarPro = (data, id) => {
+  return Axios.post(`/uploadAvatarPro/${id}`, data);
 };
+// let uploadAvatarPro = (data) => {
+//   return Axios.post(`/uploadAvatarPro`, data);
+// };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //Customer//
@@ -74,8 +77,8 @@ let UpdateProfilCustomer = (data, id) => {
   return Axios.put(`/UpdateCustomerProfil/${id}`, data);
 };
 
-let uploadAvatar = (data) => {
-  return Axios.post(`/uploadAvatar`, data);
+let uploadAvatarCustomer = (data, id) => {
+  return Axios.post(`/uploadAvatar/${id}`, data);
 };
 
 let uploadCV = (data) => {
@@ -114,7 +117,7 @@ export const accountService = {
   createProfilPro,
   checkProfilValide,
   showProfilePro,
-  uploadPro,
+  uploadAvatarPro,
   UpdateProfilPro,
   deleteProfilPro,
   //Customer//
@@ -122,7 +125,7 @@ export const accountService = {
   checkProfilCustomerValide,
   showProfileCustomer,
   UpdateProfilCustomer,
-  uploadAvatar,
+  uploadAvatarCustomer,
   uploadCV,
   showCustomerCv,
 };

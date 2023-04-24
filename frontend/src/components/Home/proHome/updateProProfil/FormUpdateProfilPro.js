@@ -57,7 +57,7 @@ function FormUpdateProfilPro() {
     }
 
     accountService
-      .uploadPro(formData, {
+      .uploadAvatarPro(formData, id, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

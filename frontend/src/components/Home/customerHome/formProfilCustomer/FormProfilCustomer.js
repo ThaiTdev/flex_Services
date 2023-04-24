@@ -41,7 +41,7 @@ function FormProfilCustomer() {
     }
 
     accountService
-      .uploadAvatar(formData, {
+      .uploadAvatarCustomer(formData, id, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

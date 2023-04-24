@@ -1,10 +1,9 @@
 const fs = require("fs");
 
 module.exports = (app) => {
-  app.post("/api/uploadAvatarPro/:id", (req, res) => {
+  app.post("/api/uploadAvatar/:id", (req, res) => {
     const id = req.params.id;
-    console.log(id);
-    const newFolder = "uploadAvatarPro" + "_" + id;
+    const newFolder = "uploadAvatarCustomer" + "_" + id;
     const folderUploded = __dirname + `../../../../uploads/${newFolder}/`;
     //ce code vérifie que si le dossier n'existe pas alors il le créer.
     if (!fs.existsSync(folderUploded)) {
