@@ -65,7 +65,7 @@ require("./src/routes/customerRoutes/createCustomer")(app);
 require("./src/routes/customerRoutes/checkProfilCustomerValide")(app);
 require("./src/routes/customerRoutes/showProfilCustomer")(app);
 require("./src/routes/customerRoutes/uploadAvatarCustomer")(app);
-require("./src/routes/customerRoutes/uploadCV")(app);
+require("./src/routes/customerRoutes/uploadCvCustomer")(app);
 require("./src/routes/customerRoutes/showCustomerCv")(app);
 require("./src/routes/customerRoutes/updateProfilCustomer")(app);
 

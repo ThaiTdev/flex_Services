@@ -95,7 +95,7 @@ function FormUpdateProfilCustomer() {
     }
 
     accountService
-      .uploadCV(formData, {
+      .uploadCvCustomer(formData, id, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

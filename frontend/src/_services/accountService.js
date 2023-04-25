@@ -54,9 +54,6 @@ let deleteProfilPro = (id) => {
 let uploadAvatarPro = (data, id) => {
   return Axios.post(`/uploadAvatarPro/${id}`, data);
 };
-// let uploadAvatarPro = (data) => {
-//   return Axios.post(`/uploadAvatarPro`, data);
-// };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //Customer//
@@ -81,9 +78,12 @@ let uploadAvatarCustomer = (data, id) => {
   return Axios.post(`/uploadAvatar/${id}`, data);
 };
 
-let uploadCV = (data) => {
-  return Axios.post(`/uploadCV`, data);
+let uploadCvCustomer = (data, id) => {
+  return Axios.post(`/uploadCvCustomer/${id}`, data);
 };
+// let uploadCV = (data) => {
+//   return Axios.post(`/uploadCV`, data);
+// };
 
 ///////////////////////////////////////////////////
 //gestion des tokens///////////////////////////////
@@ -126,6 +126,6 @@ export const accountService = {
   showProfileCustomer,
   UpdateProfilCustomer,
   uploadAvatarCustomer,
-  uploadCV,
+  uploadCvCustomer,
   showCustomerCv,
 };
