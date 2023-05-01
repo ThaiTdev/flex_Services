@@ -1,13 +1,11 @@
 @use "../../../../assets/styles/mixins" as mixin;
-
 .navContainer {
   display: none;
 }
-
 @include mixin.xs {
   .navContainer {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     .navBox {
       width: 80%;
       margin: auto;

@@ -14,6 +14,7 @@ import arrowfrom from "../../../../assets/images/monProfil/Arrow.png";
 
 const PageProfilPro = () => {
   const { id } = useParams();
+
   return (
     <div
       className={`d-flex flex-column justify-content-between ${styles.mainPage}`}
@@ -135,7 +136,13 @@ const PageProfilPro = () => {
             </div>
           </div>
           <div className={`${styles.title}`}>
-            <p>Me déconnecter</p>
+            <Link
+              to={`/LogoutUser/${id}`}
+              style={{ textDecoration: "none" }}
+              href="/"
+            >
+              <p>Me déconnecter</p>
+            </Link>
           </div>
         </div>
       </main>

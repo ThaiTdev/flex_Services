@@ -26,12 +26,11 @@ export default function Form({ data, value }) {
       resp = newArr.join(" ").replace(/,/g, "");
     }
   }
-
   Phone(2);
 
   return (
     <div
-      className={`d-flex flex-column justify-content-center align-items-center  ${styles.ProForm}`}
+      className={`d-flex flex-column justify-content-center align-items-start ${styles.ProForm}`}
     >
       <div className={`${styles.ProAvatarBox}`}>
         <div className={`${styles.ProAvatar}`}>
@@ -44,28 +43,40 @@ export default function Form({ data, value }) {
       </div>
 
       <div
-        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-column justify-content-between  align-items-start  ${styles.ProInput}`}
       >
         <p>Nom</p>
         <span>{data.nom_user}</span>
       </div>
       <div
-        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-column   justify-content-between  align-items-start ${styles.ProInput}`}
       >
         <p> Email</p>
         <span>{value.email}</span>
       </div>
       <div
-        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-column  justify-content-between  align-items-start  ${styles.ProInput}`}
       >
         <p>Téléphone</p>
         <span>+{resp}</span>
       </div>
       <div
-        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.ProInput}`}
+        className={`d-flex flex-column  justify-content-between  align-items-start ${styles.ProInput}`}
       >
         <p>Date de naissance</p>
         <span>{newDate}</span>
+      </div>
+      <div
+        className={`d-flex flex-column  justify-content-between  align-items-start ${styles.ProInput}`}
+      >
+        <p>Adresse</p>
+        <span>Ne peux pas être indiqué pour le moment</span>
+      </div>
+      <div
+        className={`d-flex flex-column  justify-content-between  align-items-start ${styles.ProInput}`}
+      >
+        <p>Numéro de SIRET</p>
+        <span>Ne peux pas être indiqué pour le moment</span>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import ForgotPassword from "../components/Auth/forgotPassword/ForgotPassword";
 import ResetPassword from "../components/Auth/resetPassword/ResetPassword";
 import RegisterForm from "../components/Auth/register/RegisterForm";
 import ActivationAccount from "../components/Auth/activationAccount/ActivationAccount";
+import LogoutUser from "../components/Auth/logoutUser/logoutUser";
 import WelcomeSlider from "../components/Auth/slide/Slide";
 
 const WelcomeRoutes = () => {
@@ -19,6 +20,7 @@ const WelcomeRoutes = () => {
       />
       <Route path="/AuthForm" element={<AuthForm />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
+      <Route path="/LogoutUser/:id" element={<LogoutUser />} />
       <Route path="/resetPassword/:token" element={<ResetPassword />} />
     </Routes>
   );
