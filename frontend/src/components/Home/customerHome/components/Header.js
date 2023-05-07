@@ -5,22 +5,21 @@ import { Link, useParams } from "react-router-dom";
 
 const Header = ({ linkCheck }) => {
   const { id } = useParams();
-  console.log(linkCheck.profilChecked);
   return (
     <header
       className={`d-flex flex-row justify-content-between align-items-center  ${styles.headerContainer}`}
     >
       <div className="d-flex flex-row justify-content-center align-items-center ">
         <div>
-          <img src={picto} alt="picto" className={`${styles.headerPicto}`} />
+          <img src={picto} alt="picto" />
         </div>
         <div>
-          <img src={flex} alt="logo-flex" className={`${styles.headerFlex}`} />
+          <img src={flex} alt="logo-flex" />
         </div>
       </div>
       <nav className="d-flex flex-row justify-content-center align-items-center ">
         <Link
-          to={`/AccueilPro/${id}`}
+          to={`/AccueilCustomer/${id}`}
           style={{ textDecoration: "none" }}
           href="/"
         >
@@ -56,7 +55,7 @@ const Header = ({ linkCheck }) => {
           </a>
         </div>
         <Link
-          to={`/PageProfilPro/${id}`}
+          to={`/PageProfilCustomer/${id}`}
           style={{ textDecoration: "none" }}
           href="/"
         >

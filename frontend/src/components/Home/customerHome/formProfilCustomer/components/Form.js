@@ -1,6 +1,5 @@
-import { useInputControlerFormProfilPro } from "../../../../Hooks/HookPro/useInputControlerFormProfilPro";
+import { useInputControlerFormProfilCustomer } from "../../../../Hooks/HookCustomer/useInputControlerFormProfilCustomer";
 import { accountService } from "../../../../../_services/accountService";
-import { sortPoste } from "./selectOptions";
 import { useParams } from "react-router-dom";
 import styles from "./Form.module.scss";
 import img from "../../../../../assets/images/professionnel/homme.png";
@@ -11,19 +10,27 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import FormData from "form-data";
 
-function FormPro() {
-  const [register, handleSubmit, setValue, errors] =
-    useInputControlerFormProfilPro();
+function FormCustomer() {
+  const [register, handleSubmit, errors] =
+    useInputControlerFormProfilCustomer();
   const [number, setNumber] = useState("");
+  const [cvCheck, setCvCheck] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [routeCv, setRouteCv] = useState(null);
   const [routeAvatar, setRouteAvatar] = useState(null);
-  const [proId, setProId] = useState(0);
+
   const { id } = useParams();
   let navigate = useNavigate();
 
   function handleChange(num) {
-    setNumber(num);
     console.log(num);
+    setNumber(num);
   }
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+  };
+
   const handleChangeAvatar = (e) => {
     let formData = new FormData();
     formData.append("avatar", e.target.files[0]);
@@ -34,31 +41,55 @@ function FormPro() {
     }
 
     accountService
-      .uploadAvatarPro(formData, id, {
+      .uploadAvatarCustomer(formData, id, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
         console.log("Success ", res.data.message);
-        setRouteAvatar(res.data.data.data1);
-        console.log("donnée:" + res.data.data.data1);
-        setProId(res.data.data.pro_id);
+        setRouteAvatar(res.data.data);
       });
   };
 
-  const showData = (data) => {
+  //cette fonction enregistre le cv dans le dossier uploads
+  const handleChangeCv = (e) => {
+    setCvCheck(e.target.value);
+    let formData = new FormData();
+    formData.append("curriculum", e.target.files[0]);
+    if (formData.get("curriculum")) {
+      console.log("La valeur de 'curriculum' est:", formData.get("curriculum"));
+    } else {
+      console.log("Il n'y a pas de valeur pour 'curriculum'");
+    }
+
+    accountService
+      .uploadCvCustomer(formData, id, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log("Success ", res.data.message);
+        setRouteCv(res.data.data);
+      });
+  };
+
+  // cette function enregistre le profil dans la bdd
+  const showData = async (data) => {
     let value = {
       nom_user: data.userName,
       phone: number,
       birthDate: data.birthDate,
-      fonction: data.selectFunction,
       avatar: routeAvatar,
+      adresse: data.adresse,
+      permis: isChecked,
+      curriculum_vitae: routeCv,
     };
 
     try {
-      accountService
-        .createProfilPro(value, id, {
+      await accountService
+        .createProfilCustomer(value, id, {
           headers: {
             "Content-Type": "application/json",
             // "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -66,24 +97,19 @@ function FormPro() {
         })
         .then((res) => {
           console.log(res);
-          // navigate(`/ProfilPro/${id}`);
-          navigate(`/PageProfilPro/${id}`);
+          navigate(`/PageProfilCustomer/${id}`);
         });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleChangeFunction = (e) => {
-    setValue("selectFunction", e.target.value);
-  };
-
   return (
     <div
-      className={`d-flex flex-column justify-content-around align-items-start  ${styles.formContainer} `}
+      className={`d-flex flex-column justify-content-around align-items-start ${styles.formContainer} `}
     >
-      <div className={`d-flex flex-row`}>
-        <div className={`mb-10 ${styles.avatarContainer}`}>
+      <div className={`d-flex flex-row `}>
+        <div className={` mb-10 ${styles.avatarContainer}`}>
           <div className={styles.avatarBoxImage}>
             <img
               className={styles.avatarImage}
@@ -109,7 +135,6 @@ function FormPro() {
           />
         </div>
       </div>
-      <div></div>
       <form
         className={` d-flex flex-column justify-content-between ${styles.form}`}
         onSubmit={handleSubmit(showData)}
@@ -127,13 +152,23 @@ function FormPro() {
             required
           />
           <label htmlFor="userName" className="fz-12  mb-10">
+            Adresse
+          </label>
+          <input
+            type="text"
+            id="adresse"
+            className={`fz-12 mb-10 p-5 ${styles.adresse}`}
+            name="adresse"
+            {...register("adresse")}
+            required
+          />
+          <label htmlFor="userName" className="fz-12  mb-10">
             Numéro de téléphone
           </label>
           <div className={styles.phoneBox}>
             <PhoneInput
               className={styles.phone}
               country={"fr"}
-              value={number}
               onChange={handleChange}
             />
           </div>
@@ -144,31 +179,60 @@ function FormPro() {
           <input
             type="date"
             id="birthDate"
-            className={`d-flex justify-content-start  fz-12 mb-10 p-5 ${styles.birthDate}`}
+            className={`fz-12 mb-10 p-5 d-flex justify-content-start ${styles.birthDate}`}
             name="birthDate"
             {...register("birthDate")}
             required
           />
-          <label htmlFor="userFuction" className="fz-12  mb-10">
-            Mon poste / Ma fonction
-          </label>
-          <select
-            name="userFuction"
-            id="userFuction"
-            onChange={handleChangeFunction}
-            {...register("selectFunction")}
-            className={`d-flex justify-content-start p-5 ${styles.inputFunction} `}
-          >
-            {sortPoste.map(({ label, value }) => (
-              <option key={value} value={value} required>
-                {label}
-              </option>
-            ))}
-          </select>
+        </div>
+        <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-center align-items-center">
+            {cvCheck ? (
+              <label
+                htmlFor="curriculum"
+                className={`fz-12  mb-10  ${styles.label_cvActive} d-flex justify-content-center align-items-start `}
+              >
+                CV validé
+                <img
+                  className={`ml-10 ${styles.label_cvActiveValide}`}
+                  src="/images/professionnel/validation.png"
+                  alt=""
+                />
+              </label>
+            ) : (
+              <label
+                htmlFor="curriculum"
+                className={`fz-12  mb-10 ${styles.label_cv}   `}
+              >
+                Importer votre CV
+              </label>
+            )}
+            <input
+              type="file"
+              name="curriculum"
+              accept=".pdf,.doc,.docx,.odt,.png,.jpeg,.jpg"
+              id="curriculum"
+              className={`fz-12 mb-10 p-5 ${styles.cv}`}
+              onChange={handleChangeCv}
+              required
+            />
+          </div>
+          <div className="d-flex justify-content-start align-items-center">
+            <label htmlFor="permis" className="fz-12  mb-10">
+              Permis
+            </label>
+            <input
+              type="checkbox"
+              id="permis"
+              className={`fz-12 mb-10 p-5 ${styles.permis}`}
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            />
+          </div>
         </div>
         <div className="d-flex flex-column justify-content-center align-items-end  mt-20  ">
           <button
-            className="d-flex flex-row justify-content-between align-items-center btn-co btn-reverse-primary fz-12"
+            className="d-flex flex-row justify-content-between align-items-center btn-co btn-reverse-primary  fz-12"
             type="submit"
           >
             <span>Valider</span>
@@ -179,5 +243,4 @@ function FormPro() {
     </div>
   );
 }
-
-export default FormPro;
+export default FormCustomer;

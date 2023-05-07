@@ -1,6 +1,6 @@
-import styles from "./FormCustomer.module.scss";
+import styles from "./Form.module.scss";
 
-export default function FormCustomer({ data, value }) {
+export default function Form({ data, value }) {
   const newBirth = data.birthDate;
   const avatar = data.avatar;
 
@@ -31,7 +31,7 @@ export default function FormCustomer({ data, value }) {
 
   return (
     <div
-      className={`d-flex flex-column justify-content-center align-items-center  ${styles.CustomerForm}`}
+      className={`d-flex flex-column justify-content-center align-items-start  ${styles.CustomerForm}`}
     >
       <div className={`${styles.CustomerAvatarBox}`}>
         <div className={`${styles.CustomerAvatar}`}>
@@ -44,25 +44,25 @@ export default function FormCustomer({ data, value }) {
       </div>
 
       <div
-        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.CustomerInput}`}
+        className={`d-flex flex-column justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p>Nom</p>
         <span>{data.nom_user}</span>
       </div>
       <div
-        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.CustomerInput}`}
+        className={`d-flex flex-column  justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p> Email</p>
         <span>{value.email}</span>
       </div>
       <div
-        className={`d-flex flex-row   justify-content-between  align-items-center  ${styles.CustomerInput}`}
+        className={`d-flex flex-column   justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p>Téléphone</p>
         <span>+{resp}</span>
       </div>
       <div
-        className={`d-flex flex-row  justify-content-between  align-items-center  ${styles.CustomerInput}`}
+        className={`d-flex flex-column  justify-content-between  align-items-center  ${styles.CustomerInput}`}
       >
         <p>Date de naissance</p>
         <span>{newDate}</span>

@@ -14,7 +14,7 @@ const NavVersionMobile = ({ linkCheck }) => {
   return (
     <nav className={` ${styles.navContainer}`}>
       <div
-        className={` d-flex flex-row justify-content-between   ${styles.navBox}`}
+        className={` d-flex flex-row justify-content-between  ${styles.navBox}`}
       >
         <Link
           to={`/AccueilCustomer/${id}`}
@@ -48,7 +48,7 @@ const NavVersionMobile = ({ linkCheck }) => {
           </div>
         </div>
         <Link
-          to={`/PageProfilPro/${id}`}
+          to={`/pageProfilCustomer/${id}`}
           style={{ textDecoration: "none" }}
           href="/"
         >

@@ -5,11 +5,18 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import NavVersionMobile from "../components/NavVersionMobile";
 
 const ProfilPro = () => {
   const { id } = useParams();
   const [data, setData] = useState("");
   const [value, setValue] = useState("");
+  const linkCheck = {
+    profilChecked: true,
+    accueilChecked: false,
+    gestionChecked: false,
+    messageChecked: false,
+  };
 
   useEffect(() => {
     accountService
@@ -33,13 +40,15 @@ const ProfilPro = () => {
     <div
       className={`d-flex flex-column justify-content-between align-items-center  ${styles.ProHomePage}`}
     >
-      <Header />
+      <Header linkCheck={linkCheck} />
       <main className={`${styles.profilContainer}`}>
         <div
-          className={` mr-10 d-flex flex-row justify-content-star align-items-center `}
+          className={`${styles.profilTitle} mr-10 d-flex flex-row justify-content-star align-items-center `}
         >
           <Link to={`/PageProfilPro/${id}`} style={{ textDecoration: "none" }}>
-            <i className="fa-solid fa-arrow-left fz-20 "></i>
+            <i
+              className={`fa-solid fa-arrow-left fz-20  ${styles.ProArrow}`}
+            ></i>
           </Link>
           <p className="fz-20 ml-10">Mon Profil</p>
         </div>
@@ -60,6 +69,7 @@ const ProfilPro = () => {
           </div>
         </div>
       </main>
+      <NavVersionMobile linkCheck={linkCheck} />
       <Footer />
     </div>
   );

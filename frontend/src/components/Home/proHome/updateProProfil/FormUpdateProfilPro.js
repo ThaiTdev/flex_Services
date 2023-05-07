@@ -4,24 +4,34 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "./FormUpdateProfilPro.module.scss";
 import { Link, useParams } from "react-router-dom";
+import NavVersionMobile from "../components/NavVersionMobile";
 
 const UpdateProfilPro = () => {
   const { id } = useParams();
+  const linkCheck = {
+    profilChecked: true,
+    accueilChecked: false,
+
+    gestionChecked: false,
+    messageChecked: false,
+  };
   return (
     <div
       className={`d-flex flex-column justify-content-between align-items-center ${styles.ProHomePage}`}
     >
-      <Header />
+      <Header linkCheck={linkCheck} />
       <main className={`${styles.profilContainer} `}>
         <div
-          className={` mr-10 d-flex flex-row justify-content-star align-items-center `}
+          className={`${styles.profilTitle}  mr-10 d-flex flex-row justify-content-star align-items-center `}
         >
           <Link to={`/PageProfilPro/${id}`} style={{ textDecoration: "none" }}>
-            <i className="fa-solid fa-arrow-left fz-20 "></i>
+            <i
+              className={`fa-solid fa-arrow-left fz-20  ${styles.ProArrow}`}
+            ></i>
           </Link>
           <p className="fz-20 ml-10">Informations personnelles</p>
         </div>
-        <div className={` d-flex flex-row`}>
+        <div className={` d-flex flex-row ${styles.boxProfilText} `}>
           <Form />
           <div className={`${styles.profilText} ml-20`}>
             <p>
@@ -38,6 +48,7 @@ const UpdateProfilPro = () => {
           </div>
         </div>
       </main>
+      <NavVersionMobile linkCheck={linkCheck} />
       <Footer />
     </div>
   );

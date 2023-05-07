@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import NavVersionMobile from "../components/NavVersionMobile";
 import Footer from "../components/Footer";
-import styles from "./PageProfilPro.module.scss";
+import styles from "./PageProfilCustomer.module.scss";
 import { Link, useParams } from "react-router-dom";
 //images//
 import card from "../../../../assets/images/monProfil/credit-card.png";
@@ -12,7 +12,7 @@ import profil from "../../../../assets/images/monProfil/profil.png";
 import notif from "../../../../assets/images/monProfil/notifications.png";
 import arrowfrom from "../../../../assets/images/monProfil/Arrow.png";
 
-const PageProfilPro = () => {
+const PageProfilCustomer = () => {
   const { id } = useParams();
   const linkCheck = {
     profilChecked: true,
@@ -20,6 +20,7 @@ const PageProfilPro = () => {
     gestionChecked: false,
     messageChecked: false,
   };
+
   return (
     <div
       className={`d-flex flex-column justify-content-between ${styles.mainPage}`}
@@ -51,7 +52,7 @@ const PageProfilPro = () => {
                 className={`d-flex flex-row justify-content-center align-items-center ${styles.menuChangePage}`}
               >
                 <Link
-                  to={`/UpdateProProfil/${id}`}
+                  to={`/UpdateCustomerProfil/${id}`}
                   style={{ textDecoration: "none" }}
                   href="/"
                 >
@@ -66,7 +67,7 @@ const PageProfilPro = () => {
                   </div>
                 </Link>
                 <Link
-                  to={`/ProfilPro/${id}`}
+                  to={`/ProfilCustomer/${id}`}
                   style={{ textDecoration: "none" }}
                   href="/"
                 >
@@ -157,4 +158,4 @@ const PageProfilPro = () => {
   );
 };
 
-export default PageProfilPro;
+export default PageProfilCustomer;

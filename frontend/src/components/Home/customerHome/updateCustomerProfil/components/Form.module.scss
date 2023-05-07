@@ -4,7 +4,6 @@
   width: 90%;
   height: auto;
   padding-bottom: 10px;
-
   .avatarContainer {
     position: relative;
     .avatarBoxImage {
@@ -81,9 +80,35 @@
       cursor: pointer;
       padding-bottom: 10px;
     }
+
+    .label_cv {
+      cursor: pointer;
+      font-weight: bold;
+      border: 2px solid var(--primary-3);
+      padding: 5px 10px;
+      border-radius: 5px;
+      &:hover {
+        background-color: var(--primary-3);
+        color: white;
+        transition: all 0.5s;
+      }
+    }
+    .label_cvActive {
+      cursor: pointer;
+      font-weight: bold;
+      border: 2px solid var(--primary-3);
+      padding: 5px 10px;
+      border-radius: 5px;
+
+      .label_cvActiveValide {
+        width: 15px;
+      }
+    }
+    .cv {
+      display: none;
+    }
   }
 }
-
 @include mixin.xs {
   .formContainer {
     width: 100%;
@@ -91,7 +116,7 @@
     justify-content: end;
     margin-top: 20px;
     padding-bottom: 80px;
-    .ProAvatarBox {
+    .CustomerAvatarBox {
       position: relative;
       .avatarContainer {
         .avatarBoxImage {

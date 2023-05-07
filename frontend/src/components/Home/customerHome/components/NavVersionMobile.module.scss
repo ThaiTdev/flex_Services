@@ -2,6 +2,7 @@
 .navContainer {
   display: none;
 }
+
 @include mixin.xs {
   .navContainer {
     position: fixed;

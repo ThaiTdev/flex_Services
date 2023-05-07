@@ -1,5 +1,4 @@
 import styles from "./AccueilCustomer.module.scss";
-
 import { accountService } from "../../../../_services/accountService";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +20,7 @@ function AccueilCustomer() {
           console.log(res);
           console.log(res.data.message);
           if (res.data.message) {
-            navigate(`/ProfilCustomer/${id}`);
+            navigate(`/pageProfilCustomer/${id}`);
           } else {
             navigate(`/FormProfilCustomer/${id}`);
           }
@@ -98,7 +97,7 @@ function AccueilCustomer() {
             className="  btn btn-reverse-primary "
             onClick={handleClickLogout}
           >
-            dèconnexion
+            DECONNEXION
           </button>
         </div>
       </div>

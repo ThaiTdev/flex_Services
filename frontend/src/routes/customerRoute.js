@@ -5,6 +5,7 @@ import FormProfilCustomer from "../components/Home/customerHome/formProfilCustom
 import ShowCustomerCv from "../components/Home/customerHome/profilCustomer/components/showCvCustomer";
 import ProfilCustomer from "../components/Home/customerHome/profilCustomer/ProfilCustomer";
 import FormUpdateProfilCustomer from "../components/Home/customerHome/updateCustomerProfil/FormUpdateProfilCustomer";
+import PageProfilCustomer from "../components/Home/customerHome/pageProfilCustomer/PageProfilCustomer";
 
 const UserRoutes = () => {
   return (
@@ -24,6 +25,10 @@ const UserRoutes = () => {
         <Route
           path="/UpdateCustomerProfil/:id"
           element={<FormUpdateProfilCustomer />}
+        />
+        <Route
+          path="/PageProfilCustomer/:id"
+          element={<PageProfilCustomer />}
         />
       </Route>
     </Routes>

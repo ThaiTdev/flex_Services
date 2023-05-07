@@ -103,7 +103,7 @@ export default function Form() {
     <div
       className={`d-flex flex-column justify-content-around align-items-start  ${styles.formContainer} `}
     >
-      <div className={`d-flex flex-row `}>
+      <div className={`d-flex flex-row ${styles.ProAvatarBox} `}>
         <div className={` mb-10 ${styles.avatarContainer}`}>
           <div className={styles.avatarBoxImage}>
             <img
