@@ -60,7 +60,7 @@ require("./src/routes/proRoutes/uploadAvatarPro")(app);
 require("./src/routes/proRoutes/updateProfilPro")(app);
 require("./src/routes/proRoutes/deleteProfilPro")(app);
 
-//customer routes//
+//customers routes//
 require("./src/routes/customerRoutes/createCustomer")(app);
 require("./src/routes/customerRoutes/checkProfilCustomerValide")(app);
 require("./src/routes/customerRoutes/showProfilCustomer")(app);
@@ -68,6 +68,11 @@ require("./src/routes/customerRoutes/uploadAvatarCustomer")(app);
 require("./src/routes/customerRoutes/uploadCvCustomer")(app);
 require("./src/routes/customerRoutes/showCustomerCv")(app);
 require("./src/routes/customerRoutes/updateProfilCustomer")(app);
+
+//retaurants routes//
+require("./src/routes/restaurantRoutes/uploadeImageResto")(app);
+require("./src/routes/restaurantRoutes/CreateNewRestaurant")(app);
+require("./src/routes/restaurantRoutes/ShowRestaurant")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);

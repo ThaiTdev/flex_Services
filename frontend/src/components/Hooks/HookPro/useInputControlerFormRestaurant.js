@@ -6,8 +6,7 @@ export const useInputControlerFormProfilPro = () => {
   const schema = yup
     .object()
     .shape({
-      selectActivite: yup.string().min(1, "veuillez choisir une catégorie"),
-      nom_entreprise: yup
+      nom_restaurant: yup
         .string()
         .max(255)
         .required("Merci d'entrer le nom de votre entreprise"),
@@ -24,10 +23,10 @@ export const useInputControlerFormProfilPro = () => {
           (val) => val && val.length === 14
         )
         .required("Merci d'entrer le numéro de SIRET de votre entreprise"),
-      taille: yup
-        .number()
-        .max(255)
-        .required("Merci d'entrer l'a taille de votre entreprise'"),
+      // taille: yup
+      //   .number()
+      //   .max(255)
+      //   .required("Merci d'entrer le numéro de SIRET de votre entreprise"),
     })
 
     .required();

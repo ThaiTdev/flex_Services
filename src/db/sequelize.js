@@ -11,7 +11,7 @@ const CustomerModel = require("../models/customers/customers");
 //j'import les données en dure
 // const users = require("./mock-user");
 // const pros = require("./mock-pro");
-// const restau = require("./mock-restau");
+// const restos = require("./mock-restau");
 // const customer = require("./mock-customer");
 
 //je crée une instance de sequelise pour me connecter à ma base de données
@@ -65,10 +65,10 @@ const Customer = CustomerModel(sequelize, DataTypes);
 //       User.create({
 //         nom_entreprise: pro.nom_entreprise,
 //         adresse: pro.adresse,
+//         birthDate: pro.birthDate,
 //         siret: pro.siret,
 //         taille: pro.taille,
 //         nom_user: pro.userName,
-//         activite: pro.selectActivite,
 //         fonction: pro.selectFunction,
 //       }).then((pro) => console.log(pro.toJSON()));
 //     });
@@ -85,6 +85,20 @@ const Customer = CustomerModel(sequelize, DataTypes);
 //         password: user.password,
 //         categorie: user.categorie,
 //       }).then((user) => console.log(user.toJSON()));
+//     });
+//     console.log("La base de donnée a bien été initialisée !");
+//   });
+// };
+// const initDb = () => {
+//   return sequelize.sync({ force: true }).then((_) => {
+//     restos.map((resto) => {
+//       User.create({
+//         nom_restaurant: resto.nom_restaurant,
+//         number: resto.number,
+//         phone: resto.phone,
+//         adresse: resto.adresse,
+//         siret: resto.siret,
+//       }).then((resto) => console.log(resto.toJSON()));
 //     });
 //     console.log("La base de donnée a bien été initialisée !");
 //   });

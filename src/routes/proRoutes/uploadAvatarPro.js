@@ -4,12 +4,22 @@ module.exports = (app) => {
   app.post("/api/uploadAvatarPro/:id", (req, res) => {
     const id = req.params.id;
     console.log(id);
-    const newFolder = "uploadAvatarPro" + "_" + id;
-    const folderTempo = "uploadAvatarProTempo" + "_" + id;
-    const folderUploded = __dirname + `../../../../uploads/${newFolder}/`;
+    const newFolderUser = "uploadImagesPro" + "_" + id;
+    const newFolderTheme = "uploadAvatarPro";
+
+    const folderUploded = __dirname + `../../../../uploads/${newFolderUser}/`;
+    const folderUploded2 =
+      __dirname + `../../../../uploads/${newFolderUser}/${newFolderTheme}/`;
     if (!fs.existsSync(folderUploded)) {
       // Vérifiez si le dossier n'existe pas
       fs.mkdir(folderUploded, (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    }
+    if (!fs.existsSync(folderUploded2)) {
+      fs.mkdir(folderUploded2, (err) => {
         if (err) {
           throw err;
         }
@@ -38,13 +48,13 @@ module.exports = (app) => {
     const file = req.files.avatar;
     const fileName =
       Date.now(req.files.avatar.name) + "_" + req.files.avatar.name;
-    let uploadPath = folderUploded + fileName;
+    let uploadPath = folderUploded2 + fileName;
     // let uploadPathTempo = folderUplodedTempo + fileName;
     let routeAvatar =
       req.protocol +
       "://" +
       req.get("host") +
-      `/uploads/${newFolder}/` +
+      `/uploads/${newFolderUser}/${newFolderTheme}/` +
       fileName;
     file.mv(uploadPath, (err) => {
       if (err) {

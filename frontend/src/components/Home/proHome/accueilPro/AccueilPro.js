@@ -1,5 +1,4 @@
 import styles from "./AccueilPro.module.scss";
-
 import { accountService } from "../../../../_services/accountService";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

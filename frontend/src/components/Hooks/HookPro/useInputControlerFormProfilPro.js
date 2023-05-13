@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
-export const useInputControlerFormProfilPro = () => {
+export const useInputControlerFormProfilPro = (initialValues) => {
   const schema = yup
     .object()
     .shape({
@@ -28,16 +28,16 @@ export const useInputControlerFormProfilPro = () => {
           return age >= minAge;
         }),
     })
-
     .required();
 
   const {
     register,
     handleSubmit,
     setValue,
-    reset,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   return [register, handleSubmit, setValue, errors];
 };

@@ -3,8 +3,11 @@ const fs = require("fs");
 module.exports = (app) => {
   app.post("/api/uploadCvCustomer/:id", (req, res) => {
     const id = req.params.id;
-    const newFolder = "uploadCvCustomer" + "_" + id;
-    const folderUploded = __dirname + `../../../../uploads/${newFolder}/`;
+    const newFolderUser = "uploadImagesCustomer" + "_" + id;
+    const newFolderTheme = "uploadCvCustomer";
+    const folderUploded = __dirname + `../../../../uploads/${newFolderUser}/`;
+    const folderUploded2 =
+      __dirname + `../../../../uploads/${newFolderUser}/${newFolderTheme}/`;
     if (!fs.existsSync(folderUploded)) {
       // Vérifiez si le dossier n'existe pas
       fs.mkdir(folderUploded, (err) => {
@@ -13,20 +16,27 @@ module.exports = (app) => {
         }
       });
     }
+    if (!fs.existsSync(folderUploded2)) {
+      fs.mkdir(folderUploded2, (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    }
     ////////// this code cancel file in uploadAvatarCustomer
-    fs.readdir(folderUploded, (err, files) => {
-      if (err) {
-        throw err;
-      }
-      for (const file of files) {
-        fs.unlink(folderUploded + file, (err) => {
-          if (err) {
-            throw err;
-          }
-          console.log(`${file} has been deleted`);
-        });
-      }
-    });
+    // fs.readdir(folderUploded, (err, files) => {
+    //   if (err) {
+    //     throw err;
+    //   }
+    //   for (const file of files) {
+    //     fs.unlink(folderUploded + file, (err) => {
+    //       if (err) {
+    //         throw err;
+    //       }
+    //       console.log(`${file} has been deleted`);
+    //     });
+    //   }
+    // });
     //////////////////////////////////////////////////
 
     if (!res) {
@@ -35,12 +45,12 @@ module.exports = (app) => {
     }
     const file = req.files.curriculum;
     const fileName = Date.now() + "_" + req.files.curriculum.name;
-    let uploadPath = folderUploded + fileName;
+    let uploadPath = folderUploded2 + fileName;
     let routeImage =
       req.protocol +
       "://" +
       req.get("host") +
-      `/uploads/${newFolder}/` +
+      `/uploads/${newFolderUser}/${newFolderTheme}/` +
       fileName;
 
     file.mv(uploadPath, (err) => {

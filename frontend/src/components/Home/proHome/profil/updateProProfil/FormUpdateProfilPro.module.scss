@@ -1,0 +1,73 @@
+@use "../../../../../assets/styles/mixins" as mixin;
+
+.ProHomePage {
+  width: 100%;
+  min-height: 100vh;
+  .profilContainer {
+    width: 60%;
+    margin-bottom: 20px;
+    .profilText {
+      width: 20%;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary-2);
+    }
+  }
+}
+@include mixin.sm-lt {
+  .ProHomePage {
+    width: 100%;
+    min-height: 100vh;
+    .profilContainer {
+      margin-top: 100px;
+      width: 70%;
+      margin-bottom: 20px;
+      .profilText {
+        width: 30%;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--primary-2);
+      }
+    }
+  }
+}
+@include mixin.xs {
+  .ProHomePage {
+    .profilContainer {
+      margin-top: 0px;
+      width: 80%;
+      margin-bottom: 0px;
+      .profilTitle {
+        justify-content: center;
+        .ProArrow {
+          display: none;
+        }
+      }
+      .boxProfilText {
+        flex-direction: column-reverse;
+        justify-content: start;
+        // width: 100%;
+        height: auto;
+        .profilText {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--neutral-8);
+          border: 1px solid var(--primary-3);
+          border-radius: 10px;
+          box-shadow: var(--box-shadow-nav);
+          margin: auto;
+          padding: 10px 15px;
+          text-align: center;
+          margin-bottom: 10px;
+          font-weight: 500;
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+  // .profilText {
+  //   // display: none;
+  // }
+}

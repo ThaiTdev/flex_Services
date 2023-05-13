@@ -54,6 +54,23 @@ let deleteProfilPro = (id) => {
 let uploadAvatarPro = (data, id) => {
   return Axios.post(`/uploadAvatarPro/${id}`, data);
 };
+let showGestionPro = (id) => {
+  return Axios.post(`/showGestionPro/${id}`);
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//Restaurant//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let createNewResto = (data, id) => {
+  return Axios.post(`/createNewResto/${id}`, data);
+};
+let uploadImageRestaurant = (data, id) => {
+  return Axios.post(`/uploadImageResto/${id}`, data);
+};
+let showRestaurant = (id) => {
+  return Axios.get(`/showRestaurant/${id}`);
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //Customer//
@@ -81,9 +98,6 @@ let uploadAvatarCustomer = (data, id) => {
 let uploadCvCustomer = (data, id) => {
   return Axios.post(`/uploadCvCustomer/${id}`, data);
 };
-// let uploadCV = (data) => {
-//   return Axios.post(`/uploadCV`, data);
-// };
 
 ///////////////////////////////////////////////////
 //gestion des tokens///////////////////////////////
@@ -120,7 +134,8 @@ export const accountService = {
   uploadAvatarPro,
   UpdateProfilPro,
   deleteProfilPro,
-  //Customer//
+  showGestionPro,
+  //Customers//
   createProfilCustomer,
   checkProfilCustomerValide,
   showProfileCustomer,
@@ -128,4 +143,8 @@ export const accountService = {
   uploadAvatarCustomer,
   uploadCvCustomer,
   showCustomerCv,
+  //restaurant//
+  createNewResto,
+  uploadImageRestaurant,
+  showRestaurant,
 };

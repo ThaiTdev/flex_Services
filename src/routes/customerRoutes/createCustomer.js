@@ -2,8 +2,6 @@ const { Customer } = require("../../db/sequelize");
 
 module.exports = (app) => {
   app.post("/api/createProfilCustomer/:id", async (req, res) => {
-    //creation du code d'activation
-
     //recupération des données passés dans la requête
     const userData = req.body;
     const paramId = req.params.id;

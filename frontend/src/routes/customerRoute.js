@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
 import AccueilCustomer from "../components/Home/customerHome/accueilCustomer/AccueilCustomer";
-import FormProfilCustomer from "../components/Home/customerHome/formProfilCustomer/FormProfilCustomer";
-import ShowCustomerCv from "../components/Home/customerHome/profilCustomer/components/showCvCustomer";
-import ProfilCustomer from "../components/Home/customerHome/profilCustomer/ProfilCustomer";
-import FormUpdateProfilCustomer from "../components/Home/customerHome/updateCustomerProfil/FormUpdateProfilCustomer";
-import PageProfilCustomer from "../components/Home/customerHome/pageProfilCustomer/PageProfilCustomer";
+import FormProfilCustomer from "../components/Home/customerHome/profil/formProfilCustomer/FormProfilCustomer";
+import ShowCustomerCv from "../components/Home/customerHome/profil/profilCustomer/components/showCvCustomer";
+import ProfilCustomer from "../components/Home/customerHome/profil/profilCustomer/ProfilCustomer";
+import FormUpdateProfilCustomer from "../components/Home/customerHome/profil/updateCustomerProfil/FormUpdateProfilCustomer";
+import PageProfilCustomer from "../components/Home/customerHome/profil/pageProfilCustomer/PageProfilCustomer";
 
 const UserRoutes = () => {
   return (

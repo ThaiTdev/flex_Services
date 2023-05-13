@@ -24,35 +24,35 @@ const Header = ({ linkCheck }) => {
           href="/"
         >
           <div className={` ${styles.boxLink}  `}>
-            <a
+            <p
               className={`link ${
                 linkCheck.accueilChecked ? styles.linkCheked : styles.link
               }`}
               href="/"
             >
               Accueil
-            </a>
+            </p>
           </div>
         </Link>
         <div className={` ${styles.boxLink}  `}>
-          <a
+          <p
             className={`link ${
               linkCheck.gestionChecked ? styles.linkCheked : styles.link
             }`}
             href="/"
           >
             Gestion
-          </a>
+          </p>
         </div>
         <div className={` ${styles.boxLink}  `}>
-          <a
+          <p
             className={`link ${
               linkCheck.messageChecked ? styles.linkCheked : styles.link
             }`}
             href="/"
           >
             Messages
-          </a>
+          </p>
         </div>
         <Link
           to={`/PageProfilCustomer/${id}`}
@@ -60,14 +60,14 @@ const Header = ({ linkCheck }) => {
           href="/"
         >
           <div className={` ${styles.boxLink}  `}>
-            <a
+            <p
               className={`link ${
                 linkCheck.profilChecked ? styles.linkCheked : styles.link
               }`}
               href="/"
             >
               Profil
-            </a>
+            </p>
           </div>
         </Link>
       </nav>

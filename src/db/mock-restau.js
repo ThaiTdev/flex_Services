@@ -1,10 +1,22 @@
 const restau = [
   {
-    id: 1,
-    nom_entreprise: "nom_entreprise",
+    restaurant_id: 1,
+    user_id: 2,
+    nom_restaurant: "nom_entreprise",
+    phone: "065655415",
     adresse: "pro.adresse",
-    siret: "11111111111111",
-    taille: "2",
+    siret: "12345678997165",
+    image_resto: "",
+    created: new Date(),
+  },
+  {
+    restaurant_id: 2,
+    user_id: 2,
+    nom_restaurant: "nom_entreprise",
+    phone: "065655415",
+    adresse: "pro.adresse",
+    siret: "12345678997165",
+    image_resto: "",
     created: new Date(),
   },
 ];

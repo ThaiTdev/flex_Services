@@ -1,0 +1,56 @@
+@use "../../../../../assets/styles/mixins" as mixin;
+
+.mainPage {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  .mainContainer {
+    width: auto;
+    padding: 20px 0;
+    .boxTitle {
+      display: none;
+    }
+  }
+}
+
+@include mixin.xs {
+  .mainPage {
+    width: 100%;
+    .mainContainer {
+      width: 100%;
+      margin-top: 0px;
+      .boxTitle {
+        display: block;
+        h2 {
+          text-align: center;
+          margin-top: 20px;
+          margin-bottom: 10px;
+          font-weight: 500;
+        }
+        .boxText {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--neutral-8);
+          width: 280px;
+          border: 1px solid var(--primary-3);
+          border-radius: 10px;
+          box-shadow: var(--box-shadow-nav);
+          margin: auto;
+          padding: 15px 25px;
+          text-align: center;
+          margin-bottom: 10px;
+          font-weight: 500;
+        }
+      }
+      .profilContainer {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 70px;
+        .title {
+          display: none;
+        }
+      }
+    }
+  }
+}

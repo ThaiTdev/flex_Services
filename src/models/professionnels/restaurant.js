@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    "restaurant",
+    "restaurants",
     {
-      pro_id: {
+      restaurant_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -11,32 +11,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: false,
       },
-      restaurant_id: {
-        type: DataTypes.INTEGER,
-        defaultValue: false,
-      },
-      nom_entreprise: {
+      nom_restaurant: {
         type: DataTypes.STRING,
         defaultValue: false,
-        // unique: true,
+      },
+      image_resto: {
+        type: DataTypes.STRING,
+        defaultValue: false,
+      },
+      phone: {
+        type: DataTypes.STRING,
+        defaultValue: false,
       },
       adresse: {
         type: DataTypes.STRING,
         defaultValue: false,
       },
       siret: {
-        type: DataTypes.INTEGER,
-        defaultValue: false,
-      },
-      taille: {
-        type: DataTypes.INTEGER,
-        defaultValue: false,
-      },
-      activite: {
-        type: DataTypes.STRING,
-        defaultValue: false,
-      },
-      logo: {
         type: DataTypes.STRING,
         defaultValue: false,
       },

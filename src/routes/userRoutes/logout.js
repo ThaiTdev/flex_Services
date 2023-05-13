@@ -5,7 +5,7 @@ module.exports = (app) => {
     const id = req.params.id;
     User.update(
       // { token: req.body.token, logger: false },
-      { token: null, logger: false },
+      { logger: false },
       {
         where: { user_id: id },
       }

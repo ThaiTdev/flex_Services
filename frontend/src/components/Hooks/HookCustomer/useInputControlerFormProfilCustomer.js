@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
-export const useInputControlerFormProfilCustomer = () => {
+export const useInputControlerFormProfilCustomer = (initialValues) => {
   const schema = yup
     .object()
     .shape({
@@ -37,9 +37,16 @@ export const useInputControlerFormProfilCustomer = () => {
   const {
     register,
     handleSubmit,
-
+    setValue,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+    // defaultValues: {
+    //   userName: initialValues.userName,
+    //   adresse: initialValues.adresse,
+    //   birthDate: initialValues.birthDate,
+    // },
+  });
 
-  return [register, handleSubmit, errors];
+  return [register, handleSubmit, setValue, errors];
 };
