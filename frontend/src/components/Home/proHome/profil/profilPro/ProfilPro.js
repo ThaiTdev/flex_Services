@@ -27,8 +27,6 @@ const ProfilPro = () => {
       })
       .then((res) => {
         setData(res.data.data);
-        console.log(res.data.data);
-        console.log(res.data.value);
         setValue(res.data.value);
       })
       .catch((error) => {

@@ -4,25 +4,23 @@ import restoParDefaut from "../../../../../../assets/images/professionnel/mes_re
 import { accountService } from "../../../../../../_services/accountService";
 import { useState, useEffect } from "react";
 
-function ShowPostes({ restoChecked, posteChecked, missionChecked }) {
+function ShowAllPostes({ restoChecked, posteChecked, missionChecked }) {
   const [dataResto, setDataResto] = useState([]);
   const { id } = useParams();
 
   try {
     useEffect(() => {
       accountService
-        .showRestaurant(id, {
+        .ShowAllRestaurants(id, {
           Headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
           setDataResto(res.data.data);
-          console.log(res);
         });
     }, [id]);
   } catch (error) {}
-  console.log(dataResto);
 
   return (
     <main className={`d-flex flex-column flex-fill ${styles.mainContainer} `}>
@@ -132,4 +130,4 @@ function ShowPostes({ restoChecked, posteChecked, missionChecked }) {
     </main>
   );
 }
-export default ShowPostes;
+export default ShowAllPostes;

@@ -1,7 +1,7 @@
 const { Restau } = require("../../db/sequelize");
 
 module.exports = (app) => {
-  app.get("/api/showRestaurant/:id", async (req, res) => {
+  app.get("/api/ShowAllRestaurants/:id", async (req, res) => {
     // récupération des données passées dans la requête
     const userData = req.params.id;
 

@@ -1,7 +1,7 @@
 import { useInputControlerFormRestaurant } from "../../../../../../Hooks/HookPro/useInputControlerFormRestaurant";
 import { accountService } from "../../../../../../../_services/accountService";
 import { useParams } from "react-router-dom";
-import styles from "./Form.module.scss";
+import styles from "./FormResto.module.scss";
 import img from "../../../../../../../assets/images/professionnel/mes_restaurant/restaurantParDefaut.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,12 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import FormData from "form-data";
 
-function FormPro() {
+function FormResto() {
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormRestaurant();
   const [number, setNumber] = useState("");
   const [routeRestaurant, setRouteRestaurant] = useState(null);
-  const { id } = useParams();
+  const { id, idResto } = useParams();
   let navigate = useNavigate();
 
   function handleChange(num) {
@@ -54,7 +54,7 @@ function FormPro() {
 
     try {
       accountService
-        .createNewResto(value, id, {
+        .UpdateRestaurant(value, id, idResto, {
           headers: {
             "Content-Type": "application/json",
             // "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -163,4 +163,4 @@ function FormPro() {
   );
 }
 
-export default FormPro;
+export default FormResto;

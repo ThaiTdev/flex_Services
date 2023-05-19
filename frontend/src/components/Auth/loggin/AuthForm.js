@@ -100,6 +100,7 @@ function AuthForm() {
             className="fz-12 mb-10 "
             name="email"
             {...register("email")}
+            required
           />
           {errorEmail && <p className="errorsYup">{errorEmail}</p>}
           {errors.email && <p className="errorsYup">{errors.email.message}</p>}
@@ -113,6 +114,7 @@ function AuthForm() {
               className="fz-12 mb-10"
               name="password"
               {...register("password")}
+              required
             />
             {errorPassWord && <p className="errorsYup">{errorPassWord}</p>}
             {errors.password && (

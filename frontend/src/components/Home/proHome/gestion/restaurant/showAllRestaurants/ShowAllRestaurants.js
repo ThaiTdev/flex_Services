@@ -1,10 +1,11 @@
-import styles from "./showRestaurant.module.scss";
+import styles from "./ShowAllRestaurants.module.scss";
 import { Link, useParams } from "react-router-dom";
 import restoParDefaut from "../../../../../../assets/images/professionnel/mes_restaurant/restaurantParDefaut.jpg";
 import { accountService } from "../../../../../../_services/accountService";
 import { useState, useEffect } from "react";
+import logoEdite from "../../../../../../assets/images/professionnel/mes_restaurant/editer.png";
 
-function ShowRestaurant({
+function ShowAllRestaurant({
   setRestoChecked,
   setPosteChecked,
   setMissionChecked,
@@ -18,18 +19,16 @@ function ShowRestaurant({
   try {
     useEffect(() => {
       accountService
-        .showRestaurant(id, {
+        .ShowAllRestaurants(id, {
           Headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
           setDataResto(res.data.data);
-          console.log(res);
         });
     }, [id]);
   } catch (error) {}
-  console.log(dataResto);
 
   function handleClickResto() {
     setRestoChecked(true);
@@ -57,7 +56,7 @@ function ShowRestaurant({
   }
 
   return (
-    <main className={`d-flex flex-column flex-fill ${styles.mainContainer} `}>
+    <main className={`d-flex flex-column flex-fill  ${styles.mainContainer} `}>
       <div
         className={`d-flex flex-column justify-content-center align-items-start  ${styles.profilContainer}`}
       >
@@ -116,7 +115,7 @@ function ShowRestaurant({
               className={`d-flex justify-content-between align-items-center ${styles.boxLinkAjout}`}
             >
               <Link
-                to={`/AddNewRestaurant/${id}`}
+                to={`/AddNewRestaurant/${resto.user_id}`}
                 style={{ textDecoration: "none" }}
                 href="/"
               >
@@ -146,8 +145,21 @@ function ShowRestaurant({
               <div
                 className={`d-flex  justify-content-between align-items-center ${styles.boxLink}`}
               >
-                <p>{resto.nom_restaurant}</p>
-                <p>Editer</p>
+                <p className={` ${styles.name}`}>{resto.nom_restaurant}</p>
+                <Link
+                  key={resto.restaurant_id}
+                  to={`/ShowOneRestaurant/${resto.user_id}/${resto.restaurant_id}`}
+                  style={{ textDecoration: "none" }}
+                  href="/"
+                >
+                  <div
+                    className={`d-flex flex-row justify-content-center align-items-center  `}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <p className={` ${styles.editer}`}>Editer</p>
+                    <img src={logoEdite} alt="editer" />
+                  </div>
+                </Link>
               </div>
             </div>
           ))}
@@ -165,4 +177,4 @@ function ShowRestaurant({
     </main>
   );
 }
-export default ShowRestaurant;
+export default ShowAllRestaurant;

@@ -72,7 +72,9 @@ require("./src/routes/customerRoutes/updateProfilCustomer")(app);
 //retaurants routes//
 require("./src/routes/restaurantRoutes/uploadeImageResto")(app);
 require("./src/routes/restaurantRoutes/CreateNewRestaurant")(app);
-require("./src/routes/restaurantRoutes/ShowRestaurant")(app);
+require("./src/routes/restaurantRoutes/ShowAllRestaurants")(app);
+require("./src/routes/restaurantRoutes/ShowOneRestaurant")(app);
+require("./src/routes/restaurantRoutes/UpdateRestaurant")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);

@@ -7,6 +7,8 @@ import FormUpdateProfilPro from "../components/Home/proHome/profil/updateProProf
 import PageProfilPro from "../components/Home/proHome/profil/pageProfilPro/PageProfilPro";
 import PageGestionPro from "../components/Home/proHome/gestion/pageGestionPro/pageGestionPro";
 import AddNewRestaurant from "../components/Home/proHome/gestion/restaurant/addNewRestaurant/FormNewRestaurant";
+import ShowOneRestaurant from "../components/Home/proHome/gestion/restaurant/showOneRestaurant/ShowOneRestaurant";
+import UpdateRestaurant from "../components/Home/proHome/gestion/restaurant/updateRestaurant/FormUpdateRestaurant";
 
 const ProRoutes = () => {
   return (
@@ -20,7 +22,15 @@ const ProRoutes = () => {
         <Route path="/PageProfilPro/:id" element={<PageProfilPro />} />
         <Route path="/PageGestionPro/:id" element={<PageGestionPro />} />
         <Route path="/AddNewRestaurant/:id" element={<AddNewRestaurant />} />
+        <Route
+          path="/ShowOneRestaurant/:id/:idResto"
+          element={<ShowOneRestaurant />}
+        />
       </Route>
+      <Route
+        path="/UpdateRestaurant/:id/:idResto"
+        element={<UpdateRestaurant />}
+      ></Route>
     </Routes>
   );
 };

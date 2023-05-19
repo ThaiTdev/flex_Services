@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 
 const Header = ({ linkCheck }) => {
   const { id } = useParams();
-  console.log(linkCheck.profilChecked);
   return (
     <header
       className={`d-flex flex-row justify-content-between align-items-center  ${styles.headerContainer}`}

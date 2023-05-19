@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
-export const useInputControlerFormProfilPro = () => {
+export const useInputControlerFormRestaurant = () => {
   const schema = yup
     .object()
     .shape({

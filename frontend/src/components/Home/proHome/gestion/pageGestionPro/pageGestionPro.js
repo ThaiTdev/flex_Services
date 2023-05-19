@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import NavVersionMobile from "../../components/NavVersionMobile";
-import ShowRestaurant from "../restaurant/showRestaurant/showRestaurant";
+import ShowAllRestaurants from "../restaurant/showAllRestaurants/ShowAllRestaurants";
 import ShowPostes from "../postes/showPostes/showPostes";
 import ShowMissions from "../missions/showMissions/showMissions";
 // import { useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ function PageGestion() {
   const [restoChecked, setRestoChecked] = useState(true);
   const [posteChecked, setPosteChecked] = useState(false);
   const [missionChecked, setMissionChecked] = useState(false);
+
   // const { id } = useParams();
   const linkCheck = {
     profilChecked: false,
@@ -25,9 +26,9 @@ function PageGestion() {
     >
       <Header linkCheck={linkCheck} />
       <div
-        className={`d-flex flex-row justify-content-between align-items-center ${styles.mainContainer}`}
+        className={`d-flex flex-row justify-content-between align-items-center ${styles.mainContainerGeneral}`}
       >
-        <ShowRestaurant
+        <ShowAllRestaurants
           setRestoChecked={setRestoChecked}
           setPosteChecked={setPosteChecked}
           setMissionChecked={setMissionChecked}

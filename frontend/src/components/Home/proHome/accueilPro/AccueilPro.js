@@ -15,8 +15,6 @@ function AccueilPro() {
           },
         })
         .then((res) => {
-          console.log(res);
-          console.log(res.data.message);
           if (res.data.message) {
             // navigate(`/ProfilPro/${id}`);
             navigate(`/PageProfilPro/${id}`);

@@ -160,4 +160,12 @@
       }
     }
   }
+  .containerBoxRestaurantActive {
+    transform: translate(-0%);
+    opacity: calc(1);
+  }
+  .containerBoxRestaurantActive2 {
+    transform: translate(-200%);
+    opacity: calc(0.001);
+  }
 }

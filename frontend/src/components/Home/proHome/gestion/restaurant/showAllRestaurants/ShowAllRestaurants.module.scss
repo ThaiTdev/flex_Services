@@ -1,0 +1,293 @@
+@use "../../../../../../assets/styles/mixins" as mixin;
+
+.mainContainer {
+  width: 100vw;
+  padding: 20px 0;
+  height: 100%;
+
+  .boxTitle {
+    display: none;
+  }
+  .profilContainer {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 100px;
+    .domaineBoxContainer {
+      width: 100%;
+      .domaineBox {
+        width: auto;
+        margin-right: 20%;
+        .domaineLink {
+          width: auto;
+          position: relative;
+          font-size: 1.2rem;
+          font-weight: 500;
+          color: var(--primary-2);
+          &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-3);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+          }
+          &:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
+        .domaineLinkActive {
+          border-bottom: 3px solid var(--primary-3);
+          font-size: 1.2rem;
+          font-weight: 500;
+          color: var(--primary-2);
+        }
+      }
+    }
+    .containerBoxRestaurant {
+      width: auto;
+      margin-left: 10px;
+      transition: all 1s;
+      .BoxRestaurant {
+        width: 200px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        box-shadow: 5px 5px 15px 1px #000000;
+        position: relative;
+        .RestaurantImage {
+          object-fit: cover;
+          position: absolute;
+          height: 100%;
+          transition: all 0.8s;
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+        .boxLink {
+          position: absolute;
+          bottom: -10px;
+          width: 100%;
+          padding: 0 10px 10px 10px;
+          color: var(--primary-1);
+          font-weight: 500;
+          font-size: 0.7rem;
+          background-color: rgba(8, 8, 8, 0.242);
+          .name {
+            color: white;
+          }
+          .editer {
+            transition: all 0.2s;
+            color: var(--primary-1);
+            &:hover {
+              color: var(--secondary);
+            }
+          }
+          img {
+            width: 0.8rem;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+    .containerBoxRestaurantActive {
+      transform: translate(-150%);
+      opacity: calc(0.2);
+    }
+    .BoxRestaurantAjouter {
+      width: 200px;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      background-color: beige;
+      position: relative;
+      box-shadow: 5px 5px 15px 1px #000000;
+      .boxLinkAjout {
+        position: absolute;
+        bottom: -10px;
+        width: 100%;
+        padding: 0 10px 10px 10px;
+        font-size: 0.7rem;
+        background-color: rgba(8, 8, 8, 0.242);
+        .linkAjout {
+          color: var(--primary-1);
+          font-weight: 500;
+          transition: all 0.2s;
+          &:hover {
+            color: var(--secondary);
+          }
+        }
+      }
+    }
+    .title {
+      width: 100%;
+    }
+  }
+}
+.containerBoxRestaurantActive {
+  transform: translate(-100%);
+}
+
+@include mixin.xs {
+  .mainContainer {
+    width: 100vw;
+    height: auto;
+
+    .boxTitle {
+      display: none;
+    }
+    .profilContainer {
+      width: 100vw;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      .domaineBoxContainer {
+        justify-content: center;
+        border-bottom: 2px solid var(--primary-3);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        z-index: 1000;
+        .domaineBox {
+          margin: 0;
+          text-align: center;
+
+          .domaineLink {
+            width: auto;
+            position: relative;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-2);
+            margin: 5px 20px;
+            &::after {
+              content: "";
+              position: absolute;
+              width: 100%;
+              transform: scaleX(0);
+              height: 2px;
+              bottom: 0;
+              left: 0;
+              background-color: var(--primary-3);
+              transform-origin: bottom right;
+              transition: transform 0.1s ease-out;
+            }
+            &:hover::after {
+              transform: scaleX(1);
+              transform-origin: bottom left;
+            }
+          }
+          .domaineLinkActive {
+            border-bottom: 3px solid var(--primary-3);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-2);
+            margin: 5px 20px;
+          }
+        }
+      }
+      .containerBoxRestaurant {
+        justify-content: center;
+        width: auto;
+        margin-left: 10px;
+        transition: all 0.3s;
+        margin-top: 10px;
+        .BoxRestaurant {
+          width: 250px;
+          height: 100px;
+          position: relative;
+          overflow: hidden;
+          border-radius: 5px;
+          margin-right: 0px;
+          margin-bottom: 20px;
+          box-shadow: 5px 5px 15px 1px #000000;
+          position: relative;
+          .RestaurantImage {
+            object-fit: cover;
+            position: absolute;
+            width: 100%;
+            transition: all 0.8s;
+            &:hover {
+              transform: scale(1.05);
+            }
+          }
+          .boxLink {
+            position: absolute;
+            bottom: -10px;
+            width: 100%;
+            padding: 0 10px 10px 10px;
+            color: var(--primary-1);
+            font-weight: 500;
+            font-size: 0.7rem;
+            background-color: rgba(8, 8, 8, 0.242);
+            .name {
+              color: white;
+            }
+            .editer {
+              transition: all 0.2s;
+              &:hover {
+                color: var(--secondary);
+              }
+            }
+            img {
+              width: 0.8rem;
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+      .containerBoxRestaurantActive {
+        transform: translate(-150%);
+        opacity: calc(0.2);
+      }
+      .BoxRestaurantAjouter {
+        width: 250px;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        margin-right: 0px;
+        position: relative;
+        box-shadow: 5px 5px 15px 1px #000000;
+        .boxLinkAjout {
+          position: absolute;
+          bottom: -10px;
+          width: 100%;
+          padding: 0 10px 10px 10px;
+          font-size: 0.7rem;
+          background-color: rgba(8, 8, 8, 0.242);
+          .linkAjout {
+            color: var(--primary-1);
+            font-weight: 500;
+            transition: all 0.2s;
+            &:hover {
+              color: var(--secondary);
+            }
+          }
+        }
+      }
+      .title {
+        width: 100%;
+        h1 {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

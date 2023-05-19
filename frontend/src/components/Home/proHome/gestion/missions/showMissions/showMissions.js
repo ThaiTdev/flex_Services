@@ -4,21 +4,20 @@ import restoParDefaut from "../../../../../../assets/images/professionnel/mes_re
 import { accountService } from "../../../../../../_services/accountService";
 import { useState, useEffect } from "react";
 
-function ShowMissions({ restoChecked, posteChecked, missionChecked }) {
+function ShowAllMissions({ restoChecked, posteChecked, missionChecked }) {
   const [dataResto, setDataResto] = useState([]);
   const { id } = useParams();
 
   try {
     useEffect(() => {
       accountService
-        .showRestaurant(id, {
+        .ShowAllRestaurants(id, {
           Headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
           setDataResto(res.data.data);
-          console.log(res);
         });
     }, [id]);
   } catch (error) {}
@@ -66,7 +65,7 @@ function ShowMissions({ restoChecked, posteChecked, missionChecked }) {
           } ${missionChecked && styles.containerBoxRestaurantActive}  `}
         >
           <div className={`${styles.title} mb-20`}>
-            <h1>Gérer mes Postes</h1>
+            <h1>Gérer mes Missions</h1>
           </div>
           <div className={`${styles.BoxRestaurantAjouter}  `}>
             <div className={`${styles.BoxRestaurant} `}>
@@ -129,4 +128,4 @@ function ShowMissions({ restoChecked, posteChecked, missionChecked }) {
     </main>
   );
 }
-export default ShowMissions;
+export default ShowAllMissions;

@@ -58,7 +58,6 @@ export default function Form() {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
         setData(res.data.data);
         setUserName(res.data.data.nom_user);
         setAvatar(res.data.data.avatar);
@@ -103,9 +102,7 @@ export default function Form() {
         },
       })
       .then((res) => {
-        console.log("Success ", res.data.message);
         setRouteAvatar(res.data.data.data1);
-        console.log("donnée:" + res.data.data.data1);
       });
   };
 

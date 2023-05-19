@@ -30,13 +30,19 @@ const NavVersionMobile = ({ linkCheck }) => {
           </div>
         </Link>
         <div>
-          <div className={` ${styles.navLink}`}>
-            <img
-              src={linkCheck.gestionChecked ? GestionCheck : Gestion}
-              alt="Gestion"
-            />
-            <div className={` ${styles.navText}`}>Gestion</div>
-          </div>
+          <Link
+            to={`/PageGestionPro/${id}`}
+            style={{ textDecoration: "none" }}
+            href="/"
+          >
+            <div className={` ${styles.navLink}`}>
+              <img
+                src={linkCheck.gestionChecked ? GestionCheck : Gestion}
+                alt="Gestion"
+              />
+              <div className={` ${styles.navText}`}>Gestion</div>
+            </div>
+          </Link>
         </div>
         <div>
           <div className={` ${styles.navLink}`}>

@@ -68,8 +68,14 @@ let createNewResto = (data, id) => {
 let uploadImageRestaurant = (data, id) => {
   return Axios.post(`/uploadImageResto/${id}`, data);
 };
-let showRestaurant = (id) => {
-  return Axios.get(`/showRestaurant/${id}`);
+let ShowAllRestaurants = (id) => {
+  return Axios.get(`/showallRestaurants/${id}`);
+};
+let ShowOneRestaurant = (id, idResto) => {
+  return Axios.get(`/showOneRestaurant/${id}/${idResto}`);
+};
+let UpdateRestaurant = (data, id, idResto) => {
+  return Axios.get(`/UpdateRestaurant/${id}/${idResto}`, data);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,5 +152,7 @@ export const accountService = {
   //restaurant//
   createNewResto,
   uploadImageRestaurant,
-  showRestaurant,
+  ShowAllRestaurants,
+  ShowOneRestaurant,
+  UpdateRestaurant,
 };
