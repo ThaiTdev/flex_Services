@@ -1,15 +1,16 @@
 const { Restau } = require("../../db/sequelize");
 
 module.exports = (app) => {
-  app.get("/api/ShowAllRestaurants/:id", async (req, res) => {
+  app.get("/api/GetDataForOneRestaurant/:id/:userId", async (req, res) => {
     // récupération des données passées dans la requête
-    const userData = req.params.id;
+    const userId = req.params.id;
+    const restoId = req.params.userId;
 
     try {
-      const resto = await Restau.findAll({ where: { user_id: userData } });
+      const resto = await Restau.findOne({ where: { restaurant_id: restoId } });
       if (!resto) {
         // si il n'existe pas, je retourne ce message d'erreur
-        const message1 = `ce restaurant n'existe pas`;
+        const message1 = `cette utilisateur n'existe pas`;
         return res.json({ message: message1, data: resto });
       } else {
         // si l'utilisateur existe déjà je retourne un message de succès

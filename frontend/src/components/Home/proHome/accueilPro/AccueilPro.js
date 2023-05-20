@@ -24,6 +24,7 @@ function AccueilPro() {
         });
     } catch (error) {}
   }
+
   return (
     <div
       className={`d-flex flex-direction-row justify-content-center align-items-center  ${styles.AccueillPage} `}
@@ -80,7 +81,13 @@ function AccueilPro() {
           </div>
         </div>
         <div className=" ">
-          <button className="  btn btn-reverse-primary ">dèconnexion</button>
+          <Link
+            to={`/LogoutUser/${id}`}
+            style={{ textDecoration: "none" }}
+            href="/"
+          >
+            <p>DECONNEXION</p>
+          </Link>
         </div>
       </div>
     </div>

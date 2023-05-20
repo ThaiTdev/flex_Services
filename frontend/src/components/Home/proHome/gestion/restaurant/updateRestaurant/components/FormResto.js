@@ -9,14 +9,36 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import FormData from "form-data";
+import { useEffect } from "react";
 
 function FormResto() {
+  const { id, idResto } = useParams();
+  const [adresse, setAdresse] = useState("");
+  const [imageResto, setImageResto] = useState("");
+  const [nameResto, setNameResto] = useState("");
+  const [siret, setSiret] = useState("");
+  const [numberPhone, setNumberPhone] = useState("");
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormRestaurant();
   const [number, setNumber] = useState("");
   const [routeRestaurant, setRouteRestaurant] = useState(null);
-  const { id, idResto } = useParams();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    accountService
+      .GetDataForOneRestaurant(id, idResto, {
+        header: {
+          "content-type": "application/json",
+        },
+      })
+      .then((res) => {
+        setAdresse(res.data.data.adresse);
+        setImageResto(res.data.data.image_resto);
+        setNameResto(res.data.data.nom_restaurant);
+        setSiret(res.data.data.siret);
+        setNumberPhone(res.data.data.phone);
+      });
+  }, [id, idResto]);
 
   function handleChange(num) {
     setNumber(num);
@@ -38,7 +60,7 @@ function FormResto() {
       })
       .then((res) => {
         console.log("Success ", res.data.message);
-        setRouteRestaurant(res.data.data.data1);
+        setImageResto(res.data.data.data1);
         console.log("donnée3:" + res.data.data.data1);
       });
   };
@@ -48,7 +70,7 @@ function FormResto() {
       nom_restaurant: data.nom_restaurant,
       adresse: data.adresse,
       phone: number,
-      image_resto: routeRestaurant,
+      image_resto: imageResto,
       siret: data.siret,
     };
 
@@ -63,7 +85,7 @@ function FormResto() {
         .then((res) => {
           console.log(res);
           console.log(res.data.data.adresse);
-          navigate(`/PageGestionPro/${id}`);
+          navigate(`/ShowOneRestaurant/${id}/${idResto}`);
         });
     } catch (error) {
       console.error(error);
@@ -77,7 +99,7 @@ function FormResto() {
       <div className={`d-flex flex-row mb-20 ${styles.imageRestoContainer} `}>
         <img
           className={styles.imageRestoImage}
-          src={routeRestaurant ? routeRestaurant : img}
+          src={imageResto ? imageResto : img}
           alt="photo_de_profil"
         />
 
@@ -111,6 +133,7 @@ function FormResto() {
             id="nom_restaurant"
             className={`fz-12 mb-10 p-5 ${styles.inputName}`}
             name="nom_restaurant"
+            defaultValue={nameResto}
             {...register("nom_restaurant")}
             required
           />
@@ -121,7 +144,7 @@ function FormResto() {
             <PhoneInput
               className={styles.phone}
               country={"fr"}
-              value={number}
+              value={numberPhone}
               onChange={handleChange}
             />
           </div>
@@ -134,6 +157,7 @@ function FormResto() {
             id="adresse"
             className={`d-flex justify-content-start  fz-12 mb-10 p-5 ${styles.birthDate}`}
             name="adresse"
+            defaultValue={adresse}
             {...register("adresse")}
             required
           />
@@ -145,6 +169,7 @@ function FormResto() {
             id="siret"
             className={`d-flex justify-content-start  fz-12 mb-10 p-5 ${styles.birthDate}`}
             name="siret"
+            defaultValue={siret}
             {...register("siret")}
             required
           />

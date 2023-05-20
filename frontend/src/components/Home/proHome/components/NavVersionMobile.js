@@ -17,7 +17,7 @@ const NavVersionMobile = ({ linkCheck }) => {
         className={` d-flex flex-row justify-content-between   ${styles.navBox}`}
       >
         <Link
-          to={`/AccueilCustomer/${id}`}
+          to={`/AccueilPro/${id}`}
           style={{ textDecoration: "none" }}
           href="/"
         >

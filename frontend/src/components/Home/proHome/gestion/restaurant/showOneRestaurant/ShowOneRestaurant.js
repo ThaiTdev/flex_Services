@@ -79,7 +79,15 @@ function ShowOneRestaurant() {
             </Link>
             <p className="fz-20 ml-10">{nomResto.toUpperCase()}</p>
           </div>
-          <img src={imageResto} alt="" />
+          <div
+            className={`d-flex flex-row mb-20 ${styles.imageRestoContainer} `}
+          >
+            <img
+              className={styles.imageRestoImage}
+              src={imageResto}
+              alt={nomResto}
+            />
+          </div>
           <h4 className={`mt-10`}>Adresse:</h4>
           <p>{adress}</p>
           <h4>Téléphone:</h4>

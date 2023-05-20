@@ -1,6 +1,6 @@
 import styles from "./AccueilCustomer.module.scss";
 import { accountService } from "../../../../_services/accountService";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function AccueilCustomer() {
@@ -23,26 +23,6 @@ function AccueilCustomer() {
             navigate(`/pageProfilCustomer/${id}`);
           } else {
             navigate(`/FormProfilCustomer/${id}`);
-          }
-        });
-    } catch (error) {}
-  }
-  let data = {
-    token: null,
-  };
-  function handleClickLogout() {
-    try {
-      accountService
-        .logout(id, data, {
-          Headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          console.log(res.data.message);
-          if (res.data.message) {
-            navigate(`/AuthForm`);
           }
         });
     } catch (error) {}
@@ -93,12 +73,13 @@ function AccueilCustomer() {
           </div>
         </div>
         <div className=" ">
-          <button
-            className="  btn btn-reverse-primary "
-            onClick={handleClickLogout}
+          <Link
+            to={`/LogoutUser/${id}`}
+            style={{ textDecoration: "none" }}
+            href="/"
           >
-            DECONNEXION
-          </button>
+            <p>DECONNEXION</p>
+          </Link>
         </div>
       </div>
     </div>

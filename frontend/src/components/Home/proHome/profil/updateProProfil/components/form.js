@@ -16,6 +16,7 @@ import { useEffect } from "react";
 
 export default function Form() {
   const [number, setNumber] = useState("");
+  const [numberPhone, setNumberPhone] = useState("");
   const [routeAvatar, setRouteAvatar] = useState(null);
   const [data, setData] = useState("");
   const [userName, setUserName] = useState("");
@@ -23,6 +24,7 @@ export default function Form() {
   const [birthDate, setBirthDate] = useState("");
   const [newDate, setNewDate] = useState("");
   const [proId, setProId] = useState("");
+  const [functionPro, setFunctionPro] = useState("");
   const [register, handleSubmit, setValue, errors] =
     useInputControlerFormProfilPro();
   // useInputControlerFormProfilCustomer({
@@ -58,11 +60,14 @@ export default function Form() {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setData(res.data.data);
         setUserName(res.data.data.nom_user);
         setAvatar(res.data.data.avatar);
         setProId(res.data.data.pro_id);
         setBirthDate(res.data.data.birthDate);
+        setNumberPhone(res.data.data.phone);
+        setFunctionPro(res.data.data.fonction);
       })
       .catch((error) => {
         console.error(error);
@@ -189,7 +194,7 @@ export default function Form() {
             <PhoneInput
               className={styles.phone}
               country={"fr"}
-              value={number}
+              value={numberPhone}
               onChange={handleChange}
             />
           </div>

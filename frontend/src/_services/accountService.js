@@ -75,7 +75,10 @@ let ShowOneRestaurant = (id, idResto) => {
   return Axios.get(`/showOneRestaurant/${id}/${idResto}`);
 };
 let UpdateRestaurant = (data, id, idResto) => {
-  return Axios.get(`/UpdateRestaurant/${id}/${idResto}`, data);
+  return Axios.put(`/UpdateRestaurant/${id}/${idResto}`, data);
+};
+let GetDataForOneRestaurant = (id, idResto) => {
+  return Axios.get(`/GetDataForOneRestaurant/${id}/${idResto}`);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,4 +158,5 @@ export const accountService = {
   ShowAllRestaurants,
   ShowOneRestaurant,
   UpdateRestaurant,
+  GetDataForOneRestaurant,
 };

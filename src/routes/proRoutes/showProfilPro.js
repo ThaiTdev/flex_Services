@@ -3,11 +3,8 @@ const { User } = require("../../db/sequelize");
 
 module.exports = (app) => {
   app.get("/api/showProfilPro/:id", async (req, res) => {
-    // création du code d'activation
-
     // récupération des données passées dans la requête
     const userData = req.params.id;
-
     try {
       const pro = await Pro.findOne({ where: { user_id: userData } });
       const user = await User.findOne({ where: { user_id: userData } });

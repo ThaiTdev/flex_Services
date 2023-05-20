@@ -26,6 +26,7 @@ function ShowAllRestaurant({
         })
         .then((res) => {
           setDataResto(res.data.data);
+          console.log();
         });
     }, [id]);
   } catch (error) {}
@@ -115,7 +116,7 @@ function ShowAllRestaurant({
               className={`d-flex justify-content-between align-items-center ${styles.boxLinkAjout}`}
             >
               <Link
-                to={`/AddNewRestaurant/${resto.user_id}`}
+                to={`/AddNewRestaurant/${id}`}
                 style={{ textDecoration: "none" }}
                 href="/"
               >

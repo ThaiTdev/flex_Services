@@ -31,32 +31,10 @@ module.exports = (app) => {
     //////création du dossier initiale
     const newFolderUser = "uploadImagesPro" + "_" + id;
     const newFolderTheme = "uploadAvatarPro";
-    // const folderInitial = "uploadAvatarPro" + "_" + id;
     const folderUplodedInitial =
       __dirname + `../../../../uploads/${newFolderUser}/${newFolderTheme}/`;
-    // const folderUplodedInitial =
-    //   __dirname + `../../../../uploads/${folderInitial}/`;
 
     //ce code efface tous les fichiers dans le dossier initiale apart le dernier.
-
-    fs.readdir(folderUplodedInitial, (err, files) => {
-      if (err) {
-        throw err;
-      }
-      //si le dossier contient plus de 1 fichier
-      if (files.length > 1) {
-        // je boucle sur tout mes fichiers sauf le dernier
-        for (let i = 0; i < files.length - 1; i++) {
-          //je les supprimes
-          fs.unlink(folderUplodedInitial + files[i], (err) => {
-            if (err) {
-              throw err;
-            }
-            console.log(`${files[0]} has been deleted`);
-          });
-        }
-      }
-    });
     fs.readdir(folderUplodedInitial, (err, files) => {
       if (err) {
         throw err;

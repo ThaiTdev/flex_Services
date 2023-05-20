@@ -108,7 +108,7 @@ const Customer = CustomerModel(sequelize, DataTypes);
 sequelize
   .authenticate()
   .then((_) =>
-    console.log("la connexion  à la base de données a bien été établie.")
+    console.log("la connexion à la base de données a bien été établie.")
   )
   .catch((error) =>
     console.error("Impossible de se connecter à la base de données")
