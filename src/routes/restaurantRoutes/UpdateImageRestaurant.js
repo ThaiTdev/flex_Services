@@ -1,10 +1,11 @@
 const fs = require("fs");
 
 module.exports = (app) => {
-  app.post("/api/uploadImageResto/:id", (req, res) => {
+  app.post("/api/updateImageRestaurant/:id/:userId", (req, res) => {
     const id = req.params.id;
+    const userId = req.params.userId;
     const newFolderUser = "uploadImagesPro" + "_" + id;
-    const newFolderTheme = "uploadImageResto";
+    const newFolderTheme = "uploadImageResto" + "_" + userId;
     const folderUploded = __dirname + `../../../../uploads/${newFolderUser}/`;
     const folderUploded2 =
       __dirname + `../../../../uploads/${newFolderUser}/${newFolderTheme}/`;

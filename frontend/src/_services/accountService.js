@@ -77,6 +77,9 @@ let ShowOneRestaurant = (id, idResto) => {
 let UpdateRestaurant = (data, id, idResto) => {
   return Axios.put(`/UpdateRestaurant/${id}/${idResto}`, data);
 };
+let updateImageRestaurant = (data, id, idResto) => {
+  return Axios.post(`/updateImageRestaurant/${id}/${idResto}`, data);
+};
 let GetDataForOneRestaurant = (id, idResto) => {
   return Axios.get(`/GetDataForOneRestaurant/${id}/${idResto}`);
 };
@@ -159,4 +162,5 @@ export const accountService = {
   ShowOneRestaurant,
   UpdateRestaurant,
   GetDataForOneRestaurant,
+  updateImageRestaurant,
 };

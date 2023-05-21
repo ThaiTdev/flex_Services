@@ -76,6 +76,7 @@ require("./src/routes/restaurantRoutes/ShowAllRestaurants")(app);
 require("./src/routes/restaurantRoutes/ShowOneRestaurant")(app);
 require("./src/routes/restaurantRoutes/UpdateRestaurant")(app);
 require("./src/routes/restaurantRoutes/GetDataForOneRestaurant")(app);
+require("./src/routes/restaurantRoutes/UpdateImageRestaurant")(app);
 
 //api crud//
 require("./src/routes/routesCrud/findAllUsers")(app);

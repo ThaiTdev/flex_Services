@@ -53,7 +53,7 @@ function FormResto() {
     }
 
     accountService
-      .uploadImageRestaurant(formData, id, {
+      .updateImageRestaurant(formData, id, idResto, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
